@@ -80,7 +80,8 @@ def save(name):
 
 
 def print_eval(data=(pp, ct, cc), names=c[1:]):
-    print('\nname', 'mu', 'stderr', 'r-val\n', sep='\t')
+    print('\nname', 'mu', 'stderr', 'rel', 'r-val', 'r-val**2\n', sep='\t')
     for d, n in zip(data, names):
-        print(n, '{0:.4f}  {1:.4f}  {2:.4f}'.format(abs(d[0]), d[4], abs(d[2])),
-              sep='\t')
+        print(n, '{0:.4f}  {1:.4f}  {2:.3f}%  {3:.4f}  {4:.4f}'.format(
+              abs(d[0]), d[4], abs(d[4]/d[0])*100, abs(d[2]), d[2]**2), sep='\t')
+    print()
