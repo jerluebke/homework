@@ -47,11 +47,12 @@ def scatter_data(colors=scatter_colors, sizes=(90, 65, 40),
                     **kwds, zorder=2)
 
 
-def plot_linreg(lr_data=(pp, ct, cc), names=c[1:], offset=(0, -0.15, 0),
-                colors=plot_colors, kwds=dict()):
-    for l, n, o, cl in zip(lr_data, names, offset, colors):
+def plot_linreg(lr_data=(pp, ct, cc), names=('PP', 'CT', 'CC'),
+                offset=(0, -0.15, 0), colors=plot_colors,
+                labels=('', '_{eff}', '_{eff}'), kwds=dict()):
+    for l, n, o, cl, lb in zip(lr_data, names, offset, colors, labels):
         plt.plot(x, np.exp(l[0]*x+l[1]+o), color=cl,
-                 label='{}, $\mu$={:.4f}'.format(n, abs(l[0])),
+                 label='{0}, $\mu{1}$={2:.4f}'.format(n, lb, abs(l[0])),
                  **kwds, zorder=1)
     plt.legend()
 
@@ -64,7 +65,7 @@ def do_plotting():
     ticks = lambda x, pos: r'$e^{{{0}}}$'.format(int(np.log(x)))
     ax.yaxis.set_major_formatter(mpl.ticker.FuncFormatter(ticks))
 
-    plt.title(r'Ereignismenge $\frac{N(x)}{N(0)}$ gegen Absorberdicke $d$'
+    plt.title(r'Ereignismenge $\frac{N(x)}{N(0)}$ gegen Absorberdicke d'
           +'\nHalblogarithmisch zur Basis e\n')
     plt.xlabel(r'$d/mm$')
     plt.ylabel(r'$\frac{N(x)}{N(0)}$')
