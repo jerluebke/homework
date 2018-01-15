@@ -8,8 +8,8 @@ import pandas as pd
 import numpy as np
 from scipy.stats import linregress
 
-sys.path.append('/home/jeremiah/Dokumente/Studium/G-Praktikum/')
-from config_grid import set_grid
+# sys.path.append('/home/jeremiah/Dokumente/Studium/G-Praktikum/')
+# from config_grid import set_grid
 
 
 x = np.linspace(-2, 80)
@@ -36,8 +36,8 @@ def make_cmap(cmap, ids):
     return [cmap(i) for i in ids]
 
 cmap = plt.get_cmap('tab20')
-scatter_colors = make_cmap(cmap, (0, 6, 4))
-plot_colors = make_cmap(cmap, (1, 7, 5))
+scatter_colors = make_cmap(cmap, (0, 4, 6))
+plot_colors = make_cmap(cmap, (1, 5, 7))
 
 
 def scatter_data(colors=scatter_colors, sizes=(90, 65, 40),
@@ -59,16 +59,19 @@ def plot_linreg(lr_data=(pp, ct, cc), names=('PP', 'CT', 'CC'),
 
 def do_plotting():
     fig, ax = plt.subplots(figsize=(12, 8))
-    ax = set_grid(ax)
+    # ax = set_grid(ax)
+    plt.minorticks_on()
+    ax.grid(which='major', color='grey', linestyle='-', linewidth=.5)
+    ax.grid(which='minor', color='grey', linestyle=':', linewidth=.25)
 
     ax.set_yscale('log', basey=np.e)
     ticks = lambda x, pos: r'$e^{{{0}}}$'.format(int(np.log(x)))
     ax.yaxis.set_major_formatter(mpl.ticker.FuncFormatter(ticks))
 
-    plt.title(r'Ereignismenge $\frac{N(x)}{N(0)}$ gegen Absorberdicke d'
-          +'\nHalblogarithmisch zur Basis e\n')
+    plt.title(r'Relative Ereignismenge $\frac{N(d)}{N(0)}$ gegen Absorberdicke d'
+              +'\nHalblogarithmisch zur Basis e\n')
     plt.xlabel(r'$d/mm$')
-    plt.ylabel(r'$\frac{N(x)}{N(0)}$')
+    plt.ylabel(r'$\frac{N(d)}{N(0)}$')
     plt.xlim(-2, 80)
 
     plot_linreg()
@@ -77,7 +80,7 @@ def do_plotting():
 
 def save(name):
     do_plotting()
-    plt.savefig(name+'.ps', dpi=100, papertype='a4', orientation='landscape')
+    plt.savefig(name+'.ps', dpi=300, papertype='a4', orientation='landscape')
 
 
 def print_eval(data=(pp, ct, cc), names=c[1:]):
