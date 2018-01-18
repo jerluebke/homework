@@ -4,8 +4,9 @@
 # TODO
 # automate and adjust plotting
 #   integrate config_grid and delete old file
-# error handling
-#   add errors to __repr__
+#   legend behaves a little weird
+#   adjust formatting
+#   save figures
 # evaluation
 #   error propagation
 ##################################################
@@ -31,46 +32,11 @@ class Data():
     # be specified 
     _lin_reg = pd.DataFrame(index=['slope', 'intercept', 'r_val', 'p_val', 'std_err'])
 
-    # dicts for plotting, can be modified
-    fig_kwds = dict(figsize=(12, 8))
-    line_options = dict(color = 'blue',
-                        linestyle = 'solid',
-                        linewidth = .8,
-                        zorder = 1)
-    scatter_options = dict(#s = 6,      # markersize
-                           #linewidth = .8,
-                           facecolor = 'white',
-                           edgecolors = 'blue',
-                           marker = 'o',
-                           zorder = 2)
-    errorbar_options = dict(ecolor = 'black',
-                            #elinewidth = .8,
-                            capsize = 6,
-                            #capthick = 1,
-                            marker = 'o',
-                            markeredgecolor = 'blue',
-                            #markeredgewidth = .6,
-                            markerfacecolor = 'white',
-                            #markersize = 6,
-                            #zorder = 2
-                            linestyle = None)
-    '''
-    plt_kwds_mapping = dict(# Examples
-                            default_line = dict(kind = 'line',
-                                                **line_options,
-                                                label = 'default line'),
-                            default_scatter = dict(kind = 'scatter',
-                                                   x = 'X', y = 'Y',  # columnnames
-                                                   **scatter_options,
-                                                   label = 'dafault scatter'),
-                            default_error = dict(**errorbar_options,
-                                                 title = 'default_errorbar',
-                                                 #yerr = self._y_errors['example'],
-                                                 #xerr = self._x_errors['example'],
-                                                 xlim = (0, 20), ylim = (0, 10))
-                           )
-    '''
+    # dicts to hand specific kwds for each df to PlotHelper
+    ax_kwds_mapping = {}
     plt_kwds_mapping = {}
+    # dicts to store the plots
+    plots = {}
 
     def __init__(self, *args, _sep='\t'):
         """Takes filenames of data sheets. For each one a df is created and
@@ -82,7 +48,9 @@ class Data():
             self._data[a] = table
             # set table as attribute for easy access
             setattr(self, a, table)
-            # init empty dict in self.plt_kwds_mapping
+            # init empty dict in self.ax_kwds_mapping and in
+            # self.plt_kwds_mapping
+            self.ax_kwds_mapping[a] = {}
             self.plt_kwds_mapping[a] = {}
 
     @property
@@ -120,7 +88,6 @@ class Data():
             return_val += '\n\n'
         print(return_val)
 
-
     def __repr__(self):
         """Object representation
         Essentially prints self.data"""
@@ -139,18 +106,10 @@ class Data():
             del df[col1], df[col2]
         self._data[df_id] = df
 
-    def apply_funcs(self, df_id, funcs, cols=None):
-        """wrapper for df.aggregate"""
+    def apply_funcs(self, df_id, func, col):
+        """apply function on single column"""
         df = self._data[df_id]
-        if isinstance(cols, str):
-            cols = [cols]
-        if callable(funcs):
-            funcs = [funcs]
-        if not cols:
-            self._data[df_id] = df.agg(funcs)
-        else:
-            kwds = {c:f for c, f in zip(cols, funcs)}
-            self._data[df_id] = df.agg(kwds)
+        self._data[df_id] = func(df)
 
     def make_linreg(self, df_ids=[]):
         """Perform scipy.stats.linregress for df specified in df_ids
@@ -164,23 +123,6 @@ class Data():
             # Indices of self_linreg name the components of the result
             lr = list(st.linregress(self._data[di]))
             self._lin_reg[di] = lr
-
-    def _plot_linreg(self, df_id, label=True):
-        """for plotting linear regression
-        returns x: np.linspace
-                y: x*lr.slope+lr.intercept"""
-        lr = self.lin_reg[df_id]
-        kwds = self.plt_kwds_mapping[df_id]
-        xlim = kwds.get('xlim')
-        if not xlim:
-            raise ValueError('x limits in plt_kwds_mapping[{}] not\
-                             found!'.format(df_id))
-        x = np.linspace(*xlim)
-        y = lambda x: x * lr.slope + lr.intercept
-        if label:
-            return dict(xdata=x, ydata=y(x),
-                        label='m={0}$\stackrel{+}{-}${1}'.format(lr.slope, lr.intercept))
-        return x, y(x)
 
     def add_errors(self, df_id, err, which):
         """Adds error values to specified df (named by df_id)
@@ -202,26 +144,141 @@ class Data():
 
     def plot(self, which='all'):
         if which == 'all':
+            # get all df_ids
             which = self._data.keys()
         if isinstance(which, str):
+            # if only one string is provided, make it an iterable
             which = [which]
         for i, di in enumerate(which):
+            # get plt_kwds for df
             kwds = self.plt_kwds_mapping[di]
-            plot_linreg = kwds.get('plot_linreg', False)
-            self._save_remove(kwds, 'plot_linreg')
-            df = self._data[di]
-            plt.figure(i, **self.fig_kwds)
-            df.plot(**kwds)
-            if plot_linreg:
-                plt.plot(self._plot_linreg(di, label=True), **self.line_options)
-            plt.legend(self.legend_options)
+            # make params dict to pass to PlotHelper
+            params = dict(dataframe = self._data[di],
+                          yerr = self._y_errors[di],
+                          xerr = self._x_errors[di],
+                          lin_reg = self.lin_reg[di],
+                          func = kwds.get('func'),
+                          legend_params = kwds.get('legend_params', ''))
+            # remove the entries which would cause trouble
+            self._savely_remove(kwds, 'func')
+            self._savely_remove(kwds, 'legend_params')
+            # add the rest
+            params['plotting_params'] = kwds
+            # give params to PlotHelper and save object
+            ph = PlotHelper(**params, **self.ax_kwds_mapping[di])
+            self.plots[di] = ph
 
-    def _save_remove(self, dict_, key_):
-        """helper function to savely remove item form dict"""
+    def _savely_remove(self, dict_, key_):
+        """helper function to savely remove entry from dict"""
         try:
             del dict_[key_]
         except KeyError:
             pass
+
+
+
+class PlotHelper:
+    """class for creating and handling the plots"""
+    # these dicts hold default information for plotting
+    # to be adjusted and expanded according to what is needed
+    fig_params = dict(figsize = (12, 8),
+                      dpi = 100)
+    line_options = dict(color = 'blue',
+                        linestyle = 'solid',
+                        linewidth = .8,
+                        zorder = 1)
+    scatter_options = dict(#s = 6,      # markersize
+                           #linewidth = .8,
+                           facecolor = 'white',
+                           edgecolors = 'blue',
+                           marker = 'o',
+                           zorder = 2)
+    errorbar_options = dict(ecolor = 'black',
+                            #elinewidth = .8,
+                            capsize = 6,
+                            #capthick = 1,
+                            marker = 'o',
+                            markeredgecolor = 'blue',
+                            #markeredgewidth = .6,
+                            markerfacecolor = 'white',
+                            #markersize = 6,
+                            #zorder = 2
+                            linestyle = ' ')
+    # map function to its options-dict
+    # to be expanded
+    func_mapping = {plt.plot : line_options,
+                    plt.scatter : scatter_options,
+                    plt.errorbar : errorbar_options}
+
+    def __init__(self,
+                 dataframe,
+                 yerr=None, xerr=None,
+                 lin_reg=None, lr_label=None,
+                 func=plt.plot,
+                 plotting_params=dict(label=None),
+                 legend_params=None,
+                 **axis_params):
+        """
+        =========
+        Arguments
+        =========
+        dataframe    :  pandas.DataFrame containing data to be plotted
+        errors       :  scalar, array-like or callable for ´plt.errorbar´
+        lin_reg      :  Object with linear regression data
+        func         :  a pyplot function for plotting
+                        (currently available: ´plot´, ´scatter´, ´errorbar´;
+                        for more expand ´self.func_mapping´)
+        plotting_params :  parameters to pass to the chosen pyplot function
+        legend_params:  parameters to control the legend
+        axis_params  :  parameters to control behaviour of the used axis
+        """
+        # extract data
+        self.cols = dataframe.columns
+        self.x = dataframe[self.cols[0]]
+        self.y = dataframe[self.cols[1]]
+        # set axis_params if given one is empty
+        # TODO: doesn't work to well...
+        if not axis_params:
+            self.axis_params = dict(xlim = (max(self.x), min(self.x)),
+                                    ylim = (max(self.y), min(self.y)),
+                                    xlabel = self.cols[0],
+                                    ylabel = self.cols[1])
+        else:
+            self.axis_params = axis_params
+        # merge plotting params from default and given values
+        if func in self.func_mapping:
+            self.plotting_params = dict(**self.func_mapping[func], **plotting_params)
+        else:
+            raise KeyError('{} not found in func_mapping! Implement it first.'.format(func))
+        # make figure and axis and store them as attributes
+        self.f, self.a = plt.subplots(subplot_kw=self.axis_params,
+                                      **self.fig_params)
+        # add error data in case an errorbar is to be plotted
+        if func is plt.errorbar:
+            self.plotting_params['yerr'] = yerr
+            self.plotting_params['xerr'] = xerr
+        # do the actual plotting here
+        # func is a pyplot function
+        func(self.x, self.y, **self.plotting_params)
+        # plot linear regression if provided
+        if lin_reg is not None:
+            if not lr_label:
+                pm = r'$\stackel{+}{-}$'
+                lr_label = r'm={0}{1}{2}'.format(lin_reg.slope, pm, lin_reg.std_err)
+            xlim = self.axis_params.get('xlim')
+            x_span = np.linspace(*xlim)
+            y_vals = lambda x: x*lin_reg.slope+lin_reg.intercept
+            self.a.plot(x_span, y_vals(x_span), label=lr_label,
+                        **self.line_options)
+        # if legend_params is empty or None, call plt.legend without any
+        # arguments to avoid undesired results
+        if not legend_params:
+            plt.legend()
+        else:
+            plt.legend(legend_params)
+
+    def save(self):
+        """save figure to file"""
 
 
 
@@ -231,8 +288,8 @@ d.col_diff('data_a2a', 'U1', 'U2', 'U_H', rm=True)
 d.col_diff('data_a2b', 'U1', 'U2', 'U_H', rm=True)
 idx = lambda x: x
 factor_e_minus5 = lambda x: x*1e-5
-d.apply_funcs('data_a2a', [idx, factor_e_minus5], ['I', 'U_H'])
-d.apply_funcs('data_a2b', [idx, factor_e_minus5], ['B', 'U_H'])
+d.apply_funcs('data_a2a', factor_e_minus5, 'U_H')
+d.apply_funcs('data_a2b', factor_e_minus5, 'U_H')
 d.make_linreg()
 d.add_errors('data_a1', 0.05, 'x')
 du = [5, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
