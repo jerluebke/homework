@@ -23,8 +23,9 @@ class Data():
 
     # dict to store df
     _data = {}
-    # dict for error values corresbonding to self.data
-    _errors = {}
+    # dicts for error values corresbonding to self.data
+    _x_errors = {}
+    _y_errors = {}
     # DataFrame for linreg values of df from self.data
     # Is filled by self.make_linreg, where the df which are to be processed can
     # be specified 
@@ -51,7 +52,24 @@ class Data():
 
     @property
     def errors(self):
-        return self._errors
+        return_val = ''
+        for i, err in enumerate((self._x_errors, self._y_errors)):
+            return_val += '{} errors:\n'.format('X' if i==0 else 'Y')
+            for df_id, e in err.items():
+                return_val += '\t{}:\n'.format(df_id)
+                df = self._data[df_id]
+                d = df[df.columns[i]]
+                if callable(e):
+                    vals = [e(point) for point in d]
+                elif isinstance(e, (float, int)):
+                    vals = [e]*len(d)
+                else:
+                    vals = e
+                for j, val in enumerate(vals):
+                    return_val += '\t{0:<}:{1:>}\n'.format(j, val)
+                return_val += '\n\n'
+            return_val += '\n\n\n'
+        print(return_val)
 
     def __repr__(self):
         """Object representation
@@ -84,7 +102,7 @@ class Data():
             lr = list(st.linregress(self._data[di]))
             self._lin_reg[di] = lr
 
-    def add_errors(self, df_id, error, which):
+    def add_errors(self, df_id, err, which):
         """Adds error values to specified df (named by df_id)
         errors can be scalar, array-like or a callable function
         which specifies the axis to process the errors for (x or y)"""
@@ -94,12 +112,16 @@ class Data():
         if df_id not in self._data:
             raise KeyError('{} is not found in the data dict. Add it\
                            first!'.format(df_id))
-        if which not in self._data[df_id].columns:
-            raise KeyError('No column named {0} is found in {1}. Add it\
-                           first!'.format(which, df_id))
-        if callable(error):
-            pass
-        # self._errors[df_id] = error
+        if which not in ('x', 'y'):
+            raise KeyError('´which´ needs to be ´x´ or ´y´!')
+        if not (isinstance(err, float) or callable(err) or
+                len(err)==len(self._data[df_id])):
+            raise ValueError('error must be number, callable or array-like\
+                             with the same length as the corresponding data')
+        if which == 'x':
+            self._x_errors[df_id] = err
+        else:
+            self._y_errors[df_id] = err
 
 
 
@@ -122,4 +144,4 @@ def make_plot(DataObject):
 d = Data('data_a1', 'data_a2a', 'data_a2b')
 d.col_diff('data_a2a', 'U1', 'U2', 'U_H', rm=True)
 d.col_diff('data_a2b', 'U1', 'U2', 'U_H', rm=True)
-d.make_linreg()
+# d.make_linreg()
