@@ -11,7 +11,7 @@
 #   error propagation
 ##################################################
 
-# import matplotlib as mpl
+import matplotlib as mpl
 # mpl.use('ps')
 import matplotlib.pyplot as plt
 import numpy as np
@@ -109,8 +109,8 @@ class Data():
 
     def apply_funcs(self, df_id, func, col):
         """apply function on single column"""
-        df = self._data[df_id]
-        self._data[df_id] = func(df)
+        df = self._data[df_id][col]
+        self._data[df_id][col] = func(df)
 
     def make_linreg(self, df_ids=[]):
         """Perform scipy.stats.linregress for df specified in df_ids
@@ -155,16 +155,17 @@ class Data():
             kwds = self.plt_kwds_mapping[di]
             # make params dict to pass to PlotHelper
             params = dict(dataframe = self._data[di],
-                          yerr = self._y_errors[di],
-                          xerr = self._x_errors[di],
-                          lin_reg = self.lin_reg[di],
-                          func = kwds.get('func'),
+                          yerr = self._y_errors.get(di),
+                          xerr = self._x_errors.get(di),
+                          lin_reg = self.lin_reg.get(di),
                           legend_params = kwds.get('legend_params', ''),
                           save = save)
             # remove the entries which would cause trouble
-            self._savely_remove(kwds, 'func')
             self._savely_remove(kwds, 'legend_params')
             # add the rest
+            if kwds.get('func', False):
+                params['func'] = kwds['func']
+                self._savely_remove(kwds, 'func')
             params['plotting_params'] = kwds
             # give params to PlotHelper and save object
             setattr(self, '{}_plot'.format(di),
@@ -187,12 +188,12 @@ class PlotHelper:
                        dpi = 100)
     _line_options = dict(color = 'blue',
                          linestyle = 'solid',
-                         linewidth = .8,
+                         linewidth = 1,
                          zorder = 2)
-    _scatter_options = dict(#s = 6,      # markersize
-                            #linewidth = .8,
+    _scatter_options = dict(s = 8,      # markersize
+                            linewidth = 1,
                             facecolor = 'white',
-                            edgecolors = 'blue',
+                            edgecolors = 'red',
                             marker = 'o',
                             zorder = 3)
     _errorbar_options = dict(ecolor = 'black',
@@ -200,12 +201,20 @@ class PlotHelper:
                              capsize = 6,
                              #capthick = 1,
                              marker = 'o',
-                             markeredgecolor = 'blue',
-                             #markeredgewidth = .6,
+                             markeredgecolor = 'red',
+                             markeredgewidth = 1,
                              markerfacecolor = 'white',
-                             #markersize = 6,
+                             markersize = 8,
                              zorder = 3,
                              linestyle = ' ')
+    _grid_major = dict(which = 'major',
+                       color = 'gray',
+                       linewidth = 0.5,
+                       linestyle = '-')
+    _grid_minor = dict(which = 'minor',
+                       color = 'gray',
+                       linewidth = 0.25,
+                       linestyle = ':')
     # map function to its options-dict
     # to be expanded
     func_mapping = dict(line = (plt.plot, _line_options),
@@ -240,11 +249,11 @@ class PlotHelper:
         self.x = dataframe[self.cols[0]]
         self.y = dataframe[self.cols[1]]
         # set axis_params, merge default with given
-        self.axis_params = dict(xlim = (min(self.x), max(self.x)),
-                                ylim = (min(self.y), max(self.y)),
-                                xlabel = self.cols[0],
-                                ylabel = self.cols[1],
-                                **axis_params)
+        self.axis_params = {**dict(xlim = (min(self.x), max(self.x)),
+                                   ylim = (min(self.y), max(self.y)),
+                                   xlabel = self.cols[0],
+                                   ylabel = self.cols[1]),
+                            **axis_params}
         # get desired pyplot function from func_mapping and
         # merge plotting params from default and given values
         if func in self.func_mapping:
@@ -256,7 +265,7 @@ class PlotHelper:
                            .format(func))
         # make figure and axis and store them as attributes
         self.fig, self.ax = plt.subplots(subplot_kw=self.axis_params,
-                                         **self.fig_params)
+                                         **self._fig_params)
         # add error data in case an errorbar is to be plotted
         if func == 'errorbar':
             self.plotting_params['yerr'] = yerr
@@ -277,6 +286,15 @@ class PlotHelper:
         # do the actual plotting here
         # func is a pyplot function
         self.func(self.x, self.y, **self.plotting_params)
+        # for some reason the following entries appear in axis_params (I
+        # HAVE NO IDEA, WHERE THEY COME FROM!) and those fuckers make
+        # trouble, so they have to be removed befor passing the dict to the
+        # axis
+        # fuckers
+        for prop in ('sharey', 'sharex'):
+            if prop in self.axis_params:
+                del self.axis_params[prop]
+        self.ax.set(**self.axis_params)
         # plot linear regression if provided
         if self.lin_reg is not None:
             if not self.lr_label:
@@ -285,18 +303,41 @@ class PlotHelper:
             xlim = self.axis_params.get('xlim')
             x_span = np.linspace(*xlim)
             y_vals = lambda x: x * self.lin_reg.slope + self.lin_reg.intercept
-            self.a.plot(x_span, y_vals(x_span), label=self.lr_label,
-                        **self.line_options)
-        # if legend_params is empty or None, call plt.legend without any
-        # arguments to avoid undesired results
-        if not self.legend:
-            plt.legend()
-        else:
+            self.ax.plot(x_span, y_vals(x_span), label=self.lr_label,
+                         **self._line_options)
+        # make grid
+        self.set_grid()
+        # make legend, if given
+        if self.legend:
             plt.legend(self.legend)
+
+    def set_grid(self):
+        self.ax.grid(**self._grid_major)
+        if any(self._grid_minor):
+            self.ax.minorticks_on()
+            self.ax.grid(**self._grid_minor)
 
     def save(self):
         """save figure to file"""
         print('Not implemented yet...')
+
+    def add_text_with_newline_using_latex(self, text_with_newline):
+        # For some reason it is not possible to add a newline (it
+        # just gives a huge traceback, even with usetex=False)
+        # Since I'm tired of this shit and I have better things to debug
+        # this shit, I'm just solving it with this ugly hack hoping it
+        # won't break any other shit...
+        # Note: text.latex.preview should be False in any other case!
+        # Otherwith just some ugly shit happens
+        # fuckers...
+        mpl.rcParams['text.latex.preview'] = True
+        self.ax.set_title(text_with_newline)
+        mpl.rcParams['text.latex.preview'] = False
+
+    # an alias for above function since I don't even consider typing this
+    # long ass name every fucking time I need it
+    # so here you go...
+    atwnul = add_text_with_newline_using_latex
 
 
 
@@ -308,15 +349,23 @@ d = Data('data_a1', 'data_a2a', 'data_a2b')
 d.col_diff('data_a2a', 'U1', 'U2', 'U_H', rm=True)
 d.col_diff('data_a2b', 'U1', 'U2', 'U_H', rm=True)
 idx = lambda x: x
-factor_e_minus5 = lambda x: x*1e-5
-d.apply_funcs('data_a2a', factor_e_minus5, 'U_H')
-d.apply_funcs('data_a2b', factor_e_minus5, 'U_H')
+def make_factor(f):
+    return lambda x: x*f
+d.apply_funcs('data_a2a', make_factor(1e-5), 'U_H')
+d.apply_funcs('data_a2b', make_factor(1e-5), 'U_H')
+d.apply_funcs('data_a2b', make_factor(1e-3), 'B')
 d.make_linreg()
-d.add_errors('data_a1', 0.05, 'x')
-du = [5, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
-du = [0.005*10**(-u) for u in du]
-d.add_errors('data_a1', du, 'y')
+# d.add_errors('data_a1', 0.05, 'x')
+# du = [5, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+# du = [0.005*10**(-u) for u in du]
+# d.add_errors('data_a1', du, 'y')
+d.plt_kwds_mapping['data_a1'] = {'func':'scatter'}
+d.ax_kwds_mapping['data_a1'] = dict(xlim=(-1, 21), ylim=(-0.002, 0.053),
+                                    xlabel='I/A', ylabel='U/A')
 d.add_errors('data_a2a', 0.05, 'x')
 d.add_errors('data_a2a', 0.01e-5, 'y')
-d.add_errors('data_a2b', 0.5, 'x')
+d.add_errors('data_a2b', 0.5e-3, 'x')
 d.add_errors('data_a2b', 0.01e-5, 'y')
+
+d.plot()
+d.data_a1_plot.atwnul('Bestimmung der Leitfähigkeit von Kupfer\nU gegen I\n')
