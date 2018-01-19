@@ -29,8 +29,9 @@ class Data():
     _y_errors = {}
     # DataFrame for linreg values of df from self.data
     # Is filled by self.make_linreg, where the df which are to be processed can
-    # be specified 
-    _lin_reg = pd.DataFrame(index=['slope', 'intercept', 'r_val', 'p_val', 'std_err'])
+    # be specified
+    _lin_reg = pd.DataFrame(index=['slope', 'intercept', 'r_val', 'p_val',
+                                   'std_err'])
 
     # dicts to hand specific kwds for each df to PlotHelper
     ax_kwds_mapping = {}
@@ -71,7 +72,7 @@ class Data():
         TODO: switch printing order of axis and df_id"""
         return_val = ''
         for i, err in enumerate((self._x_errors, self._y_errors)):
-            return_val += '{} errors:\n'.format('X' if i==0 else 'Y')
+            return_val += '{} errors:\n'.format('X' if i == 0 else 'Y')
             for df_id, e in err.items():
                 return_val += '\t{}:\n'.format(df_id)
                 df = self._data[df_id]
@@ -134,7 +135,7 @@ class Data():
         if which not in ('x', 'y'):
             raise KeyError('´which´ needs to be ´x´ or ´y´!')
         if not (isinstance(err, float) or callable(err) or
-                len(err)==len(self._data[df_id])):
+                len(err) == len(self._data[df_id])):
             raise ValueError('error must be number, callable or array-like\
                              with the same length as the corresponding data')
         if which == 'x':
@@ -142,7 +143,7 @@ class Data():
         else:
             self._y_errors[df_id] = err
 
-    def plot(self, which='all'):
+    def plot(self, which='all', save=False):
         if which == 'all':
             # get all df_ids
             which = self._data.keys()
@@ -158,15 +159,16 @@ class Data():
                           xerr = self._x_errors[di],
                           lin_reg = self.lin_reg[di],
                           func = kwds.get('func'),
-                          legend_params = kwds.get('legend_params', ''))
+                          legend_params = kwds.get('legend_params', ''),
+                          save = save)
             # remove the entries which would cause trouble
             self._savely_remove(kwds, 'func')
             self._savely_remove(kwds, 'legend_params')
             # add the rest
             params['plotting_params'] = kwds
             # give params to PlotHelper and save object
-            ph = PlotHelper(**params, **self.ax_kwds_mapping[di])
-            self.plots[di] = ph
+            setattr(self, '{}_plot'.format(di),
+                    PlotHelper(**params, **self.ax_kwds_mapping[di]))
 
     def _savely_remove(self, dict_, key_):
         """helper function to savely remove entry from dict"""
@@ -181,42 +183,43 @@ class PlotHelper:
     """class for creating and handling the plots"""
     # these dicts hold default information for plotting
     # to be adjusted and expanded according to what is needed
-    fig_params = dict(figsize = (12, 8),
-                      dpi = 100)
-    line_options = dict(color = 'blue',
-                        linestyle = 'solid',
-                        linewidth = .8,
-                        zorder = 1)
-    scatter_options = dict(#s = 6,      # markersize
-                           #linewidth = .8,
-                           facecolor = 'white',
-                           edgecolors = 'blue',
-                           marker = 'o',
-                           zorder = 2)
-    errorbar_options = dict(ecolor = 'black',
-                            #elinewidth = .8,
-                            capsize = 6,
-                            #capthick = 1,
+    _fig_params = dict(figsize = (12, 8),
+                       dpi = 100)
+    _line_options = dict(color = 'blue',
+                         linestyle = 'solid',
+                         linewidth = .8,
+                         zorder = 2)
+    _scatter_options = dict(#s = 6,      # markersize
+                            #linewidth = .8,
+                            facecolor = 'white',
+                            edgecolors = 'blue',
                             marker = 'o',
-                            markeredgecolor = 'blue',
-                            #markeredgewidth = .6,
-                            markerfacecolor = 'white',
-                            #markersize = 6,
-                            #zorder = 2
-                            linestyle = ' ')
+                            zorder = 3)
+    _errorbar_options = dict(ecolor = 'black',
+                             #elinewidth = .8,
+                             capsize = 6,
+                             #capthick = 1,
+                             marker = 'o',
+                             markeredgecolor = 'blue',
+                             #markeredgewidth = .6,
+                             markerfacecolor = 'white',
+                             #markersize = 6,
+                             zorder = 3,
+                             linestyle = ' ')
     # map function to its options-dict
     # to be expanded
-    func_mapping = {plt.plot : line_options,
-                    plt.scatter : scatter_options,
-                    plt.errorbar : errorbar_options}
+    func_mapping = dict(line = (plt.plot, _line_options),
+                        scatter = (plt.scatter, _scatter_options),
+                        errorbar = (plt.errorbar, _errorbar_options))
 
     def __init__(self,
                  dataframe,
                  yerr=None, xerr=None,
                  lin_reg=None, lr_label=None,
-                 func=plt.plot,
+                 func='errorbar',
                  plotting_params=dict(label=None),
                  legend_params=None,
+                 save=False,
                  **axis_params):
         """
         =========
@@ -236,52 +239,70 @@ class PlotHelper:
         self.cols = dataframe.columns
         self.x = dataframe[self.cols[0]]
         self.y = dataframe[self.cols[1]]
-        # set axis_params if given one is empty
-        # TODO: doesn't work to well...
-        if not axis_params:
-            self.axis_params = dict(xlim = (max(self.x), min(self.x)),
-                                    ylim = (max(self.y), min(self.y)),
-                                    xlabel = self.cols[0],
-                                    ylabel = self.cols[1])
-        else:
-            self.axis_params = axis_params
+        # set axis_params, merge default with given
+        self.axis_params = dict(xlim = (min(self.x), max(self.x)),
+                                ylim = (min(self.y), max(self.y)),
+                                xlabel = self.cols[0],
+                                ylabel = self.cols[1],
+                                **axis_params)
+        # get desired pyplot function from func_mapping and
         # merge plotting params from default and given values
         if func in self.func_mapping:
-            self.plotting_params = dict(**self.func_mapping[func], **plotting_params)
+            self.func = self.func_mapping[func][0]
+            self.plotting_params = dict(**self.func_mapping[func][1],
+                                        **plotting_params)
         else:
-            raise KeyError('{} not found in func_mapping! Implement it first.'.format(func))
+            raise KeyError('{} not found in func_mapping! Implement it first.'\
+                           .format(func))
         # make figure and axis and store them as attributes
-        self.f, self.a = plt.subplots(subplot_kw=self.axis_params,
-                                      **self.fig_params)
+        self.fig, self.ax = plt.subplots(subplot_kw=self.axis_params,
+                                         **self.fig_params)
         # add error data in case an errorbar is to be plotted
-        if func is plt.errorbar:
+        if func == 'errorbar':
             self.plotting_params['yerr'] = yerr
             self.plotting_params['xerr'] = xerr
+        # store given params for later use as instance attributes
+        self.lin_reg = lin_reg
+        self.lr_label = lr_label
+        self.legend = legend_params
+        # invoke plotting
+        self.plot()
+        if save:
+            self.save()
+
+    def plot(self, clear=True):
+        # clear axis befor plotting again
+        if clear:
+            self.ax.cla()
         # do the actual plotting here
         # func is a pyplot function
-        func(self.x, self.y, **self.plotting_params)
+        self.func(self.x, self.y, **self.plotting_params)
         # plot linear regression if provided
-        if lin_reg is not None:
-            if not lr_label:
-                pm = r'$\stackel{+}{-}$'
-                lr_label = r'm={0}{1}{2}'.format(lin_reg.slope, pm, lin_reg.std_err)
+        if self.lin_reg is not None:
+            if not self.lr_label:
+                self.lr_label = r'm={0}$\pm${1}'.format(self.lin_reg.slope,
+                                                        self.lin_reg.std_err)
             xlim = self.axis_params.get('xlim')
             x_span = np.linspace(*xlim)
-            y_vals = lambda x: x*lin_reg.slope+lin_reg.intercept
-            self.a.plot(x_span, y_vals(x_span), label=lr_label,
+            y_vals = lambda x: x * self.lin_reg.slope + self.lin_reg.intercept
+            self.a.plot(x_span, y_vals(x_span), label=self.lr_label,
                         **self.line_options)
         # if legend_params is empty or None, call plt.legend without any
         # arguments to avoid undesired results
-        if not legend_params:
+        if not self.legend:
             plt.legend()
         else:
-            plt.legend(legend_params)
+            plt.legend(self.legend)
 
     def save(self):
         """save figure to file"""
+        print('Not implemented yet...')
 
 
 
+########################
+# Process data for D24 #
+########################
 
 d = Data('data_a1', 'data_a2a', 'data_a2b')
 d.col_diff('data_a2a', 'U1', 'U2', 'U_H', rm=True)
