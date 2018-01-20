@@ -2,21 +2,22 @@
 
 ##################################################
 # TODO
-# automate and adjust plotting
-#   integrate config_grid and delete old file
-#   legend behaves a little weird
-#   adjust formatting
-#   save figures
 # evaluation
 #   error propagation
+# refactor
+#   save Data and PlotHelper as Library
+#   and put evaluation of D24 in seperate file
+# some Unittests would propably be nice
 ##################################################
 
 import matplotlib as mpl
-# mpl.use('ps')
+mpl.use('ps')
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import scipy.stats as st
+
+from matplotlib.lines import Line2D
 
 
 class Data():
@@ -52,7 +53,7 @@ class Data():
             # init empty dict in self.ax_kwds_mapping and in
             # self.plt_kwds_mapping
             self.ax_kwds_mapping[a] = {}
-            self.plt_kwds_mapping[a] = {}
+            self.plt_kwds_mapping[a] = {'label':'Messpunkte'}
 
     @property
     def data(self):
@@ -143,7 +144,7 @@ class Data():
         else:
             self._y_errors[df_id] = err
 
-    def plot(self, which='all', save=False):
+    def plot(self, which='all'):
         if which == 'all':
             # get all df_ids
             which = self._data.keys()
@@ -158,18 +159,29 @@ class Data():
                           yerr = self._y_errors.get(di),
                           xerr = self._x_errors.get(di),
                           lin_reg = self.lin_reg.get(di),
-                          legend_params = kwds.get('legend_params', ''),
-                          save = save)
+                          lr_label = kwds.get('lr_label'),
+                          legend_params = kwds.get('legend_params', ''))
             # remove the entries which would cause trouble
             self._savely_remove(kwds, 'legend_params')
+            self._savely_remove(kwds, 'lr_label')
             # add the rest
             if kwds.get('func', False):
                 params['func'] = kwds['func']
                 self._savely_remove(kwds, 'func')
-            params['plotting_params'] = kwds
             # give params to PlotHelper and save object
             setattr(self, '{}_plot'.format(di),
-                    PlotHelper(**params, **self.ax_kwds_mapping[di]))
+                    PlotHelper(**params, plotting_params=kwds, **self.ax_kwds_mapping[di]))
+
+    def save(self, **save_kwds):
+            # =dict(orientation='landscape', papertype='a4')):
+        if plt.get_backend() != 'ps':
+            print('You might want to set the backend to ´ps´ for saving the figure.')
+        for di in self._data.keys():
+            try:
+                ph = getattr(self, '{}_plot'.format(di))
+            except AttributeError:
+                continue
+            ph.fig.savefig('{}.ps'.format(di), **save_kwds)
 
     def _savely_remove(self, dict_, key_):
         """helper function to savely remove entry from dict"""
@@ -190,7 +202,7 @@ class PlotHelper:
                          linestyle = 'solid',
                          linewidth = 1,
                          zorder = 2)
-    _scatter_options = dict(s = 8,      # markersize
+    _scatter_options = dict(s = 80,      # markersize
                             linewidth = 1,
                             facecolor = 'white',
                             edgecolors = 'red',
@@ -198,7 +210,7 @@ class PlotHelper:
                             zorder = 3)
     _errorbar_options = dict(ecolor = 'black',
                              #elinewidth = .8,
-                             capsize = 6,
+                             capsize = 5,
                              #capthick = 1,
                              marker = 'o',
                              markeredgecolor = 'red',
@@ -226,7 +238,7 @@ class PlotHelper:
                  yerr=None, xerr=None,
                  lin_reg=None, lr_label=None,
                  func='errorbar',
-                 plotting_params=dict(label=None),
+                 plotting_params=None,
                  legend_params=None,
                  save=False,
                  **axis_params):
@@ -273,11 +285,9 @@ class PlotHelper:
         # store given params for later use as instance attributes
         self.lin_reg = lin_reg
         self.lr_label = lr_label
-        self.legend = legend_params
+        self.legend_params = legend_params
         # invoke plotting
         self.plot()
-        if save:
-            self.save()
 
     def plot(self, clear=True):
         # clear axis befor plotting again
@@ -307,19 +317,18 @@ class PlotHelper:
                          **self._line_options)
         # make grid
         self.set_grid()
-        # make legend, if given
-        if self.legend:
-            plt.legend(self.legend)
+        # if not legend params are not specified, make legend without arguments
+        # to avoid misbehaviour
+        if self.legend_params:
+            plt.legend(**self.legend_params)
+        else:
+            plt.legend()
 
     def set_grid(self):
         self.ax.grid(**self._grid_major)
         if any(self._grid_minor):
             self.ax.minorticks_on()
             self.ax.grid(**self._grid_minor)
-
-    def save(self):
-        """save figure to file"""
-        print('Not implemented yet...')
 
     def add_text_with_newline_using_latex(self, text_with_newline):
         # For some reason it is not possible to add a newline (it
@@ -359,13 +368,30 @@ d.make_linreg()
 # du = [5, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 # du = [0.005*10**(-u) for u in du]
 # d.add_errors('data_a1', du, 'y')
-d.plt_kwds_mapping['data_a1'] = {'func':'scatter'}
-d.ax_kwds_mapping['data_a1'] = dict(xlim=(-1, 21), ylim=(-0.002, 0.053),
+legend_params = dict(handles=[Line2D([], [], c='r', ls='', marker='o',
+                                     fillstyle='none', label='Messpunkte'),
+                              Line2D([], [], c='b', ls='-',
+                                     label='Regressionsgerade')],
+                     numpoints=2)
+for di in d.data.keys():
+    d.plt_kwds_mapping[di].update({'legend_params':legend_params})
+d.ax_kwds_mapping['data_a1'] = dict(xlim=(-.5, 20.5), ylim=(-0.002, 0.053),
                                     xlabel='I/A', ylabel='U/A')
-d.add_errors('data_a2a', 0.05, 'x')
+# d.add_errors('data_a2a', 0.05, 'x')
 d.add_errors('data_a2a', 0.01e-5, 'y')
-d.add_errors('data_a2b', 0.5e-3, 'x')
+d.ax_kwds_mapping['data_a2a'] = dict(xlim=(.5, 12.5), ylim=(0, 5e-6),
+                                     xlabel=r'$I_{quer}$/A', ylabel=r'$U_{H}$/$\mu$V')
+# d.add_errors('data_a2b', 0.5e-3, 'x')
 d.add_errors('data_a2b', 0.01e-5, 'y')
+d.ax_kwds_mapping['data_a2b'] = dict(xlim=(.08, .42), ylim=(5e-7, 3.5e-6),
+                                     xlabel=r'B/mT', ylabel=r'$U_{H}$/$\mu$V')
 
 d.plot()
 d.data_a1_plot.atwnul('Bestimmung der Leitfähigkeit von Kupfer\nU gegen I\n')
+d.data_a2a_plot.ax.set_yticklabels([i for i in np.arange(6)])
+d.data_a2a_plot.atwnul('Hallspannung in Abhängigkeit des Querstroms\n')
+d.data_a2b_plot.ax.set_xticklabels([i for i in np.arange(50, 450, 50)])
+d.data_a2b_plot.ax.set_yticklabels([i for i in np.arange(0.5, 4, 0.5)])
+d.data_a2b_plot.atwnul('Hallspannung in Abhängigkeit des Magnetfeldes\n')
+
+d.save(papertype='a4', orientation='landscape')
