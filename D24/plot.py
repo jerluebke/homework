@@ -26,17 +26,17 @@ d.make_linreg()
 lr_a1 = d.lin_reg.data_a1
 lr_a2a = d.lin_reg.data_a2a
 lr_a2b = d.lin_reg.data_a2b
-lr_label_list = ['{:.3e} $\pm$ {:.1e}'.format(lr_a1.slope, lr_a1.std_err),
-                 '{:.2e} $\pm$ {:.1e}'.format(lr_a2a.slope, lr_a2a.std_err),
-                 '{:.2e} $\pm$ {:.1e}'.format(lr_a2b.slope, lr_a2b.std_err)]
+lr_label_dict = dict(data_a1='{:.3e} $\pm$ {:.1e}'.format(lr_a1.slope, lr_a1.std_err),
+                     data_a2a='{:.2e} $\pm$ {:.1e}'.format(lr_a2a.slope, lr_a2a.std_err),
+                     data_a2b='{:.2e} $\pm$ {:.1e}'.format(lr_a2b.slope, lr_a2b.std_err))
 
-for di, l in zip(d.data.keys(), lr_label_list):
+for di, l in lr_label_dict.items():
     d.plt_kwds_mapping[di].update({
             'legend_params':dict(
                     handles=[Line2D([], [], c='r', ls='', marker='o',
                                     fillstyle='none', label='Messpunkte'),
                              Line2D([], [], c='b', ls='-',
-                                    label='Regressionsgerade\n{}'.format(l))
+                                    label='Regressionsgerade\nSteigung: {}'.format(l))
                              ],
                     numpoints=2)
             })
@@ -64,5 +64,4 @@ def do_plotting():
     d.data_a2b_plot.ax.set_xticklabels([i for i in np.arange(50, 450, 50)])
     d.data_a2b_plot.ax.set_yticklabels([i for i in np.arange(0.5, 4, 0.5)])
 
-def do_saving():
-    d.save(papertype='a4', orientation='landscape')
+# d.save()

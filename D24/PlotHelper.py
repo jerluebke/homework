@@ -173,8 +173,7 @@ class Data():
             setattr(self, '{}_plot'.format(di),
                     PlotHelper(**params, plotting_params=kwds, **self.ax_kwds_mapping[di]))
 
-    def save(self, **save_kwds):
-            # =dict(orientation='landscape', papertype='a4')):
+    def save(self, save_kwds={'orientation':'landscape', 'papertype':'a4'}):
         if plt.get_backend() != 'ps':
             print('You might want to set the backend to ´ps´ for saving the figure.')
         for di in self._data.keys():
@@ -311,13 +310,8 @@ class PlotHelper:
         # if an interactive backend is used, set
         # mpl.rcParams['text.latex.preview'] = True, to aviod misbehaviour
         # description see class ´atwnul´
-        if mpl.get_backend() in mpl.rcsetup.interactive_bk():
-            with atwnul():
-                self.set_title(self.title)
-        # otherwise there seems no need to worry
-        # e.g. with using ps-backend
-        else:
-            self.set_title(self.title)
+        with atwnul():
+            self.ax.set_title(self.title)
         # plot linear regression if provided
         if self.lin_reg is not None:
             if not self.lr_label:
@@ -358,6 +352,7 @@ class atwnul:
     # Otherwith just some ugly shit happens
     # fuckers...
     def __enter__(self):
-        mpl.rcParams['text.latex.preview'] = True
+        if mpl.get_backend() in mpl.rcsetup.interactive_bk:
+            mpl.rcParams['text.latex.preview'] = True
     def __exit__(self, *args):
         mpl.rcParams['text.latex.preview'] = False
