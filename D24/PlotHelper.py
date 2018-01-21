@@ -173,7 +173,8 @@ class Data():
             setattr(self, '{}_plot'.format(di),
                     PlotHelper(**params, plotting_params=kwds, **self.ax_kwds_mapping[di]))
 
-    def save(self, save_kwds={'orientation':'landscape', 'papertype':'a4'}):
+    def save(self, save_kwds={'orientation':'landscape',
+                              'papertype':'a4', 'dpi':300}):
         if plt.get_backend() != 'ps':
             print('You might want to set the backend to ´ps´ for saving the figure.')
         for di in self._data.keys():
@@ -209,8 +210,8 @@ class PlotHelper:
                             marker = 'o',
                             zorder = 3)
     _errorbar_options = dict(ecolor = 'black',
-                             #elinewidth = .8,
-                             capsize = 5,
+                             elinewidth = .8,
+                             capsize = 4,
                              #capthick = 1,
                              marker = 'o',
                              markeredgecolor = 'red',

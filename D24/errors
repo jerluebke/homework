@@ -1,9 +1,9 @@
 >a1
 l       b       d
-59mm    20mm    20mm
+59mm    20mm    20$\mu$m
 
 dI      dU
-0.05    halbe Skalenteilung (0.005e-x)
+0.05A   halbe Skalenteilung (0.005e-x)
 
 
 >a2a
@@ -11,16 +11,16 @@ B
 0.3T
 
 dI      dU
-0.05    0.01e-5
-
+0.1A    0.01e-5V
+(0.05A Skalenteilung)
 
 >a2b
 I
 6A
 
 dB      dU
-0.5mT   0.01e-5
-
+9mT	    0.01e-5V
+(0.5mT Skalenteilung)
 
 >all
 Blättchendicke

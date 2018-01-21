@@ -48,12 +48,12 @@ for di, t in titles.items():
     d.plt_kwds_mapping[di].update({'title':t})
 
 d.ax_kwds_mapping['data_a1'] = dict(xlim=(-.5, 20.5), ylim=(-0.002, 0.053),
-                                    xlabel='I/A', ylabel='U/A')
+                                    xlabel='I/A', ylabel='U/V')
 # d.add_errors('data_a2a', 0.05, 'x')
 d.add_errors('data_a2a', 0.01e-5, 'y')
 d.ax_kwds_mapping['data_a2a'] = dict(xlim=(.5, 12.5), ylim=(0, 5e-6),
                                      xlabel=r'$I_{quer}$/A', ylabel=r'$U_{H}$/$\mu$V')
-# d.add_errors('data_a2b', 0.5e-3, 'x')
+d.add_errors('data_a2b', 9e-3, 'x')
 d.add_errors('data_a2b', 0.01e-5, 'y')
 d.ax_kwds_mapping['data_a2b'] = dict(xlim=(.08, .42), ylim=(5e-7, 3.5e-6),
                                      xlabel=r'B/mT', ylabel=r'$U_{H}$/$\mu$V')
