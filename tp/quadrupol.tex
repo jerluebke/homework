@@ -1,0 +1,29 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+
+
+\begin{document}
+Hier ist mal beispielhaft meine Rechnung für \(T_{xx}\):\\
+\[T_{xx} = \int \mathrm{d}^{3} (2x^{2}-y^{2}-z^{2})\rho(\overrightarrow{r})\]\\
+Mit:\\
+\[x = s a \cos(\phi)\]
+\[y = s b \sin(\phi)\]
+\[z = z\]\\
+bekommt man:\\
+\[T_{xx} = \frac{Q}{\pi a b} \int_{-\infty}^{+\infty}\int_{0}^{2\pi}\int_{-\infty}^{+\infty} \mathrm{d}s \mathrm{d}\phi \mathrm{d}z s (s^{2} (2 a^{2}*\cos(\phi)^{2}-b^{2} \sin(\phi)^{2}) - z^{2})\]
+\[\delta(s^{2}-1) \delta(z)\]\\
+Substituiere:\\
+\[u = s^{2}\]
+\[\mathrm{d}s = \frac{\mathrm{d}s}{2*s}\]
+Und mit dem Delta erhalten wir:\\
+\[T_{xx} = \frac{Q}{\pi a b}\frac{1}{2}\int_{-\infty}^{+\infty}\int_{0}^{2\pi} \mathrm{d}u \mathrm{d}\phi u (2 a^{2} \cos(\phi)^{2} - b^{2} \sin(\phi)^{2})\delta(u-1)\]\\
+Nun haben wir für $\cos^{2}$ und $\sin^{2}$:
+\[\int_{0}^{2 \pi} \mathrm{d}\phi \sin(\phi)^{2} = \left.\left(\frac{\phi}{2}-\frac{\sin(\phi) \cos(\phi)}{2}\right)\right|_0^{2\pi} = \pi\]
+\[\int_{0}^{2 \pi} \mathrm{d}\phi \cos(\phi)^{2} = \left.\left(\frac{\phi}{2}+\frac{\sin(\phi) \cos(\phi)}{2}\right)\right|_0^{2\pi} = \pi\]\\
+Damit erhalten wir als Ergebnis:\\
+\[T_{xx} = \frac{Q}{\pi a b} \pi (a^{2}-\frac{b^{2}}{2}) = \frac{Q}{a b} (a^{2}-\frac{b^{2}}{2})\]\\
+Ich hoffe, das stimmt so...\\
+\end{document}
