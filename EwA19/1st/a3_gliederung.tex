@@ -1,0 +1,80 @@
+%! TEX program = lualatex
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{polyglossia}
+    \setdefaultlanguage{german}
+\usepackage{lmodern}
+
+\newcommand{\setpageno}[1]{%
+    \setcounter{page}{#1}
+    \newpage
+}
+
+\title{Biologie Kram}
+\date{\today}
+\author{Author McAuthorface}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+% \clearpage
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+\section{Einleitung}
+\setpageno{1}
+
+\section{Zum Organ}
+\subsection{Allgemeiner Aufbau des Organs}
+\subsubsection{Vorgehen bei der Vermessung}
+\setpageno{2}
+\subsubsection{Schema (Ergebnis der Vermessung)}
+\subsection{Allgemeine Funktion des Organs}
+\setpageno{5}
+\subsection{Tierartspezifische Besonderheiten - Fallbeispiele aus verschiedenen ökologischen Nischen}
+\subsubsection{Erste Tierart}
+\setpageno{7}
+\subsubsection{Zweite Tierart}
+\setpageno{8}
+\subsubsection{Dritte Tierart}
+\setpageno{9}
+
+\section{Verteilung von Rezeptoren und Neuronen in ausgewählten Arealen}
+\setpageno{10}
+\subsection{Vorgehen zur Dichtebestimmung}
+\subsubsection{Rezeptoren}
+\setpageno{11}
+\subsubsection{Neuronen}
+\setpageno{13}
+\subsection{Verteilung von Rezeptoren und Neuronen in Tierart X (Schema)}
+\setpageno{15}
+
+\section{Diskussion der Ergebnisse}
+\setpageno{18}
+
+\section{Literatur}
+\setpageno{19}
+
+\setcounter{section}{0}
+\renewcommand{\thesection}{\Alph{section}}
+
+\section{Anhang}
+\subsection{Mikroton}
+\subsubsection{Aufbau}
+\setpageno{20}
+
+\subsubsection{Bedienung}
+\setpageno{24}
+
+\subsection{Technische Details der Auswertung}
+\subsubsection{Koordinatensystem zur Rekonstruktion der Gewebestruktur}
+\setpageno{28}
+
+\subsubsection{Zur Auswertung verwendetes Programm}
+\setpageno{32}
+
+\end{document}

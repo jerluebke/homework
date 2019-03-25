@@ -1,0 +1,270 @@
+PWD C:/Users/Jeremiah/Documents/homework/EwA19/1st
+INPUT C:/Users/Jeremiah/AppData/Local/MiKTeX/2.9/miktex/data/le/luatex/lualatex.fmt
+INPUT ./a3_gliederung.tex
+INPUT ./a3_gliederung.tex
+OUTPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.log
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-basic.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-lua.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-package.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-lpeg.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-function.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-string.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-table.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-boolean.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-number.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-math.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-io.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-os.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-file.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-gzip.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-md5.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-dir.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-unicode.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-url.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-set.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-compat.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-extended.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-str.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-fil.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-tab.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-sto.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-prs.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-dim.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-jsn.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-trac-inf.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-lua.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-deb.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-tpl.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/lualibs/lualibs-util-sta.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/luaotfload/luaotfload-characters.lua
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrartcl.cls
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrartcl.cls
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrartcl.cls
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrartcl.cls
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrkbase.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrlfile.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/tocbasic.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/scrsize11pt.clo
+INPUT C:/Users/Jeremiah/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmroman10-regular.luc
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/typearea.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/typearea.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/typearea.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/koma-script/typearea.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/inputenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/polyglossia.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/polyglossia.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/polyglossia.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/polyglossia.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/etoolbox/etoolbox.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/makecmds/makecmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/makecmds/makecmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/makecmds/makecmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/makecmds/makecmds.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/xkeyval/xkeyval.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkeyval.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkeyval.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkvutils.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/xkeyval/xkvutils.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3packages/xparse/xparse.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3.sty
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/expl3-code.tex
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/UnicodeData.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/UnicodeData.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/UnicodeData.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/UnicodeData.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/CaseFolding.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/unicode-data/SpecialCasing.txt
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Users/Jeremiah/AppData/Roaming/MiKTeX/2.9/tex/latex/l3kernel/l3pdfmode.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-luatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-luatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-luatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec-luatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/tuenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/tuenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/fontenc.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/tuenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/tuenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/tuenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/tuenc.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.cfg
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/fontspec/fontspec.cfg
+INPUT C:/Users/Jeremiah/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmroman10-bold.luc
+INPUT C:/Users/Jeremiah/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmroman10-italic.luc
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/oberdiek/ifluatex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/generic/ifxetex/ifxetex.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/luatexbase/luatexbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/luatexbase/luatexbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/luatexbase/luatexbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/luatexbase/luatexbase.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/ctablestack/ctablestack.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/ctablestack/ctablestack.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/ctablestack/ctablestack.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/luatex/ctablestack/ctablestack.sty
+INPUT C:/ProgramData/MiKTeX/2.9/tex/generic/config/language.dat.lua
+INPUT C:/ProgramData/MiKTeX/2.9/tex/generic/config/language.dat.lua
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/gloss-german.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/gloss-german.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/gloss-german.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/gloss-german.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/gloss-german.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/gloss-german.ldf
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/babelsh.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/babelsh.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/babelsh.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/polyglossia/babelsh.def
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/lmodern.sty
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.aux
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.aux
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.aux
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.aux
+OUTPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.aux
+INPUT C:/Users/Jeremiah/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmsans10-regular.luc
+INPUT C:/Users/Jeremiah/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmsans10-bold.luc
+INPUT C:/Users/Jeremiah/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmroman12-regular.luc
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/ot1lmr.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omllmm.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi12.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omslmsy.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy7.tfm
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/lm/omxlmex.fd
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmex10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmex10.tfm
+OUTPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.pdf
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.toc
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.toc
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.toc
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.toc
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/rm-lmr6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmmi6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy10.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy8.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy6.tfm
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/lm/lmsy6.tfm
+OUTPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.toc
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.aux
+INPUT C:/Users/Jeremiah/Documents/homework/EwA19/1st/latex_build/a3_gliederung.aux
