@@ -1,0 +1,53 @@
+%! TEX program = lualatex
+\documentclass[mathserif]{beamer}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{graphicx}
+    \graphicspath{{./img/}}
+\usepackage{multimedia}
+\usepackage[outputdir=latex_build]{minted}
+    \usemintedstyle{friendly}
+\usepackage[linesnumbered,vlined,ruled]{algorithm2e}
+\usepackage{tikz}
+\usetikzlibrary{arrows,backgrounds,calc,chains,fit,positioning,shapes,shapes.multipart}
+
+% \usetheme{Singapore}
+\usecolortheme{dolphin}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+
+
+\newcommand{\boxlabel}[1]{%
+    {\LARGE{\textcolor{blue}{$#1$}}}
+}
+
+
+\title{Tracking Particle Movement in Magnetic Fields}
+\author{Jeremiah Lübke}
+\date{\today}
+\subject{Data Structures and Algorithms}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents
+\end{frame}
+
+\input{slides/motivation.tex}
+
+\input{slides/domain.tex}
+
+\input{slides/box_list.tex}
+
+\input{slides/algorithms.tex}
+
+\input{slides/results.tex}
+
+\input{slides/references.tex}
+
+\end{document}
+
+% vim: set ff=unix tw=79 sw=4 ts=4 et ic ai :
