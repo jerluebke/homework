@@ -1,0 +1,54 @@
+% multirow shortcut (1 column) - needed to escape siunitx's tabular S
+\newcommand{\mc}[1]{%
+    \multicolumn{1}{c}{#1}
+}
+% multirow shortcut (2 rows)
+\newcommand{\mr}[1]{%
+    \multirow{2}*{#1}
+}
+
+\section{Aufgabe 4: Tabellen in \LaTeX}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \firsthline
+        & & & \multicolumn{2}{c|}{$A_e, \textrm{erg}^{-1}$} \\
+        Objekt & $\delta$ & $p_e$ & $B=10\si{\micro G}$ & $B=100\si{\micro G}$
+        \\
+        \hline
+        NGC 1068 & -0.69 & 2.38 & \num{2.1e+67} & \num{4.2e+65} \\
+        NGC 4945 & -0.59 & 2.18 & \num{3.8e+65} & \num{9.6e+63} \\
+        NGC 253 & -0.65 & 2.31 & \num{5.2e+65} & \num{1.2e+64} \\
+        NGC 3034 & -0.39 & 1.78 & \num{1.2e+64} & \num{4.9e+62} \\
+        \lasthline
+    \end{tabular}
+    \caption{Experimentelle Daten...}
+    \label{tab:tab1}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    % \begin{tabular}{c*{5}{S[table-format=4.3,table-number-alignment=center]}}
+    \begin{tabular}{c*{5}{S}}
+        \toprule
+        \mr{Objekt} &
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        % NOTE: second and third `\multirow` enclosed in {...} !!!          %
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        {\mr{$\delta$}} &
+        {\mr{$p_e$}} &
+        \multicolumn{2}{c}{$A_e/\left(10^{65}\textrm{erg}^{-1}\right)$} \\
+        \cline{4-5}
+        & & &
+        \mc{$B=10\si{\micro G}$} &
+        \mc{$B=100\si{\micro G}$} \\
+        \hline
+        NGC 1068 & -0.69 & 2.38 & 2100 & 4.2 \\
+        NGC 4945 & -0.59 & 2.18 & 3.8 & 0.096 \\
+        NGC \enspace 253 & -0.65 & 2.31 & 5.2 & 0.12 \\
+        NGC 3034 & -0.39 & 1.78 & 0.12 & 0.0049 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Experimentelle Daten... \emph{(verbessertes Layout)}}
+    \label{tab:tab2}
+\end{table}

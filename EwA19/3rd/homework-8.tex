@@ -1,0 +1,52 @@
+\newcommand{\nextpart}{%
+    \bigskip
+    % \hline
+    \noindent\rule{\textwidth}{1pt}
+    \bigskip
+}
+
+\newcommand{\dn}[1]{%
+    \ensuremath{\mathrm{d}^{#1}}
+}
+
+\newcommand{\TODO}[1]{%
+    \textcolor{red}{\textbf{TODO} #1}
+}
+
+\newpage
+\section{Aufgabe 8: Befehle definieren}
+\textbf{Das neudefinierte Kommando}:
+\begin{verbatim}
+\newcommand{\dn}[1]{%
+    \ensuremath{\mathrm{d}^{#1}}
+}
+\end{verbatim}
+
+\textbf{Beispiel:} \textsw{dn[5]} $\Rightarrow \dn{5}$
+
+\nextpart
+
+\textbf{Ein TODO-Kommando}:
+\begin{verbatim}
+\newcommand{\TODO}[1]{%
+    \textcolor{red}{\textbf{TODO} #1}
+}
+\end{verbatim}
+
+\textbf{Beispiel:} \TODO{überlege ein gutes Beispiel}
+
+\nextpart
+
+\todo{QUACK!}
+
+Mit dem Paket \textsw{todonotes} werden Notizen bspw.~bei folgenden
+Konfigurationen entfernt:
+\begin{verbatim}
+\usepackage[...,draft,...]{scrartcl}
+...
+\usepackage[obeyDraft]{todonotes}
+\end{verbatim}
+oder
+\begin{verbatim}
+\usepackage[disable]{todonotes}
+\end{verbatim}

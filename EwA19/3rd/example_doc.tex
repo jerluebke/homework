@@ -1,0 +1,649 @@
+% Dies ist eine Vorlage für Eure Bachelorarbeit an der RUB,
+% erstellt von Alexander Noack, zur freien Verwendung ;-)
+
+\RequirePackage[l2tabu,orthodox]{nag} % checke common mistakes/outdated pkgs
+% Die KOMA Klasse für article mit einer 11pt Schrift auf A4 Papier
+\documentclass[11pt,
+               a4paper,
+               parskip=half,
+               % draft,
+%               bibliography=totoc,
+               ]{scrartcl}
+
+% ============ %
+% Pakete laden %
+% ============ %
+
+% Damit Trennregeln aktualisiert werden
+\usepackage[ngerman=ngerman-x-latest]{hyphsubst} % als erstes laden!
+
+% Input encoding auf utf8 setzen, und die Ausgabe in T1 kodieren (Westeuropa)
+\usepackage[utf8]{inputenc} % in einer aktuellen LaTeX Version nicht nötig
+\usepackage[T1]{fontenc}
+
+% geometry -- praktisch, wenn man genaue Vorstellungen/Vorgaben des Layouts hat
+\usepackage[pass]{geometry} % Option pass übergibt die Werte von KOMA
+
+% Kopf- und Fußzeile verändern
+\usepackage{scrlayer-scrpage}
+
+% Nutze latin modern font und fixe ein paar Probleme
+\usepackage{lmodern}
+\usepackage{fixcmex}
+
+% Mikro-Typographie
+\usepackage{microtype}
+
+% Deutsche Sprache mit _n_euer Rechtschreibung zusätzlich zu englisch
+\usepackage[english,ngerman]{babel}
+
+% Komfortables Titel-, Autor-, .. -Handling
+\usepackage{titling}
+
+% Um zum Beispiel Grafiken einzubinden
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx} % lädt auch xcolor
+    \graphicspath{{./img/}}
+
+% Mathematik Pakete und extra Symbole
+%\usepackage{amsmath}
+\usepackage{mathtools} % lädt auch amsmath
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{gensymb}
+
+% Ermöglicht komfortabel das Anpassen von Abständen, Labels etc. für itemize
+\usepackage{enumitem}
+
+% Für mehrere Bilder die zusammengehören praktisch
+\usepackage{subcaption}
+
+% Lade Tabellen Pakete
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+%\usepackage{tabularx}
+%\usepackage{longtable}
+\usepackage{csvsimple}
+
+% Um Quellcode einzubinden
+\usepackage{listings}
+
+% Um mit LaTeX zu zeichnen und zu plotten
+%\usepackage{tikz}
+%\usepackage{pgfplots} % lädt auch tikz
+
+% Physik- und formel- oder symbolbezogene Pakete
+\usepackage{siunitx}
+\usepackage{physics}
+%\usepackage{braket}
+\usepackage[thinc]{esdiff}
+
+% Erleichtern das Leben beim Editieren, Probelesen und Arbeiten
+\usepackage{blindtext}
+\usepackage[colorinlistoftodos,obeyDraft]{todonotes}
+\usepackage{lineno}
+
+% Paket für wörtliche Zitate, URLs, einstellbaren Zeilenabstand
+\usepackage{csquotes}
+\usepackage{url}
+\usepackage{setspace}
+
+% Pakete, um User-defined-Macros zu erstellen, oder vorhandene zu verändern
+\usepackage{xspace}
+%\usepackage{xparse}
+
+% für anklickbare Links (cross-referencing) ins Dokument und nach außen.
+\usepackage[hidelinks,
+            linktocpage=false,
+            pdfusetitle]{hyperref} % als letztes (spät, exceptions) laden!
+\usepackage{bookmark} % als letzteres laden, Optimierungen zu hyperref, \pdfbookmark
+
+% =============== %
+% Ende für Pakete %
+% =============== %
+
+
+% User-defined macros
+\newcommand{\zB}{z.\,B.\xspace}
+\newcommand{\ZB}{Z.\,B.\xspace}
+\newcommand{\textsw}[1]{\texttt{#1}} % sw=software
+\newcommand{\file}[1]{\texttt{#1}} % file names
+
+% Header, Footer
+\ihead{\thetitle} % inner head (einseitig links)
+\chead{} % center head
+\ohead{\rightmark} % outer head (einseitig rechts)
+\automark{section} % setze \rightmark auf section name
+\automark*{subsection} % falls subsection vorhanden auf diese
+\setkomafont{pagehead}{\sffamily} % Kopfzeilen-Font
+
+% list related (itemize, enumerate)
+\setlist{nosep} % entferne alle Abstände
+\setitemize[1]{label=\raisebox{.37ex}{\scalebox{.6}{$\bullet$}}} % kleinere bullet
+
+% math related
+\AtBeginDocument{% verkleinere Raum um Mathe Umgebungen
+  \setlength{\abovedisplayskip}{6pt plus 3pt minus 3pt}%=11pt plus 3pt minus 6pt
+  \setlength{\abovedisplayshortskip}{0pt plus 3pt}%=0pt plus 3pt
+  \setlength{\belowdisplayskip}{6pt plus 3pt minus 3pt}%=11pt plus 3pt minus 6pt
+  \setlength{\belowdisplayshortskip}{4pt plus 3pt minus 3pt}%=6.5pt plus 3.5pt minus 3pt
+}
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
+\newcolumntype{C}{>{$}c<{$}} % math-mode version of "c" column type
+
+% table related
+\setlength{\cmidrulekern}{.4em}
+
+% Neue Einheiten für siunitx
+\DeclareSIUnit{\erg}{erg}
+\DeclareSIUnit{\Gauss}{G}
+
+% Titel, Autor, etc
+\title{Beispieldokument EWA} % Titel in Sprache der Arbeit
+\newcommand{\theothertitle}{Example Document} % Titel in anderer Sprache
+\newcommand{\bachelormaster}{Bachelor} % {Bachelor} oder {Master}
+\newcommand{\sciencearts}{Science} % {Science} oder {Arts}
+\author{Vorname Name} % Autor
+\newcommand{\placeofbirth}{Deutschland} % Geburtsort
+\newcommand{\location}{Bochum}
+\date{2018} % Datum (Jahr)
+
+% ================= %
+% Ende der Preamble %
+%  Beginn Dokument  %
+% ================= %
+
+\begin{document}
+
+% Titelseite
+% Benötigte Pakete in dieser Version:
+% geometry, hyperref, bookmark, titling, setspace
+\newgeometry{margin=2.5cm,bottom=4cm}%,bindingoffset=6mm}
+\pdfbookmark[section]{Titelseite}{titlepage}
+\begin{titlepage}
+  \centering
+  {\huge\titlefont\thetitle\par
+                  \bigskip\bigskip
+                  \theothertitle\par}
+  \vspace{2cm}
+
+  \begin{spacing}{0.8}
+    {\LARGE \bachelormaster arbeit\par
+            \bigskip\medskip
+            im Studiengang\par
+            ,,\bachelormaster{} of \sciencearts``\par
+            im Fach Physik\par
+            \bigskip\medskip
+            an der Fakultät für Physik und Astronomie\par
+            der Ruhr-Universität Bochum\par}
+
+    \vfill
+
+    {\LARGE von\par
+            \theauthor\par
+            \bigskip\medskip
+            aus\par
+            \placeofbirth\par}
+  \end{spacing}
+
+  \vspace{1.8cm}
+
+  {\LARGE \location{} \thedate\par}
+\end{titlepage}
+\restoregeometry
+\cleardoublepage
+
+% Table of Contents
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\cleardoublepage
+
+\section{Beispieldokument}
+Das vorliegende Dokument ist ein Beispieldokument aus dem Kurs
+\enquote{Einführung in das wissenschaftliche Arbeiten}.
+Es dient \zB~dazu, aufzuzeigen,
+wie die sogenannte (auf neudeutsch) \emph{Preamble}
+Ihrer Bachelorarbeit aussehen könnte.
+Es darf wild zitiert werden,
+oder mit Formeln umher geworfen werden,
+im Text $\sin^2 x + \cos^2 x = 1$,
+so wie in den zugehörigen Formel-Umgebungen\dots
+
+Es könnte sich als sinnvoll erweisen,
+Aufzählungen zu verwenden:
+\begin{itemize}
+  \item Punkt 1
+  \begin{itemize}
+    \item Unterpunkt 1.1
+    \item Unterpunkt 1.2
+  \end{itemize}
+
+  \item Punkt 2
+  \begin{itemize}
+    \item usw\dots
+  \end{itemize}
+\end{itemize}
+
+Man kann auch \enquote{wörtliche Rede} verwenden.
+
+
+\clearpage
+\section{Wichtige Pakete}
+%
+\begin{description}
+  \item[KoMa/KOMA-Script] Der Name hat natürlich nichts mit dem Zustand zu tun,
+    sondern mit dem Namen des Autors dieser Pakete: Markus Kohm.
+    Es handelt sich um eine Sammlung von Klassen und Paketen,
+    die einem viele Dinge abnehmen und automatisieren,
+    um die sich der unbedachte Physiker
+    vielleicht gar keine Gedanken macht.
+    So kann man damit zum Beispiel, mit minimaler Interaktion,
+    Text in ideal große Bereiche auf einer Seite setzen,
+    oder auch die Kopf- und Fußzeile beliebig abändern.
+    Eine Auswahl der beinhalteten Pakete sind:
+    \begin{itemize}
+      \item \textsw{scrartcl}
+      \item \textsw{scrlttr2}
+      \item \textsw{scrbook}
+      \item \textsw{scrlayer-scrpage}
+    \end{itemize}
+
+  \item[beamer] Dies ist namentlich inspiriert vom deutschen Gebrauch
+    des im englischen nicht vorhandenen Worts. Es handelt sich aber,
+    wie man, wenn man der deutschen Sprache mächtig ist, erahnen kann,
+    um einen Projektor.
+    Mit dieser Klasse kann man also Beamer-Präsentationen,
+    die klassisch Powerpoint vorbehaltenen Präsentationen
+    auch mit \LaTeX{} angehen und professionell gestalten.
+    Der große Vorteil von \LaTeX,
+    dass Inhalt und Layout getrennt sind (sein sollten),
+    ist hier besonders Wert erwähnt zu werden.
+    Man kann ein einheitliches Bild gut erreichen,
+    auch wenn man Präsentationen kombiniert.
+    Auch Formeln lassen sich in gewohnter Manier einbinden
+    und professionell setzen.
+
+  \item[babel] Hauptsächlich für die korrekte Worttrennung in der Sprache,
+    aber auch für weitere Eigenheiten.
+    So ist \zB~im Englischen nach dem Satzende durch einen Punkt
+    ein längeres Leerzeichen zu setzen, als zwischen Wörtern.
+    Anders ist es im Französischen und Deutschen.
+    Bei solchen Details hilft \textsw{babel}.
+    Unterstützt mehrere Sprachen, auch in einem Dokument.
+
+  \item[hyphsubst] Im Deutschen gibt es Wörter,
+    die falsch nach den Standardregeln von babel getrennt werden.
+    So wurde bei mir z.B. Einzelstern als \enquote{Einzels-tern} getrennt.
+    Um dem Abhilfe zu schaffen kann man dieses Paket
+    (früh, auch vor der \verb+\documentclass+) wie folgt laden:
+    \verb+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}+
+
+  \item[inputenc] Um auch Buchstaben mit Akzenten
+    und nicht-lateinische Buchstaben
+    korrekt aus den Quelldateien (\file{*.tex}) zu lesen,
+    sollte ein input encoding mit dem Laden
+    dieses Pakets vorgegeben werden.
+
+  \item[fontenc] \LaTeX{} schafft es, alle möglichen Symbole,
+    Buchstaben, mit Verzierungen, Akzenten etc. darzustellen,
+    aber verwendet dafür nicht zwangsweise die vorhandenen Symbole
+    aus dem Font, sondern setzt diese selbst zusammen.
+    Das ist natürlich nicht gut aus dem PDF kopierbar.
+    Um dem Abhilfe zu schaffen sollte man
+    das jeweils regionale Font-Encoding (für Westeuropa T1)
+    mit diesem Paket laden: \verb+\usepackage[T1]{fontenc}+
+
+  \item[lmodern] Der Standardfont von \LaTeX
+    ist der von Donald Knuth für \TeX entwickelte
+    Font \enquote{Computer Modern}.
+    Dieser wurde jedoch nur für bestimmte einzelne Größen
+    zwischen 5\,pt und 17\,pt von Hand erstellt (5, 6, 7, 8, 9, 10, 12, 17),
+    um die Strichstärken und relativen Proportionen
+    auf die jeweilige Größe anzupassen.
+    Um dieses Problem, wenn man Zwischengrößen
+    oder außerhalb des Bereichs liegende Font-Größen braucht,
+    kann man dieses Paket laden.
+    Es verwendet immer noch diesen Standardfont, als Vektorgraphiken,
+    skaliert auf die entsprechende Größe,
+    ausgehend von der nächstgelegenen vorhandenen Schriftgröße.
+    Natürlich kann man auch andere Fonts auswählen,
+    aber dieses hier ist die einfache und klassische
+    Rundum-Sorglos-Packung. Wird \textsw{lmodern} verwendet,
+    so sollte man auch \textsw{fixcmex} verwenden.
+    Alternative: \textsw{cm-super}
+
+  \item[fixcmex] Wird \textsw{lmodern} zusammen mit
+    \textsw{amsmath} geladen,
+    so gehen ein paar Funktionalitäten von \textsw{amsmath} verloren.
+    Um diese zu beheben, sollte
+    (möglichst spät, auf jeden Fall nach Font-Paketen und Änderungen)
+    dieses Paket zusätzlich geladen werden.
+
+  \item[microtype] Es gibt eine Menge Infos über Typographie,
+    bis hin zu vielen kleinen Details, die Mikrotypographie genannt werden.
+    Was genau macht dieses Paket, ohne zu sehr auf Details einzugehen?
+    Minimales Skalieren der Buchstaben, um eine Zeile Text
+    doch noch in die vorgegebene Breite einzupassen
+    (ohne die bei \LaTeX{} Usern so bekannten badboxes),
+    leichtes Verschieben nach links bzw. rechts am linken bzw. rechten Rand,
+    um einen optisch ansprechenderen Abschluss zu haben,
+    und einige weitere Features,
+    die man teils sehr fein einstellen kann. (Siehe Manual)
+
+  \item[geometry] Nur, wenn man ganz konkrete Vorgaben
+    (oder Vorstellungen :) hat, wie viel Platz zwischen Seitenelementen
+    und zu den Seitenrändern sein soll.
+    Man kann sehr fein einstellen, wie das Layout einer Seite aussehen soll.
+
+  \item[siunitx] Gerade in der Physik und Naturwissenschaften
+    sind Einheiten essentiell.
+    Um diesen auch im Schriftsatz gerecht zu werden,
+    sollten diese einheitlich gesetzt werden.
+    Dafür ist \textsw{siunitx}.
+
+  \item[array, booktabs, multirow, tabularx, longtable]
+    \textsw{array} verbessert viel \enquote{unter der Haube}
+    für Tabellen, aber bietet auch neue Funktionalität,
+    wie selbst erstellbare Spalten.
+    \textsw{booktabs} hübscht Tabellen weiter auf
+    und bietet ebenfalls neue Funktionen,
+    wie bestimmte Linien für obere und untere Grenze der Tabelle.
+    Insbesondere das Handbuch ist lesenswert
+    mit vielen guten Beispielen zu Stilfragen (als Style-Guide).
+    \textsw{multirow} bietet einem den praktischen \verb+\multirow+-Befehl,
+    der genau das tut, was der Name sagt,
+    ähnlich zum \verb+\multicolumn+-Befehl.
+    \textsw{tabularx} ist nützlich,
+    wenn man eine Tabelle einer bestimmten Breite erzeugen will
+    und die Spaltenbreite entsprechend angepasst werden soll.
+    \textsw{longtable} ist vermutlich vor allem
+    für Experimentalphysiker interessant,
+    die eben mit langen Tabellen von \zB~Messdaten hantieren müssen.
+    Eine Tabelle kann üblicherweise nicht auf mehrere Seiten verteilt werden,
+    wenn sie zu viele Zeilen hat.
+    \textsw{longtable} gibt einem diese Funktionalität.
+
+  \item[csvsimple] Tabellen in \LaTeX{} von Hand zu erstellen,
+    insbesondere mit vielen Werten und ggf.~Einheiten, kann eine Qual sein.
+    Es gibt mittlerweile einige Tools, \zB~Webseiten,
+    die Abhilfe schaffen können, aber besser ist,
+    wenn man einfach eine \file{*.csv} Datei
+    (kann aus Excel/Origin exportiert werden)
+    einliest und als Tabelle darstellt.
+
+  \item[xcolor, graphicx] Was wäre die (heutige) Welt ohne Farbe?
+    Ohne Bilder?
+    Möchte man dies in Form von \zB~Graphiken in seine Dokumente einbinden,
+    braucht man diese Pakete\dots
+    Hinweis: \textsw{xcolor} wird von vielen Paketen geladen
+    und muss nur manuell geladen werden,
+    falls sonst kein solches Paket (\zB~\textsw{graphicx}) verwendet wird.
+
+  \item[hyperref] Jeder kennt heutzutage Links.
+    Diese sind in Büchern meist nicht vorhanden,
+    aber im digital anzusehenden PDF-Dokument.
+    Um Links zu erzeugen,
+    um \zB~einfach eine section aus der TOC anzuspringen,
+    kann dieses Paket geladen werden.
+    Damit werden URLs, wie auch Referenzen, clickable.
+    Hinweis: Dieses Paket sollte als \emph{letztes} geladen werden.
+
+  \item[url] Um URLs in seinem Dokument zu setzen,
+    sollte das Paket \textsw{url} geladen werden.
+    Es sorgt dafür, dass sie in einem typewriter Stil gesetzt
+    und besser getrennt werden,
+    falls sie über eine Zeile im Text hinausragen würden.
+
+  \item[listings] Es gibt immer wieder Skripte,
+    kleine oder größere, und Programme,
+    die man an seine Arbeit anhängen möchte.
+    Um Syntax-Highlighting und andere sinnvolle
+    Features zu nutzen, kann man dieses Paket laden.
+    Alternative: \textsw{minted}
+
+  \item[setspace] Auch beim Zeilenabstand gilt:
+    \LaTeX{} macht, was es tut, aus gutem Grund.
+    Das ist auch gar nicht so schlecht,
+    aber manchmal möchte man andere,
+    als die Standard-Zeilenabstände.
+    Dann empfiehlt es sich, dieses Paket zu laden,
+    welches einem komfortabel ermöglicht,
+    Zeilenabstände einzustellen.
+
+  \item[csquotes] Möchte man Anführungszeichen verwenden,
+    sollte man sich überlegen, wofür.
+    Häufig wird wörtlich zitiert. Unter anderem dann bietet es sich an,
+    dieses Paket zu laden, das den Befehl \verb+\enquote+ bereitstellt.
+    Dieser kann beliebig variiert werden,
+    je nach Sprache, Region und Vorliebe.
+
+  \item[esdiff] Ja, die Mathematik kommt heutzutage
+    wohl kaum ohne die von Leibniz eingeführte
+    Differential-Schreibweise aus.
+    Um sich das Leben so einfach wie möglich zu machen,
+    empfiehlt es sich, ein Paket zu laden,
+    statt selbst Befehle dafür zu schreiben.
+    Alternativen: \textsw{physics}, \textsw{cool}
+
+  \item[braket] Gibt einem Befehle an die Hand,
+    um \textlangle Bra-Ket\textrangle Notation einfach zu verwenden.
+    Alternativen: \textsw{physics}
+
+  \item[physics] Viele kleine nützliche Tools,
+    wie Differentiale, Bra-Ket,
+    automatische Klammerskalierung nach Mathe-Befehlen
+    (wie \verb+\sin+), \dots
+
+  \item[amsmath, mathtools, amssymb] Die Mathematik\dots
+    Das Paket \textsw{amsmath} sollte quasi immer geladen werden,
+    wenn man mit mathematischen Ausdrücken hantiert.
+    \textsw{mathtools} lädt \textsw{amsmath} selbstständig,
+    und bietet einige nützliche erweiterte Funktionen.
+    \textsw{amssymb} macht einige häufig verwendeten Symbole verfügbar.
+
+  \item[appendix] Macht einem das Leben mit Anhang leichter\dots
+    Bietet einige nützliche Zusatzfunktionen rund um Anhänge.
+
+  \item[lineno] Kann, wie der Name vermuten lässt, Zeilennummern ausgeben.
+    Sehr nützlich für Korrekturlesen oder Arbeitsversionen.
+
+  \item[todonotes] Praktisch, wenn man im Dokument Todo-Notes haben möchte.
+    Ermöglicht einem auch eine list of todos anzuzeigen, ähnlich zu TOC,
+    verschiedene Farben\dots
+    Alternativen: \textsw{easy-todo}, \textsw{fixme},
+      \textsw{fixmetodonotes}, \textsw{todo}
+
+  \item[blindtext] Erzeugt, was der Titel sagt.
+    Vorteil gegenüber den anderen Paketen:
+    Die Sprache, die mit Babel geladen wird,
+    wird für den Blindtext verwendet --
+    zumindest für den Fall der deutschen Sprache.
+    Außerdem gibt es die Möglichkeit,
+    Blindtexte mit Mathe zu erstellen.
+    Alternativen: \textsw{lipsum}, \textsw{kantlipsum}
+
+  \item[parskip] Verwendet man keine \textsw{KOMA} Klasse,
+    so kann man alternativ den Abstand
+    zwischen Paragraphen mithilfe dieses Pakets einstellen.
+
+  \item[fancyhdr] Steht für \enquote{fancy header}.
+    Sollte ausschließlich ohne \textsw{KOMA} verwendet werden.
+
+  \item[nag] Gibt zusätzliche Warnungen aus,
+    falls ein paar typische Fehler oder obsolete
+    Pakete gefunden werden, ist jedoch ein wenig outdated.
+
+  \item[xspace] Für variable Leerzeichen in user-defined Macros.
+
+  \item[tikz, pgfplots] Für Skizzen, (Vektor-)Graphiken,
+    und noch vieles mehr, \zB~auch dann, und überall dort,
+    wo die vorhandenen Zeichen von \LaTeX{} nicht ausreichen.
+
+  \item[biblatex (mit \textsw{biber} backend)]
+    Das aktuellste Literaturpaket,
+    welches bei neuen eigenen Arbeiten verwendet werden sollte --
+    quasi ein Muss.
+
+  \item[xparse] Ermöglicht das Ändern vorhandener Befehle
+    und gibt Alternative zu \verb+\newcommand+.
+
+  \item[caption] Einfaches Anpassen von captions (\zB~Font).
+
+  \item[subcaption] Möglichkeit, mehrere Captions/Floats
+    neben- und übereinander zu nutzen.
+
+  \item[enumerate/enumitem] Einfaches Ändern vieler Einstellungen
+    um Listen/itemizes. Kann zu Kompatibilitätsproblemen führen!
+
+  \item[titling] Zugriff auf Titel und Autor, leichtes Anpassen.
+
+  \item[floatflt] Text um Floats fließen lassen.
+
+  \item[relsize] Ermöglicht relatives Schriftgröße ändern
+    (nützlich für \zB~kleinere Inidizes).
+
+  \item[standalone] Um \zB~standalone tikz Bilder einzubinden.
+
+  \item[bookmark] Erweitert und verbessert Funktionalität von \textsw{hyperref}.
+
+\end{description}
+%
+\section{\enquote{Dos and Don'ts} und Tipps}
+Um von Beginn den korrekten Umgang mit \LaTeX{} zu üben,
+folgt eine Liste mit \enquote{Dos and Don'ts},
+sowie hilfreichen Tipps zur Verwendung von \LaTeX{} und Problembehebung.
+\subsection{Dos and Don'ts}
+%
+\begin{itemize}
+  \item Don't: Verwende keine manuell eingefügten Anführungszeichen {\verb+"+} im Fließtext.
+  \item Do: Lade das Paket \verb+csquotes+ und verwende den Befehl \verb+\enquote+.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Verwende nicht \verb+\\+ im Text,
+    um in einer neuen Zeile weiterzuschreiben.
+    Eine Ausnahme bilden der Mathematikmodus und Tabellen.
+  \item Do: Füge eine Leerzeile ein oder verwende den Befehl \verb+\par+.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Verwende bei Abkürzungen nicht das falsche Leerzeichen wie bei z. B.
+  \item Do: Nutze den Befehl \verb+\,+ zwischen den Zeichen.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Verwende keine falschen Leerzeichen vor Verweisen wie \enquote*{siehe XY}.
+  \item Do: Verwende non-breaking space \enquote*{siehe\textasciitilde XY}.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Ignoriere keine Warnungen und erst recht nicht Fehlermeldungen.
+    Ebenfalls sollten badboxes nicht ignoriert werden.
+  \item Do: Man lese sich die Warnung durch und versuche sie zu beheben.
+    Sie werden nicht grundlos ausgegeben.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Mische die Klassen von \textsw{KOMA} nicht mit \textsw{fancyhdr}.
+  \item Do: Verwende \textsw{scrlayer-scrpage} mit \textsw{KOMA}-Klassen.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Versuche nicht die Probleme lokal zu lösen.
+  \item Do: Verwende überall die selben allgemeinen Befehle,
+    um ein einheitliches Erscheinungsbild zu garantieren
+    und gegebenenfalls leicht Änderungen einzufügen.
+
+    Nutze \LaTeX{} als das, wofür es gedacht ist.
+    Es trennt Inhalt von Layout.
+    Nutze also keine Layout-Befehle im Text,
+    sondern verwende sinnvolle preamble.
+
+    Benenne Befehle nach Anwendung und Sinn,
+    nicht beschreibend, was sie tun (Beispiel: \verb+\section+ statt \verb+\large\bfseries+).
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Verwende keine Serifenschrift für Beamer-Präsentationen,
+    die am Bildschirm gesehen werden.
+  \item Do: Hier empfiehlt sich, wie es Voreinstellung ist,
+    eine serifenlose Schrift zu verwenden.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Verwende nicht \verb+\sloppy+,
+    weil es viele Warnungen und badboxes behebt. Das ist sloppy :)
+  \item Do: Verwende \verb+\emergencystretch+, \textsw{microtype}, \textsw{url},
+    manuelle Worttrennungen, \dots
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Verwende nicht die kursiven Differentiale \verb+\frac{d}{dx}+.
+  \item Do: Verwende aufrechte Differentiale mit \verb+\mathrm{d}+,
+    oder besser nutze \zB~das Paket \textsw{esdiff}.
+\end{itemize}
+
+\begin{itemize}
+  \item Don't: Verwende nicht (zu viele) vertikale Linien in Tabellen.
+  \item Do: Besser ist es wenige horizontale Linien, gut gewählte Abstände,
+    ggf. Hintergrundkolorierung zu verwenden (siehe \textsw{booktabs}).
+\end{itemize}
+
+\subsection{Weitere hilfreiche Tipps.}
+Es ist sehr empfehlenswert, sich die Dokumentationen von Paketen,
+insbesondere von \textsw{KOMA} durchzulesen.
+Es gibt viele gute \LaTeX{} Grundlagenbücher (\zB~wikibooks),
+die man zu Rate ziehen kann.
+Im Internet gibt es Seiten wie \url{http://tex.stackexchange.com}
+oder \url{http://texwelt.de}, auf denen einem kompetente User
+und sogar \LaTeX{} Core-Entwickler helfend zur Seite stehen.
+
+Für nahezu jeden Wunsch gibt es bereits Pakete.
+Man muss sie nur finden oder ihren Namen ausfindig machen.
+Dafür ist z.B.~\url{http://ctan.org} hilfreich.
+Dort findet man zahlreiche Manuals und Dokumentationen.
+Mit \textsw{tlmgr} lassen sich Pakete installieren.
+
+Mit der App und Internetseite \textsw{detexify}
+kann man ein Symbol malen und den zugehörigen \LaTeX-Befehl finden.
+
+Mit \textsw{tikz} lassen sich sogar Graphen
+ohne Zusatzsoftware im \LaTeX-Dokument zeichnen.
+
+Der Befehl \verb+\space+ kann ein Leerzeichen erzwingen,
+genauso wie mit \verb+\␣+, wobei \verb+␣+ ein Leerzeichen ist.
+Es gibt auch Leerzeichen, die mehr oder weniger Platz einnehmen,
+\zB~\verb+\,+, welches man bei Abkürzungen nach einem Punkt verwenden sollte.
+
+Falls man mit all den Befehlen nur schwer zurecht kommt
+und Microsoft Word vermisst, so kann man \textsw{LyX} ausprobieren und nutzen.
+Das ist mehr ein Word-artiger WYSIWYM Editor.
+Möchte man nicht dauernd auf Pakete zurückgreifen,
+sondern eigene und einfachere Befehle erstellen,
+kann man einen Blick auf \textsw{ConTeXt} werfen.
+
+Möchte man beim Eintippen komplexer und langer Formeln
+die Formel live sehen, kann man \zB~\textsw{TeXstudio} benutzen.
+
+Zusätzlich ist es empfehlenswert,
+ein Version Control System wie \textsw{git} zu verwenden.
+Des Weiteren helfen Build/make/docker Scripts einem,
+Graphiken und Plots aus R oder python zu automatisiert zu erstellen,
+wenn sich etwas ändert.
+
+\input{homework-4}
+
+\input{homework-5}
+
+\input{homework-6}
+
+\input{homework-7}
+
+\input{homework-8}
+
+\input{homework-9}
+
+\input{homework-10}
+
+\end{document}
