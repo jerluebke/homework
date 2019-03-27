@@ -1,3 +1,52 @@
 \newpage
 \section{Aufgabe 7: Matheumgebungen in \LaTeX}
-\textbf{TODO...}
+\begin{equation}
+    x^2 + p\,x + q = 0 \Rightarrow x_{1/2} = \frac{-p \pm \sqrt{p^2 - 4\,q}}{2}
+\end{equation}
+
+\begin{equation}
+    f(x) = \left|x-3\right| =
+    \begin{cases}
+        x-3 & \quad \text{für } x < 3 \\
+        -x+3 & \quad \text{für } x \ge 3
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    \sum_{k=1}^n k = \frac{n\,(n+1)}{2}
+\end{equation}
+
+\begin{subequations}
+\begin{align}
+    \nabla \cdot \vec{E} &= \frac{\rho}{\epsilon_0} \\
+    \nabla \cdot \vec{B} &= 0 \\
+    \nabla \times \vec{E} &= -\mu_0 \frac{\partial \vec{B}}{\partial t} \\
+    \nabla \times \vec{B} &= \frac{1}{c^2}\frac{\partial \vec{E}}{\partial t} +
+    \mu_0\,\vec{J}
+\end{align}
+\end{subequations}
+
+\begin{equation}
+    \mathbf{A}\,\vec{b} = \vec{x} =
+    \begin{pmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{m,1} & a_{m,2} & \cdots & a_{m,n}
+    \end{pmatrix}
+    \begin{pmatrix}
+        b_1 \\ b_2 \\ \vdots \\ b_n
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        x_1 \\ x_2 \\ \vdots \\ x_m
+    \end{pmatrix}
+\end{equation}
+
+\begin{equation}
+    \int_0^\infty \underbrace{1}_{u'(x)} \, \underbrace{\ln(x)}_{v(x)}
+    \mathrm{d}x = \underbrace{x}_{u(x)} \, \underbrace{\ln(x)}_{v(x)}
+    \bigg\rvert_0^\infty - \int_0^\infty \underbrace{x}_{u(x)} \,
+    \underbrace{\frac{1}{x}}_{v'(x)} \mathrm{d}x
+\end{equation}
+

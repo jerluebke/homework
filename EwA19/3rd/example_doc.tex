@@ -99,6 +99,22 @@
             pdfusetitle]{hyperref} % als letztes (spät, exceptions) laden!
 \usepackage{bookmark} % als letzteres laden, Optimierungen zu hyperref, \pdfbookmark
 
+\usepackage[%
+    backend=biber,
+    natbib=true,
+    sorting=nyt,
+    url=false,
+    doi=false,
+    isbn=false,
+    maxbibnames=3,
+    maxcitenames=2,
+    date=year,
+    % style=authoryear,
+    style=numeric-verb,
+    citestyle=numeric-comp
+]{biblatex}
+\addbibresource{literatur.bib}
+
 % =============== %
 % Ende für Pakete %
 % =============== %
@@ -198,6 +214,8 @@
 \pdfbookmark[section]{\contentsname}{toc}
 \tableofcontents
 \cleardoublepage
+
+\input{acknowledgment}
 
 \section{Beispieldokument}
 Das vorliegende Dokument ist ein Beispieldokument aus dem Kurs
@@ -644,6 +662,12 @@ wenn sich etwas ändert.
 
 \input{homework-9}
 
-\input{homework-10}
+\begin{appendix}
+\input{homework-appendix}
+\end{appendix}
+
+\newpage
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\printbibliography[title=Literaturverzeichnis]
 
 \end{document}
