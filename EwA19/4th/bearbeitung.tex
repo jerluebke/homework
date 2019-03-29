@@ -1,0 +1,78 @@
+%! TEX program = lualatex
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{ngerman}
+\usepackage{lmodern}
+\usepackage{fixmex}
+\usepackage{graphicx}
+\usepackage{csvsimple}
+\usepackage{siunitx}
+\usepackage{tikz}   % foreach
+
+\usepackage[%
+    backend=biber,
+    natbib=true,
+    sorting=nyt,
+    url=false,
+    doi=false,
+    isbn=false,
+    maxbibnames=3,
+    maxcitenames=2,
+    date=year,
+    style=numeric-verb,
+    citestyle=numeric-comp
+]{biblatex}
+\addbibresource{literatur.bib}
+
+\usepackage[hidelinks]{hyperref}
+
+
+\title{}
+\subject{Bearbeitung von EwA-Blatt 4}
+\author{Jeremiah Lübke}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Aufgabe 1: Engauge}
+\subsection{Vorgehen}
+\begin{itemize}
+    \item Lade Abb. 2 von \cite{Godfrey2013} herunter (siehe
+        \hyperref[Link]{https://doi.org/10.1088\%2F0004-637x\%2F767\%2F1\%2F12})
+    \item Öffne Abbildung in \textsw{Engauge Digitizer}
+    \item Spezifiziere vier Punktkurven \textsw{NLRG, BLRG, Quasar, LERG}
+    \item Erstelle drei Referenzpunkte bspw.~%
+        $(10^{25}, 10^{47}); (10^{28}, 10^{44}); (10^{28}, 10^{47})$
+    \item In \textsw{Settings/Coordinates} wähle \textsw{Log} für x- und
+        y-Koordinaten
+    \item Für jede Punktkurve:
+    \begin{itemize}
+        \item In \textsw{Settings/Color Filter} wähle \textsw{Hue} und
+            stelle den entspr.~Farbbereich ein
+        \item Füge die zugehörigen Datenpunkte mit dem \emph{Point Match
+            Tool} der Punktkurve hinzu
+    \end{itemize}
+    \item In \textsw{Settings/Export Format} wähle \textsw{Raw Xs and Ys}
+        und \testsw{One curve on each line}
+    \item Exportiere die Daten als \textsw{.csv}-Datei
+    \item Im Terminal (unter Linux): \verb+csplit Q-vs-L.csv /^$/ {*}+
+\end{itemize}
+
+\subsection{Ergebnis}
+\foreach \curve [count=\i] in {NLRG,BLRG,Quasar,LERG}{%
+\begin{table}
+    \begin{tabular}{S S}
+        \csvreader[head to column names]{xx0\i.csv}
+        $L_{radio}/\si{W.Hz^{-1}.Sr^{-1}}$ &
+        $Q_{HS}/\si{erg.s^{-1}}$
+        \\ \hline
+        {\x & \\curve}
+    \end{tabular}
+\end{table}
+}
+
+\end{document}
