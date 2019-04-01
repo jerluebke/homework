@@ -1,14 +1,17 @@
 #include <cstdio>
 #include "a2.hpp"
 #include "a3.hpp"
+#include "a4.hpp"
 
 #define N_A2
+#define N_A3
 
 
 int main()
 {
     int i, a, b;
-    double x, y;
+    double x, y, square, root;
+    double *square_ptr, *root_ptr;
 
     a = 1337;
     b = 42;
@@ -38,11 +41,33 @@ int main()
     printf("\n\n\n");
 #endif
 
+#ifndef N_A3
     std::vector<int> fibs = make_fibs( b );
     printf("AUFGABE 3\n==========\n");
     printf("fibonacci numbers up to %d:\n", b);
     for ( int f : fibs )
         printf("%d\n", f);
+    printf("\n\n\n");
+#endif
+
+#ifndef N_A4
+    printf("AUFGABE 4\n==========\n");
+    printf("a = %d, b = %d\n", a, b);
+    printf("swapping...\n");
+    swap(&a, &b);
+    printf("a = %d, b = %d\n", a, b);
+
+    square_ptr = &square;
+    root_ptr = &root;
+    square_and_root_of_double(0.1, square_ptr, root_ptr);
+    printf("\nx = %f, x^2 = %f, sqrt(x) = %f\n", 0.1, square, root);
+    printf("\n\n\n");
+#endif
+
+#if 0
+    printf("AUFGABE 5\n==========\n");
+    printf("\n\n\n");
+#endif
 
     return 0;
 }
