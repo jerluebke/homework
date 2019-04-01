@@ -8,9 +8,8 @@ void swap( int *a, int *b )
 }
 
 
-int square_and_root_of_double( double x, double *sq, double *rt )
+void square_and_root_of_double( double x, double *sq, double *rt )
 {
     *sq = x * x;
-    *rt = sqrt(x);
-    return 0;   // return status; TODO: errorhandling
+    *rt = sqrt(x);  // from cmath, included in a4.hpp
 }
