@@ -1,5 +1,9 @@
 #include <cstdio>
 #include "a2.hpp"
+#include "a3.hpp"
+
+#define N_A2
+
 
 int main()
 {
@@ -11,6 +15,7 @@ int main()
     x = 6.283;
     y = 1.414;
 
+#ifndef N_A2
     printf("AUFGABE 2\n==========\n");
     printf("a = %d, b = %d\n", a, b);
     printf("sum(a, b) = %d\n", sum(a, b));
@@ -31,6 +36,13 @@ int main()
         if ( int_is_even(i) )
             printf("%d\n", i);
     printf("\n\n\n");
+#endif
+
+    std::vector<int> fibs = make_fibs( b );
+    printf("AUFGABE 3\n==========\n");
+    printf("fibonacci numbers up to %d:\n", b);
+    for ( int f : fibs )
+        printf("%d\n", f);
 
     return 0;
 }

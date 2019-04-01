@@ -1,4 +1,6 @@
-std::vector<int> fibs( int n )
+#include "a3.hpp"
+
+std::vector<int> make_fibs( int n )
 {
     int i;
     std::vector<int> res;
