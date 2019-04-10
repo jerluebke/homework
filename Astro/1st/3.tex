@@ -1,33 +1,81 @@
 \documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
 \usepackage{fontspec}
 \usepackage{polyglossia}
     \setdefaultlanguage{german}
+\usepackage{csquotes}
+\usepackage{enumitem}
 \usepackage{mathtools}
 \usepackage{amssymb}
+\usepackage{amsfonts}
 \usepackage{booktabs}
 \usepackage{siunitx}
     \sisetup{range-units=brackets}
+    \DeclareSIUnit{\jansky}{Jy}
+\usepackage[%
+    labelformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
 \usepackage{pgfplots}
     \pgfplotsset{%
         table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
     }
-\usepackage[colorlinks=true]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
 
 \newcommand{\head}[1]{\multicolumn{1}{c}{#1}}
+\newcommand{\zB}{z.\,B.}
 
-\DeclareSIUnit{\jansky}{Jy}
+\newcommand{\course}{\textbf{Einführung in die Astrophysik}}
+\newcommand{\hwnumber}{1}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015xxxxxx}
+\newcommand{\groupnum}{Übungsgruppe 3}
 
-\title{Einführung in die Astrophysik}
-\subject{Hausaufgabenblatt 1}
-\author{Jeremiah Lübke}
-\date{\today}
+
+\pagestyle{fancyplain}
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Hausaufgabenblatt \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
 
 \begin{document}
 
 \section*{Aufgabe 3}
-\subsection*{a}
 
-\begin{table}[h]
+\begin{enumerate}[label=\textbf{(\alph*)}]
+
+\item
+Einige Messwerte von Quasar 3C138
+
+\begin{table}[h!]
 \centering
 \begin{tabular}{rrrc}
     \toprule
@@ -47,13 +95,15 @@
     Ultrakurzwelle \\
     \bottomrule
 \end{tabular}
-\caption{Einige Messwerte von Quasar 3C138}
 \label{tab:tab1}
 \end{table}
+\vspace*{\baselineskip}
 
-\subsection*{b}
-\begin{figure}[h]
-    \centering
+\item
+Spektrale Energieverteilung des Quasars 3C138
+
+\begin{figure}[h!]
+\centering
     \begin{tikzpicture}[%
         scale=1.5,
         every mark/.append style={%
@@ -61,7 +111,7 @@
         }
     ]
     \begin{loglogaxis}[%
-        title=Spektrale Energieverteilung des Quasars 3C138,
+        % title=Spektrale Energieverteilung des Quasars 3C138,
         xlabel=$\nu$/\si{\hertz},
         ylabel=$\mathrm{F}_{\nu}$/\si{\jansky},
         grid=major,
@@ -83,9 +133,10 @@
         ] {sed-3c138.csv};
     \end{loglogaxis}
     \end{tikzpicture}
-    \caption{SED Plot 3C138, Quelle der Daten:
-        \href{https://ned.ipac.caltech.edu/}{NED}}
-    \label{fig:fig1}
+\caption{Quelle der Daten: \href{https://ned.ipac.caltech.edu/}{NED}}
 \end{figure}
+
+
+\end{enumerate}
 
 \end{document}

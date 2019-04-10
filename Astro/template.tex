@@ -1,9 +1,10 @@
 \documentclass[11pt,a4paper]{scrartcl}
-\usepackage[top=2cm,bottom=3cm,left=2cm,right=2cm]{geometry}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
 \usepackage{fontspec}
 \usepackage{polyglossia}
     \setdefaultlanguage{german}
 \usepackage{csquotes}
+\usepackage{enumitem}
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsfonts}
@@ -11,11 +12,17 @@
 \usepackage{siunitx}
     \sisetup{range-units=brackets}
     \DeclareSIUnit{\jansky}{Jy}
+\usepackage[%
+    labelformat=empty,
+    font={small,sc}
+]{caption}
 \usepackage{graphicx}
     \graphicspath{img}
 \usepackage{pgfplots}
     \pgfplotsset{%
         table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
     }
 \usepackage{fancyhdr}
 \usepackage[%
@@ -62,6 +69,13 @@
 \begin{document}
 
 \section*{Aufgabe 1}
-some content here...
+
+\begin{enumerate}[label=\textbf{(\alph*)}]
+
+\item
+Einige Messwerte von Quasar 3C138
+
+\end{enumerate}
+
 
 \end{document}
