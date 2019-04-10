@@ -1,0 +1,91 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{german}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        table/search path={data},
+    }
+\usepackage[colorlinks=true]{hyperref}
+
+\newcommand{\head}[1]{\multicolumn{1}{c}{#1}}
+
+\DeclareSIUnit{\jansky}{Jy}
+
+\title{Einführung in die Astrophysik}
+\subject{Hausaufgabenblatt 1}
+\author{Jeremiah Lübke}
+\date{\today}
+
+\begin{document}
+
+\section*{Aufgabe 3}
+\subsection*{a}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{rrrc}
+    \toprule
+    \head{E} & \head{$\lambda$} & \head{$\nu$} & \head{Frequenzbereich} \\
+    \midrule
+    \SIrange{0.1}{2.4}{\kilo\electronvolt} & \SIrange{12.4}{0.5}{\nano\metre} &
+    \SIrange{24.2}{580.3}{\peta\hertz} & Röntgenstrahlen \\
+    2.8 \si{\electronvolt} & 442.0 \si{\nano\metre} & 678.3 \si{\giga\hertz} &
+    Blaue Licht \\
+    0.6 \si{\electronvolt} & 2.2 \si{\micro\metre} & 136.3 \si{\giga\hertz} &
+    nahes Infrarot \\
+    44.3 \si{\micro\electronvolt} & 28.0 \si{\milli\metre} & 10.7 \si{\giga\hertz}
+    &  Millimeterwellen \\
+    5.8 \si{\micro\electronvolt} & 214.1 \si{\milli\metre} & 1.4 \si{\giga\hertz}
+    & Millimeterwellen \\
+    306.0 \si{\nano\electronvolt} & 4.1 \si{\metre} & 74.0 \si{\mega\hertz} &
+    Ultrakurzwelle \\
+    \bottomrule
+\end{tabular}
+\caption{Einige Messwerte von Quasar 3C138}
+\label{tab:tab1}
+\end{table}
+
+\subsection*{b}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[%
+        scale=1.5,
+        every mark/.append style={%
+            scale=0.8,
+        }
+    ]
+    \begin{loglogaxis}[%
+        title=Spektrale Energieverteilung des Quasars 3C138,
+        xlabel=$\nu$/\si{\hertz},
+        ylabel=$\mathrm{F}_{\nu}$/\si{\jansky},
+        grid=major,
+        xmin=1e7, xmax=1e18,
+        ymin=1e-7, ymax=1e2,
+        % max space between ticks=20
+    ]
+        \addplot+ [%
+            only marks,
+            error bars/.cd,
+            y dir=both,
+            y explicit,
+            error bar style={black},
+        ] table [%
+            x=frequency,
+            y=flux_density,
+            y error=uncertainty,
+            col sep=comma
+        ] {sed-3c138.csv};
+    \end{loglogaxis}
+    \end{tikzpicture}
+    \caption{SED Plot 3C138, Quelle der Daten:
+        \href{https://ned.ipac.caltech.edu/}{NED}}
+    \label{fig:fig1}
+\end{figure}
+
+\end{document}
