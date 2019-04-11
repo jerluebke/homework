@@ -70,7 +70,7 @@
 
 \section*{Aufgabe 3}
 
-\begin{enumerate}[label=\textbf{(\alph*)}]
+\begin{enumerate}[label=\textbf{\large(\alph*)}]
 
 \item
 Einige Messwerte von Quasar 3C138
@@ -99,41 +99,26 @@ Einige Messwerte von Quasar 3C138
 \end{table}
 \vspace*{\baselineskip}
 
+
 \item
-Spektrale Energieverteilung des Quasars 3C138
+Spektrale Energieverteilung des Quasars 3C138: $\mathrm{F}_{\nu}$ gegen
+$\nu$
 
 \begin{figure}[h!]
-\centering
-    \begin{tikzpicture}[%
-        scale=1.5,
-        every mark/.append style={%
-            scale=0.8,
-        }
-    ]
-    \begin{loglogaxis}[%
-        % title=Spektrale Energieverteilung des Quasars 3C138,
-        xlabel=$\nu$/\si{\hertz},
-        ylabel=$\mathrm{F}_{\nu}$/\si{\jansky},
-        grid=major,
-        xmin=1e7, xmax=1e18,
-        ymin=1e-7, ymax=1e2,
-        % max space between ticks=20
-    ]
-        \addplot+ [%
-            only marks,
-            error bars/.cd,
-            y dir=both,
-            y explicit,
-            error bar style={black},
-        ] table [%
-            x=frequency,
-            y=flux_density,
-            y error=uncertainty,
-            col sep=comma
-        ] {sed-3c138.csv};
-    \end{loglogaxis}
-    \end{tikzpicture}
-\caption{Quelle der Daten: \href{https://ned.ipac.caltech.edu/}{NED}}
+    \centering
+    \input{plots/F_vs_nu.tex}
+    \caption{Quelle der Daten: \href{https://ned.ipac.caltech.edu/}{NED}}
+\end{figure}
+\vspace*{\baselineskip}
+\newpage
+
+\item
+Spektrale Energieverteilung des Quasars 3C138: $\mathrm{F}_{\nu}\,\nu$
+gegen $\nu$
+
+\begin{figure}[h!]
+    \centering
+    \input{plots/F_times_nu_vs_nu.tex}
 \end{figure}
 
 

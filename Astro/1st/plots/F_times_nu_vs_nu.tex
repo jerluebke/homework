@@ -1,0 +1,29 @@
+\begin{tikzpicture}[%
+    scale=1.5,
+    every mark/.append style={%
+        scale=1.0,
+    }
+]
+    \begin{loglogaxis}[%
+        % title=Spektrale Energieverteilung des Quasars 3C138,
+        xlabel=$\nu$/\si{\hertz},
+        ylabel=$\mathrm{F}_{\nu}\,\nu$/\si{\jansky\hertz},
+        grid=major,
+        % xmin=1e7, xmax=1e18,
+        % ymin=1e-7, ymax=1e2,
+        % max space between ticks=20
+    ]
+        \addplot+ [%
+            only marks,
+            % error bars/.cd,
+            %     y dir=both,
+            %     y explicit,
+            %     error bar style={black},
+        ] table [%
+            x=frequency,
+            y expr={\thisrow{flux_density}*\thisrow{frequency}},
+            % y error=uncertainty,
+            col sep=comma
+        ] {sed-3c138.csv};
+    \end{loglogaxis}
+\end{tikzpicture}
