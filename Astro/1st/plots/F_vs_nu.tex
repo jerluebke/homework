@@ -1,11 +1,14 @@
 \begin{tikzpicture}[%
+    rotate=270,
     scale=1.5,
     every mark/.append style={%
         scale=1.0,
     }
 ]
     \begin{loglogaxis}[%
-        % title=Spektrale Energieverteilung des Quasars 3C138,
+        width=15cm,
+        height=10.5cm,
+        title=Spektrum des Quasars 3C138 $\mathrm{F}_{\nu}$ gegen $\nu$,
         xlabel=$\nu$/\si{\hertz},
         ylabel=$\mathrm{F}_{\nu}$/\si{\jansky},
         grid=major,
@@ -18,7 +21,7 @@
             error bars/.cd,
                 y dir=both,
                 y explicit,
-                error bar style={black},
+                error bar style={gray,line width=0.7pt},
         ] table [%
             x=frequency,
             y=flux_density,
@@ -35,7 +38,7 @@
             error bars/.cd,
                 y dir=minus,
                 y explicit,
-                error bar style={black},
+                error bar style={gray, line width=0.7pt},
         ] coordinates {%
             (2.34e+13,8.0e-3) -= (0,7.9999e-3)
             (1.42e+13,5.6e-2) -= (0,0.0559999)

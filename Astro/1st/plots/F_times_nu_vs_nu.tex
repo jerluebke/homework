@@ -6,28 +6,47 @@
     }
 ]
     \begin{loglogaxis}[%
-        width=16cm,
-        height=10cm,
+        width=15cm,
+        height=10.5cm,
         % axis y line*=right,
-        title=Spektrale Energieverteilung des Quasars 3C138,
+        title=Spektrum des Quasars 3C138 $\mathrm{F}_{\nu}\,\nu$ gegen
+        $\nu$,
         xlabel=$\nu$/\si{\hertz},
         ylabel=$\mathrm{F}_{\nu}\,\nu$/\si{\jansky\hertz},
         grid=major,
-        % xmin=1e7, xmax=1e18,
-        % ymin=1e-7, ymax=1e2,
-        max space between ticks=20
+        xmin=1e7, xmax=1e18,
+        ymin=1e8, ymax=3e12,
+        % max space between ticks=20
     ]
         \addplot+ [%
             only marks,
-            % error bars/.cd,
-            %     y dir=both,
-            %     y explicit,
-            %     error bar style={black},
+            error bars/.cd,
+                y dir=both,
+                y explicit,
+                error bar style={gray,line width=0.7pt},
         ] table [%
             x=frequency,
             y expr={\thisrow{flux_density}*\thisrow{frequency}},
+            y error expr={\thisrow{frequency}*\thisrow{uncertainty}},
             % y error=uncertainty,
             col sep=comma
         ] {sed-3c138.csv};
+
+        \addplot+ [%
+            blue,
+            mark=*,
+            mark options={fill=blue!80!black},
+            only marks,
+            error bars/.cd,
+                y dir=minus,
+                y explicit,
+                error bar style={gray,line width=0.7pt},
+        ] coordinates {%
+            (2.34e+13,1.872e+11) -= (0,1.871e+11)
+            (1.42e+13,7.952e+11) -= (0,7.951e+11)
+            (4.93e+12,6.409e+10) -= (0,6.399e+10)
+            (2.90e+12,7.25e+10) -= (0,7.24e+10)
+            (1.72e+12,4.644e+10) -= (0,4.634e+10)
+        };
     \end{loglogaxis}
 \end{tikzpicture}

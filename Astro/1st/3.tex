@@ -3,6 +3,7 @@
 \usepackage{fontspec}
 \usepackage{polyglossia}
     \setdefaultlanguage{german}
+\usepackage{fancyhdr}
 \usepackage{csquotes}
 \usepackage{enumitem}
 \usepackage{mathtools}
@@ -13,7 +14,9 @@
     \sisetup{range-units=brackets}
     \DeclareSIUnit{\jansky}{Jy}
 \usepackage[%
-    labelformat=empty,
+    labelformat=simple,
+    labelsep=none,
+    textformat=none,
     font={small,sc}
 ]{caption}
 \usepackage{graphicx}
@@ -24,13 +27,14 @@
         label style={font=\tiny},
         tick label style={font=\tiny}
     }
-\usepackage{fancyhdr}
+\usepackage{todonotes}
 \usepackage[%
-    % colorlinks=true, linkcolor=blue,
-    hidelinks
+    colorlinks=true, linkcolor=blue,
+    % hidelinks
 ]{hyperref}
 
 \newcommand{\head}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(siehe Abb.~\ref{#1})}
 \newcommand{\zB}{z.\,B.}
 
 \newcommand{\course}{\textbf{Einführung in die Astrophysik}}
@@ -66,6 +70,9 @@
 \headsep 1.5em
 
 
+\newcommand{\Fnu}{\ensuremath{\mathrm{F}_{\nu}}}
+
+
 \begin{document}
 
 \section*{Aufgabe 3}
@@ -75,7 +82,7 @@
 \item
 Einige Messwerte von Quasar 3C138
 
-\begin{table}[h!]
+\begin{table}[h]
 \centering
 \begin{tabular}{rrrc}
     \toprule
@@ -97,31 +104,54 @@ Einige Messwerte von Quasar 3C138
 \end{tabular}
 \label{tab:tab1}
 \end{table}
+
+wobei $E = h\,\nu$ und $\nu = \frac{c}{\lambda}$.
+
 \vspace*{\baselineskip}
 
-
 \item
-Spektrale Energieverteilung des Quasars 3C138: $\mathrm{F}_{\nu}$ gegen
-$\nu$
+Spektrale Energieverteilung des Quasars 3C138: \Fnu gegen
+$\nu$ \figref{app:fig1}. \\
+\textit{\small Die geplotteten Daten stammen von der
+    \href{https://ned.ipac.caltech.edu/}{NASA Extragalactic Database}.}
 
-\begin{figure}[h!]
-    \centering
-    \input{plots/F_vs_nu.tex}
-    \caption{Quelle der Daten: \href{https://ned.ipac.caltech.edu/}{NED}}
-\end{figure}
+    \begin{itemize}
+        \item Der Plot suggeriert einen (auf der doppelt logarithmischen
+            Skala) fast linearen Verlauf für Frequenzen $>10^9$ \si{\hertz}
+        \item Bei $10^8$ \si{\hertz} scheint der Verlauf ein Maximum zu
+            erreichen; an dieser Stelle könnten weitere Daten für kleinere
+            Frequenzen interessant sein
+    \end{itemize}
+
 \vspace*{\baselineskip}
-\newpage
 
 \item
-Spektrale Energieverteilung des Quasars 3C138: $\mathrm{F}_{\nu}\,\nu$
-gegen $\nu$
+Spektrale Energieverteilung des Quasars 3C138: $\Fnu\,\nu$
+gegen $\nu$ \figref{app:fig2}. \\
+\textit{\small Die geplotteten Daten basieren auf dem in Teil (b)
+    verwendeten Datensatz. Die y-Fehler wurden gemäß
+    $\Delta\left(\Fnu\,\nu\right) = \left|
+    \frac{\partial(\Fnu\,\nu)}{\partial \Fnu} \right|\,\Delta\Fnu =
+    \nu\,\Delta\Fnu$ berechnet.}
 
-\begin{figure}[h!]
-    \centering
-    \input{plots/F_times_nu_vs_nu.tex}
-\end{figure}
+    \begin{itemize}
+        \item Die in Teil (b) betrachtete Strahlungsflussdichte
+            \Fnu beschreibt die Strahlungsleistung pro Fläche
+            pro Frequenz für \emph{eine spezifische} Frequenz
+        \item Das hier betrachtete Produkt $\Fnu\,\nu$
+            beschreibt hingegen die Strahlungsleitung pro Fläche
 
+        \todo{Worauf will ich hinaus? Was beschreiben beide Größe in
+        Hinblick auf die abgestralte Energie?}
+
+        \item Der Verlauf nimmt eine andere Form an, deren Maximum nun
+            deutlich erkennbar bei $\sim 10^{13}$ \si{\hertz} liegt
+    \end{itemize}
 
 \end{enumerate}
+
+\newpage
+
+\input{appendix/a3.tex}
 
 \end{document}
