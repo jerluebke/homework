@@ -13,6 +13,7 @@
 \usepackage{siunitx}
     \sisetup{range-units=brackets}
     \DeclareSIUnit{\jansky}{Jy}
+\usepackage{physics}
 \usepackage[%
     labelformat=simple,
     labelsep=none,
@@ -130,8 +131,7 @@ Spektrale Energieverteilung des Quasars 3C138: $\Fnu\,\nu$
 gegen $\nu$ \figref{app:fig2}. \\
 \textit{\small Die geplotteten Daten basieren auf dem in Teil (b)
     verwendeten Datensatz. Die y-Fehler wurden gemäß
-    $\Delta\left(\Fnu\,\nu\right) = \left|
-    \frac{\partial(\Fnu\,\nu)}{\partial \Fnu} \right|\,\Delta\Fnu =
+    $\Delta\left(\Fnu\,\nu\right) = \abs{\pdv{(\Fnu\,\nu)}{\Fnu}}\,\Delta\Fnu =
     \nu\,\Delta\Fnu$ berechnet.}
 
     \begin{itemize}

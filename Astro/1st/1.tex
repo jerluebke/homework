@@ -9,10 +9,12 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsfonts}
-\usepackage{booktabs}
 \usepackage{siunitx}
     \sisetup{range-units=brackets}
     \DeclareSIUnit{\jansky}{Jy}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
 \usepackage[%
     labelformat=simple,
     labelsep=none,
@@ -70,6 +72,12 @@
 \headsep 1.5em
 
 
+\newcommand{\Lum}{\mathrm{L}}
+\newcommand{\Area}{\mathrm{A}}
+\newcommand{\Temp}{\mathrm{T}}
+\newcommand{\lambdamax}{\lambda_{\mathrm{max}}}
+
+
 \begin{document}
 
 \section*{Aufgabe 1}
@@ -77,7 +85,51 @@
 \begin{enumerate}[label=\textbf{\large(\alph*)}]
 
 \item
-Einige Messwerte von Quasar 3C138
+    Mit dem Stefan-Boltzmann-Gesetz in der Form $\Lum = \Area\,\sigma\,\Temp^4$:
+    \begin{equation*}
+        \frac{\Lum}{\Lum_{\astrosun}} =
+        \frac{\Area\,\Temp^4}{\Area_{\astrosun}\,\Temp_{\astrosun}^4}
+        \overset{\Area\approx\Area_{\astrosun}}{\approx}
+        \frac{\Temp^4}{\Temp_{\astrosun}^4} =
+        \frac{\SI{23112}{\kelvin}}{\SI{5778}{\kelvin}} = 4
+    \end{equation*}
+
+\vspace*{\baselineskip}
+
+\item
+    Aus dem Wienschen Verschiebungsgesetz erhält man:
+    $\lambdamax = 0.0029\,\Temp^{-1}\,\si{\metre}$
+    \begin{equation*}
+        \implies
+        \begin{cases}
+            \lambdamax(\Temp=\SI{5778}{\kelvin}) = \SI{501.9}{\nano\metre} &
+            \quad \mathrm{sichtbar (blau-grün)} \\
+            \lambdamax(\Temp=\SI{23112}{\kelvin}) = \SI{125.5}{\nano\metre} &
+            \quad \mathrm{Vakuum-UV}
+        \end{cases}
+    \end{equation*}
+
+\vspace*{\baselineskip}
+
+\item
+    $\Lum_{\astrosun}\approx\SI{3.8e26}{\watt}$,
+    $\SI{1}{\astronomicalunit}\approx\SI{149.6e9}{m}$
+    \begin{enumerate}[label=\textbf{(\roman*)}]
+        \item Solarkonstante Erde
+            \begin{equation*}
+                S_{\earth} = \dv{\Lum_{\astrosun}}{\Area} \approx
+                \frac{\Lum_{\astrosun}}{4\pi r_{\mathrm{S-E}}^2}
+                \underset{r_{\mathrm{S-E}}=\SI{1}{\astronomicalunit}}{\approx}
+                \SI{1351.2}{\watt\per\metre\squared}
+            \end{equation*}
+
+        \item Solarkonstante Saturn
+            \begin{equation*}
+                S_{\saturn} \approx
+                \SI{14.72}{\watt\per\metre\squared}
+            \end{equation*}
+    \end{enumerate}
+
 
 \end{enumerate}
 
