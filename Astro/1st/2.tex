@@ -1,0 +1,140 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{german}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\jansky}{Jy}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=none,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(siehe Abb.~\ref{#1})}
+\newcommand{\zB}{z.\,B.}
+
+\newcommand{\course}{\textbf{Einführung in die Astrophysik}}
+\newcommand{\hwnumber}{1}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Übungsgruppe 3}
+
+
+\pagestyle{fancyplain}
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Hausaufgabenblatt \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\DeclareSIUnit{\erg}{erg}
+\DeclareSIUnit{\mag}{mag}
+\newcommand{\Fnu}{\ensuremath{\mathrm{F}_{\nu}}}
+\newcommand{\Inu}{\ensuremath{\mathrm{I}_{\nu}}}
+\newcommand{\Mab}{\ensuremath{m_{\mathrm{AB}}}}
+\newcommand{\Pow}{\ensuremath{\mathrm{P}}}
+\newcommand{\Area}{\ensuremath{\mathrm{A}}}
+
+
+\begin{document}
+
+\section*{Aufgabe 2}
+
+Definition der AB-Magnitude: $\Mab = -2.5\,\log(\Fnu) - 48.60$
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    Strahlungsflussdichte bei nullter AB-Magnitude:
+    \begin{equation*}
+        \implies \eval{\Fnu}_{\Mab=0} =
+        \eval{10^{\frac{\Mab+48.60}{-2.5}}}_{\Mab=0} = 10^{\frac{48.60}{-2.5}}
+        \approx \SI{3630.78}{\jansky}
+    \end{equation*}
+
+
+\item
+    Betrachte im Abstand von \SI{2}{\metre} eine Lampe mit
+    \begin{itemize}
+        \item \SI{2}{\watt} Strahlungsleistung
+        \item Konstantem Spektrum für Wellenlängen in
+            \SIrange[range-units=repeat]{30e3}{300}{\nano\metre}
+            $\implies \Delta\nu=\SI{297e-7}{\metre}$
+    \end{itemize}
+    \medskip
+    Die Strahlungsflussdichte ist gegeben als:
+    \begin{align*}
+        \Fnu &= \int_{\mathrm{Halbraum}}\Inu\dd{\Omega} \\
+        \Inu &\propto \frac{\dd\Pow}{\dd\Area\,\dd\Omega\,\dd\nu}
+        \overset{\mathrm{hier}}{\propto}
+        \dv{\left(\frac{\Pow}{\Area\,\Delta\nu}\right)}{\Omega} \\
+        &\implies \Fnu = \frac{\Pow}{\Area\,\Delta\nu}
+    \end{align*}
+
+    und mit $\Area = \Area_\mathrm{Halbraum} = 2\pi\,r^2$:
+    \begin{align*}
+        &\Fnu(r=\SI{2}{\metre}) =
+        \SI{2679.38}{\watt\per\metre\squared\per\hertz} =
+        \SI{2.68}{\erg\per\second\per\centi\metre\squared\per\hertz} \\
+        &\implies \Mab = \SI{-49.67}{\mag}
+    \end{align*}
+
+
+\item
+    Die Lampe befinde sich nun auf dem Mond (Abstand \SI{385000}{\kilo\metre}):
+    \begin{align*}
+        &\Fnu(r=\SI{385e6}{\metre}) =
+        \SI{72.31e-15}{\watt\per\metre\squared\per\hertz} =
+        \SI{72.31e-18}{\erg\per\second\per\centi\metre\squared\per\hertz} \\
+        &\implies \Mab = \SI{-8.25}{\mag}
+    \end{align*}
+
+\end{enumerate}
+
+
+\end{document}
