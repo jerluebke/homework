@@ -74,11 +74,13 @@
 
 \DeclareSIUnit{\erg}{erg}
 \DeclareSIUnit{\mag}{mag}
-\newcommand{\Fnu}{\ensuremath{\mathrm{F}_{\nu}}}
-\newcommand{\Inu}{\ensuremath{\mathrm{I}_{\nu}}}
+\newcommand{\Fnu}{\ensuremath{{F}_{\nu}}}
+\newcommand{\Inu}{\ensuremath{{I}_{\nu}}}
 \newcommand{\Mab}{\ensuremath{m_{\mathrm{AB}}}}
-\newcommand{\Pow}{\ensuremath{\mathrm{P}}}
-\newcommand{\Area}{\ensuremath{\mathrm{A}}}
+\newcommand{\Pow}{\ensuremath{{P}}}
+\newcommand{\Area}{\ensuremath{{A}}}
+
+\newcommand{\cgsflux}{\erg\per\second\per\centi\metre\squared\per\hertz}
 
 
 \begin{document}
@@ -93,8 +95,8 @@ Definition der AB-Magnitude: $\Mab = -2.5\,\log(\Fnu) - 48.60$
     Strahlungsflussdichte bei nullter AB-Magnitude:
     \begin{equation*}
         \implies \eval{\Fnu}_{\Mab=0} =
-        \eval{10^{\frac{\Mab+48.60}{-2.5}}}_{\Mab=0} = 10^{\frac{48.60}{-2.5}}
-        \approx \SI{3630.78}{\jansky}
+        \eval{10^{\frac{\Mab+48.60}{-2.5}}}_{\Mab=0} \approx
+        \SI{36.31e-21}{\cgsflux} = \SI{3631}{\jansky}
     \end{equation*}
 
 
@@ -115,24 +117,27 @@ Definition der AB-Magnitude: $\Mab = -2.5\,\log(\Fnu) - 48.60$
         \dv{\left(\frac{\Pow}{\Area\,\Delta\nu}\right)}{\Omega} \\
         &\implies \Fnu = \frac{\Pow}{\Area\,\Delta\nu}
     \end{align*}
+    \todo[inline]{Ist die Gleichung für \Fnu~so korrekt?}
 
     und mit $\Area = \Area_\mathrm{Halbraum} = 2\pi\,r^2$:
     \begin{align*}
-        &\Fnu(r=\SI{2}{\metre}) =
-        \SI{2679.38}{\watt\per\metre\squared\per\hertz} =
-        \SI{2.68}{\erg\per\second\per\centi\metre\squared\per\hertz} \\
+        &\Fnu(r=\SI{2}{\metre}) = \SI{2.68}{\cgsflux} = \SI{268e21}{\jansky} \\
         &\implies \Mab = \SI{-49.67}{\mag}
     \end{align*}
+
+    \todo[inline]{Sinnvoller Wert? Interpretation und Vergleich!}
 
 
 \item
     Die Lampe befinde sich nun auf dem Mond (Abstand \SI{385000}{\kilo\metre}):
     \begin{align*}
         &\Fnu(r=\SI{385e6}{\metre}) =
-        \SI{72.31e-15}{\watt\per\metre\squared\per\hertz} =
-        \SI{72.31e-18}{\erg\per\second\per\centi\metre\squared\per\hertz} \\
+        \SI{72.31e-18}{\cgsflux} = \SI{7231e3}{\jansky}\\
         &\implies \Mab = \SI{-8.25}{\mag}
     \end{align*}
+
+    \todo[inline]{Sinvoller Wert? Mir erscheint er sehr groß für eine 2W-Lampe auf dem
+    Mond\ldots~Es ist aber immerhin weniger als der Vollmond}
 
 \end{enumerate}
 

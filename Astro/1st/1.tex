@@ -35,6 +35,7 @@
     hidelinks
 ]{hyperref}
 
+
 \newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
 \newcommand*{\figref}[1]{(siehe Abb.~\ref{#1})}
 \newcommand{\zB}{z.\,B.}
@@ -49,6 +50,7 @@
 
 
 \pagestyle{fancyplain}
+
 \headheight 7\baselineskip
 \lhead{%
     \course \\
@@ -72,9 +74,9 @@
 \headsep 1.5em
 
 
-\newcommand{\Lum}{\mathrm{L}}
-\newcommand{\Area}{\mathrm{A}}
-\newcommand{\Temp}{\mathrm{T}}
+\newcommand{\Lum}{{L}}
+\newcommand{\Area}{{A}}
+\newcommand{\Temp}{{T}}
 \newcommand{\lambdamax}{\lambda_{\mathrm{max}}}
 
 
@@ -97,15 +99,17 @@
 \vspace*{\baselineskip}
 
 \item
-    Aus dem Wienschen Verschiebungsgesetz erhält man:
-    $\lambdamax = 0.0029\,\Temp^{-1}\,\si{\metre}$
+    Maximiert man das Plancksche Strahlungsgesetz $B_{\lambda}(T) =
+    \frac{2hc^2}{\lambda^5}\frac{1}{e^{\frac{hc}{\lambda kT}}-1}$ erhält man
+    das Wienschen Verschiebungsgesetz $\lambdamax =
+    0.0029\,\Temp^{-1}\,\si{\metre}$ und damit:
     \begin{equation*}
         \implies
         \begin{cases}
             \lambdamax(\Temp=\SI{5778}{\kelvin}) = \SI{501.9}{\nano\metre} &
-            \quad \mathrm{sichtbar (blau-grün)} \\
+            \quad \textrm{sichtbar (blau-grün)} \\
             \lambdamax(\Temp=\SI{23112}{\kelvin}) = \SI{125.5}{\nano\metre} &
-            \quad \mathrm{Vakuum-UV}
+            \quad \textrm{Vakuum-UV}
         \end{cases}
     \end{equation*}
 
@@ -118,7 +122,7 @@
         \item Solarkonstante Erde
             \begin{equation*}
                 S_{\earth} = \dv{\Lum_{\astrosun}}{\Area} \approx
-                \frac{\Lum_{\astrosun}}{4\pi r_{\mathrm{S-E}}^2}
+                \frac{\Lum_{\astrosun}}{4\pi\,r_{\mathrm{S-E}}^2}
                 \underset{r_{\mathrm{S-E}}=\SI{1}{\astronomicalunit}}{\approx}
                 \SI{1351.2}{\watt\per\metre\squared}
             \end{equation*}

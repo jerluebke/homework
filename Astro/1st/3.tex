@@ -71,7 +71,7 @@
 \headsep 1.5em
 
 
-\newcommand{\Fnu}{\ensuremath{\mathrm{F}_{\nu}}}
+\newcommand{\Fnu}{\ensuremath{{F}_{\nu}}}
 
 
 \begin{document}
@@ -106,19 +106,22 @@ Einige Messwerte von Quasar 3C138
 \label{tab:tab1}
 \end{table}
 
-wobei $E = h\,\nu$ und $\nu = \frac{c}{\lambda}$.
+wobei $E = h\,\nu$ und $\nu = \frac{c}{\lambda}$ mit $h =
+\SI{4.135667662e-15}{\electronvolt\second}$.
 
 \vspace*{\baselineskip}
 
 \item
-Spektrale Energieverteilung des Quasars 3C138: \Fnu gegen
+Spektrale Energieverteilung des Quasars 3C138: \Fnu~gegen
 $\nu$ \figref{app:fig1}. \\
 \textit{\small Die geplotteten Daten stammen von der
     \href{https://ned.ipac.caltech.edu/}{NASA Extragalactic Database}.}
 
     \begin{itemize}
         \item Der Plot suggeriert einen (auf der doppelt logarithmischen
-            Skala) fast linearen Verlauf für Frequenzen $>10^9$ \si{\hertz}
+            Skala) fast linearen Verlauf für Frequenzen $>10^9$ \si{\hertz},
+            also einen exponentiellen Anstieg der Strahlungsflussdichte
+            \Fnu~für kleiner werdende Frequenzen
         \item Bei $10^8$ \si{\hertz} scheint der Verlauf ein Maximum zu
             erreichen; an dieser Stelle könnten weitere Daten für kleinere
             Frequenzen interessant sein
@@ -127,26 +130,28 @@ $\nu$ \figref{app:fig1}. \\
 \vspace*{\baselineskip}
 
 \item
-Spektrale Energieverteilung des Quasars 3C138: $\Fnu\,\nu$
+Spektrale Energieverteilung des Quasars 3C138: $\nu\,\Fnu$
 gegen $\nu$ \figref{app:fig2}. \\
 \textit{\small Die geplotteten Daten basieren auf dem in Teil (b)
     verwendeten Datensatz. Die y-Fehler wurden gemäß
-    $\Delta\left(\Fnu\,\nu\right) = \abs{\pdv{(\Fnu\,\nu)}{\Fnu}}\,\Delta\Fnu =
+    $\Delta\left(\nu\,\Fnu\right) = \abs{\pdv{(\nu\,\Fnu)}{\Fnu}}\,\Delta\Fnu =
     \nu\,\Delta\Fnu$ berechnet.}
 
     \begin{itemize}
         \item Die in Teil (b) betrachtete Strahlungsflussdichte
-            \Fnu beschreibt die Strahlungsleistung pro Fläche
+            \Fnu~beschreibt die Strahlungsleistung pro Fläche
             pro Frequenz für \emph{eine spezifische} Frequenz
-        \item Das hier betrachtete Produkt $\Fnu\,\nu$
+        \item Das hier betrachtete Produkt $\nu\,\Fnu$
             beschreibt hingegen die Strahlungsleitung pro Fläche
-
-        \todo{Worauf will ich hinaus? Was beschreiben beide Größe in
-        Hinblick auf die abgestralte Energie?}
-
+        \item In einer Dimensionsbetrachtung reduziert sich ersteres zu
+            Energie pro Fläche, wohingegen letzteres tatsächlich eine Leistung
+            pro Fläche beschreibt, und damit die eigentlich interessante Größe
+            ist, wenn man Verläufe von Strahlungsleistungen betrachtet
         \item Der Verlauf nimmt eine andere Form an, deren Maximum nun
             deutlich erkennbar bei $\sim 10^{13}$ \si{\hertz} liegt
     \end{itemize}
+
+\todo[inline]{Interpretation sinnvoll/ausreichend?}
 
 \end{enumerate}
 
