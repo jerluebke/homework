@@ -10,7 +10,10 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{siunitx}
-    \sisetup{range-units=brackets}
+    \sisetup{%
+        range-units=brackets,
+        range-phrase={ bis },
+    }
     \DeclareSIUnit{\jansky}{Jy}
 \usepackage{physics}
 \usepackage{wasysym}
@@ -29,15 +32,17 @@
         label style={font=\tiny},
         tick label style={font=\tiny}
     }
-\usepackage{todonotes}
+\usepackage[disable]{todonotes}
 \usepackage[%
     % colorlinks=true, linkcolor=blue,
     hidelinks
 ]{hyperref}
 
+
 \newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
 \newcommand*{\figref}[1]{(siehe Abb.~\ref{#1})}
 \newcommand{\zB}{z.\,B.}
+
 
 \newcommand{\course}{\textbf{Einführung in die Astrophysik}}
 \newcommand{\hwnumber}{1}
@@ -103,13 +108,13 @@ Definition der AB-Magnitude: $\Mab = -2.5\,\log(\Fnu) - 48.60$
 \item
     Betrachte im Abstand von \SI{2}{\metre} eine Lampe mit
     \begin{itemize}
-        \item \SI{2}{\watt} Strahlungsleistung
+        \item $P=\SI{2}{\watt}$ Strahlungsleistung
         \item Konstantem Spektrum für Wellenlängen in
             \SIrange[range-units=repeat]{30e3}{300}{\nano\metre}
             $\implies \Delta\nu=\SI{297e-7}{\metre}$
     \end{itemize}
     \medskip
-    Die Strahlungsflussdichte ist gegeben als:
+    Die Strahlungsflussdichte kann geschrieben werden als:
     \begin{align*}
         \Fnu &= \int_{\mathrm{Halbraum}}\Inu\dd{\Omega} \\
         \Inu &\propto \frac{\dd\Pow}{\dd\Area\,\dd\Omega\,\dd\nu}
@@ -121,8 +126,8 @@ Definition der AB-Magnitude: $\Mab = -2.5\,\log(\Fnu) - 48.60$
 
     und mit $\Area = \Area_\mathrm{Halbraum} = 2\pi\,r^2$:
     \begin{align*}
-        &\Fnu(r=\SI{2}{\metre}) = \SI{2.68}{\cgsflux} = \SI{268e21}{\jansky} \\
-        &\implies \Mab = \SI{-49.67}{\mag}
+        &\Fnu(r=\SI{2}{\metre}) = \SI{2.68e6}{\cgsflux} = \SI{268e27}{\jansky} \\
+        &\implies \Mab = \SI{-64.67}{\mag}
     \end{align*}
 
     \todo[inline]{Sinnvoller Wert? Interpretation und Vergleich!}
@@ -132,14 +137,18 @@ Definition der AB-Magnitude: $\Mab = -2.5\,\log(\Fnu) - 48.60$
     Die Lampe befinde sich nun auf dem Mond (Abstand \SI{385000}{\kilo\metre}):
     \begin{align*}
         &\Fnu(r=\SI{385e6}{\metre}) =
-        \SI{72.31e-18}{\cgsflux} = \SI{7231e3}{\jansky}\\
-        &\implies \Mab = \SI{-8.25}{\mag}
+        \SI{72.31e-12}{\cgsflux} = \SI{7231e9}{\jansky}\\
+        &\implies \Mab = \SI{-23.25}{\mag}
     \end{align*}
 
     \todo[inline]{Sinvoller Wert? Mir erscheint er sehr groß für eine 2W-Lampe auf dem
     Mond\ldots~Es ist aber immerhin weniger als der Vollmond}
 
 \end{enumerate}
+
+\subsection*{Diskussion}
+Die Ergebnisse in \textbf{(b)} und \textbf{(c)} sind nach intuitivem
+Verständnis viel zu hoch. Vermutlich ist ein Fehler in unserem Ansatz sein.
 
 
 \end{document}
