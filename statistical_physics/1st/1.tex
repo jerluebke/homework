@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=none,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage[makeroom]{cancel}
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Statistical Mechanics}}
+\newcommand{\hwnumber}{1}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\matnumA}{108015230366}
+
+
+\pagestyle{fancyplain}
+
+\headheight 5\baselineskip
+\lhead{%
+    \nameA \\
+    \matnumA
+    \vspace*{2\baselineskip}
+}
+
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+    % \vspace*{\baselineskip}
+}
+
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
+\headsep 1.5em
+
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+
+\section*{H1.1}
+
+Consider the Hamiltonian of the microcanonical ensemble of N harmonic oscillators:
+\begin{equation*}
+    H(p, q) = \sum_{i=1}^{N}\frac{\vec{p}_i^2}{2m} +
+    \frac{m\omega^2}{2}\sum_{i=1}^{N}\vec{q}_i^2
+\end{equation*}
+
+The statistical weight with the phase space volume element:
+\begin{equation*}
+    \Omega = \lim_{\Delta E \to 0}\frac{1}{\Delta E} \int_{E\leq H(p,q)\leq
+    E+\Delta E}\dd\Gamma, \quad
+    \dd\Gamma = \frac{1}{N!}\prod_{i=1}^{N}\frac{\dd[3]p_i\dd[3]q_i}{(2\pi\hbar)^{3}}
+\end{equation*}
+
+In order to compute $\Omega$ for the given Hamiltonian, consider the
+integral (the $\delta$ appears after taking the limit $\Delta E \to 0$):
+\begin{align*}
+    \lim_{\Delta E \to 0}\frac{1}{\Delta E}\int_{E\leq H(p,q)\leq E+\Delta E}\dd\Gamma &=
+    \frac{1}{N!}\frac{1}{(2\pi\hbar)^{3N}}\int\dd[3N]{p}\dd[3N]{q}
+    \delta\left(H(p,q)-E\right) \\
+    &= \frac{1}{N!}\frac{1}{(2\pi\hbar)^{3N}}\int\dd[3N]{p}\dd[3N]{q}
+    \delta\left(\sum_{i=1}^{N}\left(\frac{\vec{p}_i^2}{2m}+\frac{m\omega^2\vec{q}_i^2}{2}\right)-E\right)
+\end{align*}
+
+Substitute
+\begin{equation*}
+    \widetilde{\vec{p}_i}\longrightarrow\frac{\vec{p}_i}{\sqrt{2m}}, \quad
+    \widetilde{\vec{q}_i}\longrightarrow\sqrt{\frac{m}{2}}\omega\vec{q}_i
+    \implies \dd[3N]{p} = \left(2m\right)^{\frac{3N}{2}}\dd[3N]{\widetilde{p}},
+    \quad \dd[3N]{q} = \left(\frac{2}{m\omega^2}\right)^{\frac{3N}{2}}\dd[3N]{\widetilde{q}}
+\end{equation*}
+and drop the prefactor for now:
+\begin{equation*}
+    \int\dd[3N]{p}\dd[3N]{q}\delta\left(H(p,q)-E\right) =
+    \left(\frac{2}{\omega}\right)^{3N}
+    \int\dd[3N]{\widetilde{p}}\dd[3N]{\widetilde{q}}
+    \delta\Bigg(
+    \underbrace{\sum_{i=1}^{N}\left(\widetilde{\vec{p}}_i^2+\widetilde{\vec{q}}_i^2\right)}_{\equiv R^2}
+    -E\Bigg)
+\end{equation*}
+
+Switch to spherical coordinates and apply the relation
+$\delta(x^2-a^2)=\frac{1}{2\abs{a}}\left(\delta(x-a)+\delta(x+a)\right)$:
+\begin{equation*}
+    \int R^{6N-1}\dd{R}\dd{\Omega_{6N-1}}\frac{1}{2\sqrt{E}}\Big(\delta\left(R-\sqrt{E}\right)
+    +\cancelto{0,\ R\geq 0}{\delta\left(R+\sqrt{E}\right)}\Big)
+    = \frac{1}{2}\int\dd{\Omega_{6N-1}}E^{3N-1}
+\end{equation*}
+
+Use the equation for the D-dimensional sphere to obtain:
+\begin{equation*}
+    V_D(R) = \int_0^R r^{D-1}\dd{r} \int\dd{\Omega_{D-1}} = \frac{R^D}{D} \int\dd{\Omega_{D-1}}
+    = \frac{2\pi^{\frac{D}{2}}R^D}{D\,\Gamma\left(\frac{D}{2}\right)}
+    \implies \int\dd{\Omega_{D-1}} = \frac{2\pi^{\frac{D}{2}}}{\Gamma\left(\frac{D}{2}\right)}
+\end{equation*}
+
+Finally, put everything together:
+\begin{gather*}
+    \Omega=\frac{1}{N!}\frac{1}{(2\pi\hbar)^{3N}}\left(\frac{2}{\omega}\right)^{3N}
+    \frac{E^{3N-1}}{2}\frac{2\pi^{3N}}{\Gamma(3N)} \\
+    \implies\boxed{%
+        % \Omega&=\frac{1}{N!}\frac{1}{(\hbar\omega)^{3N}}\frac{E^{3N-1}}{\Gamma(3N)}
+        \Omega=\frac{E^{3N-1}}{N!(\hbar\omega)^{3N}\Gamma(3N)}
+    }
+\end{gather*}
+
+
+\end{document}

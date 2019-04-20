@@ -1,8 +1,8 @@
 \documentclass[11pt,a4paper]{scrartcl}
-\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
 \usepackage{fontspec}
 \usepackage{polyglossia}
-    \setdefaultlanguage{german}
+    \setdefaultlanguage{english}
 \usepackage{fancyhdr}
 \usepackage{csquotes}
 \usepackage{enumitem}
@@ -11,7 +11,6 @@
 \usepackage{amsfonts}
 \usepackage{siunitx}
     \sisetup{range-units=brackets}
-    \DeclareSIUnit{\jansky}{Jy}
 \usepackage{physics}
 \usepackage{wasysym}
 \usepackage{booktabs}
@@ -37,51 +36,49 @@
 
 
 \newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
-\newcommand*{\figref}[1]{(siehe Abb.~\ref{#1})}
-\newcommand{\zB}{z.\,B.}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
 
-\newcommand{\course}{\textbf{Einführung in die Astrophysik}}
+\newcommand{\course}{\textbf{Statistical Mechanics}}
 \newcommand{\hwnumber}{1}
 \newcommand{\nameA}{Jeremiah Lübke}
-\newcommand{\nameB}{Andreas Menzel}
 \newcommand{\matnumA}{108015230366}
-\newcommand{\matnumB}{108015226385}
-\newcommand{\groupnum}{Übungsgruppe 3}
 
 
 \pagestyle{fancyplain}
 
-\headheight 7\baselineskip
+\headheight 5\baselineskip
 \lhead{%
-    \course \\
-    \vspace*{3\baselineskip}
-    \nameA, \matnumA \\
-    \nameB, \matnumB
-}
-
-\chead{%
-    \textbf{\Large Hausaufgabenblatt \hwnumber} \\
+    \nameA \\
+    \matnumA
     \vspace*{2\baselineskip}
 }
 
-\rhead{%
-    \today \\
-    \vspace*{4\baselineskip}
-    \groupnum
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+    % \vspace*{\baselineskip}
 }
 
-\cfoot{\small\thepage}
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
 \headsep 1.5em
 
 
 \begin{document}
 
-\section*{Aufgabe 1}
+\section*{H1.1}
 
 \begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
 
 \item
-Einige Messwerte von Quasar 3C138
+    Harmonic Oscillator
 
 \end{enumerate}
 
