@@ -1,0 +1,105 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\jansky}{Jy}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=none,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{1}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homeworksheet \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\Eph}{\ensuremath{E_{\mathrm{Photon}}}}
+
+
+\begin{document}
+
+\section*{Task 2}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    Estimated gained frequency by a photon with $\nu_0=\SI{282}{\giga\hertz}$ after
+    being scattered by a high energy electron:
+    \begin{align*}
+        \Eph' &= \Eph \left(1+\frac{kT}{m_e c^2}\right) \\
+        \implies \Delta\nu &= \nu'-\nu_0 = \frac{kT}{m_e c^2}\nu_0
+    \end{align*}
+
+    For a plasma with $n_e = \SI{3e3}{\metre\cubed}$, $T_e=10^6\si{\kelvin}$,
+    the first increase in frequency is:
+    \begin{equation*}
+        \nu'\approx\SI{282.048e9}{\hertz}
+    \end{equation*}
+
+\end{enumerate}
+
+
+\end{document}

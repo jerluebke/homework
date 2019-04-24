@@ -1,0 +1,141 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\jansky}{Jy}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=none,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{1}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homeworksheet \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\lambdamax}{\ensuremath{\lambda_{\mathrm{m}}}}
+\newcommand{\numax}{\ensuremath{\nu_{\mathrm{m}}}}
+\newcommand{\Temp}{\ensuremath{T}}
+\newcommand{\Unu}{\ensuremath{u_{\nu}}}
+\newcommand{\Utot}{\ensuremath{u_{\mathrm{tot}}}}
+\newcommand{\Bnu}{\ensuremath{B_{\nu}}}
+
+
+\begin{document}
+
+\section*{Task 1}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    Since the CMB (\Temp = \SI{2.728}{\kelvin}) behaves like a Black Body, the maximum of the flux density
+    coincides with the maximum of the spectral radiance, it can be determined
+    via Wien's displacement law:
+    \begin{align*}
+        \lambdamax &= 0.0029 T^{-1} \si{\metre} \approx \SI{1.063}{\milli\metre}
+        \\
+        \numax &= \frac{c}{\lambdamax} \approx \SI{282}{\giga\hertz}
+    \end{align*}
+
+\item
+    The spectral energy density is $\Unu = \frac{4\pi}{c}\Bnu$. For the total
+    energy density, integrate over all frequencies using Planck's Law:
+    \begingroup
+    \addtolength{\jot}{1em}
+    \begin{align*}
+        \Unu =& \frac{8\pi h\nu^3}{c^3}\frac{1}{e^{\frac{h\nu}{k\Temp}}-1}
+        \\\
+        \Utot =&
+        \frac{8\pi h}{c^3}\int_{0}^{\infty}\frac{\nu^3\dd\nu}{e^{\frac{h\nu}{k\Temp}}-1}
+        \\
+        \textrm{Substituting:}\quad &x = \frac{h\nu}{k\Temp},\quad \dd{x} = \frac{h}{k\Temp}\dd{\nu} \\
+        \implies \Utot =& \frac{8\pi k^4\Temp^4}{c^3 h^3}
+        \underbrace{%
+        \int_{0}^{\infty}\frac{u^3 \dd u}{e^u-1}
+        }_{=\Gamma(4)\zeta(4)=\frac{\pi^4}{15}}
+        = \underbrace{\frac{8\pi^5 k^4}{15 c^3 h^3}}
+        _{=\frac{\sigma}{c}}
+        \Temp^4 \\
+        \eval{\Utot}_{\Temp=\SI{2.728}{\kelvin}}\approx&\SI{4.190e-14}{\joule\per\metre\cubed}
+    \end{align*}
+    \endgroup
+    For comparision, measurements yield
+    $\Temp=\SI{4.005e-14}{\joule\per\metre\cubed}$.
+
+\item
+    The radiant flux is given by the Stefan-Boltzmann law:
+    \begin{equation*}
+        j=\sigma\,\Temp\overset{\Temp=\SI{2.728}{\kelvin}}{\approx}\SI{3.140e-6}{\watt\per\metre\squared}
+    \end{equation*}
+    To find the power received by the earth, one can use:
+    \begin{equation*}
+        P = A_{\earth}\,j \approx \SI{1601.83}{\watt}
+    \end{equation*}
+
+\end{enumerate}
+
+
+\end{document}

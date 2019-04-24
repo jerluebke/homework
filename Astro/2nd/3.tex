@@ -1,0 +1,160 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=none,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{see fig.~\ref{#1}}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{2}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homeworksheet \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\begin{document}
+
+\section*{Task 3}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    For a scematic sketch of synchrotron radiation, \figref{app:fig1}.
+    \begin{figure}[h]
+        \centering
+        \input{tikz/sketch.tex}
+        \caption{}
+        \label{app:fig1}
+    \end{figure}
+
+\item
+    The relativistic gyroradius is given as:
+    \begin{equation*}
+        r_{L} = \frac{p}{e\,B_{\perp}}.
+    \end{equation*}
+
+    Using the relativistic energy-momentum relation
+    \begin{equation*}
+        E^2 = (m\,c)^2 + (p\,c)^2,
+    \end{equation*}
+
+    we obtain:
+    \begin{equation*}
+        r_{L} = \frac{\sqrt{E^2 - (m\,c)^2}}{c\,e\,B_{\perp}}.
+    \end{equation*}
+
+    Where $m_e\,c^2 = \SI{511e3}{\electronvolt}$ and the prefactor has the value:
+    \begin{equation*}
+        \frac{1}{c\,e\,B_{\perp}} \approx \SI{16.68}{\metre\per\electronvolt}
+    \end{equation*}
+
+    We then receive the results:
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{SSS}
+            \toprule
+            \tablehead{Energies/\si{\giga\electronvolt}} &
+            \tablehead{$r_{L}$/\SI{16.68}{\giga\metre}} &
+            \tablehead{$r_{L}$/\SI{540.56}{\nano\parsec}} \\
+            \midrule
+            1 & 1 & 1 \\
+            1e3 & 1e3 & 1e3 \\
+            1e6 & 1e6 & 1e6 \\
+            1e9 & 1e9 & 1e9 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+
+\item
+    For the opening angle of the radiation cone, we use:
+    \begin{equation*}
+        \Theta = \frac{1}{\gamma} = \frac{m\,c^2}{E}
+    \end{equation*}
+
+    and find:
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{SS}
+            \toprule
+            \tablehead{Energies/\si{\giga\electronvolt}} &
+            \tablehead{$\Theta$/\SI{511}{\radian}} \\
+            \midrule
+            1 & 1 \\
+            1e3 & 1e-3 \\
+            1e6 & 1e-6 \\
+            1e9 & 1e-9 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+\end{enumerate}
+
+
+\end{document}
