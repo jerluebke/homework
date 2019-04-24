@@ -64,7 +64,7 @@
 }
 
 \chead{%
-    \textbf{\Large Homeworksheet \hwnumber} \\
+    \textbf{\Large Homework \hwnumber} \\
     \vspace*{2\baselineskip}
 }
 
@@ -77,6 +77,8 @@
 \cfoot{\small\thepage}
 \headsep 1.5em
 
+
+\newcommand{\Rgyro}{\ensuremath{r_{\mathrm{L}}}}
 
 \begin{document}
 
@@ -94,9 +96,9 @@
     \end{figure}
 
 \item
-    The relativistic gyroradius is given as:
+    The relativistic gyro radius is given as:
     \begin{equation*}
-        r_{L} = \frac{p}{e\,B_{\perp}}.
+        \Rgyro = \frac{p}{e\,B_{\perp}}.
     \end{equation*}
 
     Using the relativistic energy-momentum relation
@@ -106,7 +108,7 @@
 
     we obtain:
     \begin{equation*}
-        r_{L} = \frac{\sqrt{E^2 - (m\,c)^2}}{c\,e\,B_{\perp}}.
+        \Rgyro = \frac{\sqrt{E^2 - (m\,c)^2}}{c\,e\,B_{\perp}}.
     \end{equation*}
 
     Where $m_e\,c^2 = \SI{511e3}{\electronvolt}$ and the prefactor has the value:
@@ -120,8 +122,8 @@
         \begin{tabular}{SSS}
             \toprule
             \tablehead{Energies/\si{\giga\electronvolt}} &
-            \tablehead{$r_{L}$/\SI{16.68}{\giga\metre}} &
-            \tablehead{$r_{L}$/\SI{540.56}{\nano\parsec}} \\
+            \tablehead{$\Rgyro$/\SI{16.68}{\giga\metre}} &
+            \tablehead{$\Rgyro$/\SI{540.56}{\nano\parsec}} \\
             \midrule
             1 & 1 & 1 \\
             1e3 & 1e3 & 1e3 \\
@@ -153,6 +155,16 @@
             \bottomrule
         \end{tabular}
     \end{table}
+
+
+\item
+    A particle with an energy in excess of $10^{11}\si{\giga\electronvolt}$ has a gyro
+    radius of more than \SI{54}{\kilo\parsec}. This is of the order of galaxies;
+    for reference, the radius of the Miky Way is
+    \SI{30}{\kilo\parsec}.
+    This means, such a particle is able to escape the
+    galaxy's magnetic field and travel through the intergalactic medium until
+    - perhaps - being detected by scientists on earth.
 
 \end{enumerate}
 

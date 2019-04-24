@@ -2,7 +2,7 @@
 \usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
 \usepackage{fontspec}
 \usepackage{polyglossia}
-    \setdefaultlanguage{german}
+    \setdefaultlanguage{english}
 \usepackage{fancyhdr}
 \usepackage{csquotes}
 \usepackage{enumitem}
@@ -23,6 +23,8 @@
 ]{caption}
 \usepackage{graphicx}
     \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc}
 \usepackage{pgfplots}
     \pgfplotsset{%
         table/search path={data},
@@ -37,16 +39,16 @@
 
 
 \newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
-\newcommand*{\figref}[1]{(siehe Abb.~\ref{#1})}
-\newcommand{\zB}{z.\,B.}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
 
-\newcommand{\course}{\textbf{Einführung in die Astrophysik}}
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
 \newcommand{\hwnumber}{1}
 \newcommand{\nameA}{Jeremiah Lübke}
 \newcommand{\nameB}{Andreas Menzel}
 \newcommand{\matnumA}{108015230366}
 \newcommand{\matnumB}{108015226385}
-\newcommand{\groupnum}{Übungsgruppe 3}
+\newcommand{\groupnum}{Exercise Group 3}
 
 
 \pagestyle{fancyplain}
@@ -60,7 +62,7 @@
 }
 
 \chead{%
-    \textbf{\Large Hausaufgabenblatt \hwnumber} \\
+    \textbf{\Large Homework \hwnumber} \\
     \vspace*{2\baselineskip}
 }
 
@@ -76,7 +78,7 @@
 
 \begin{document}
 
-\section*{Aufgabe 1}
+\section*{Task 1}
 
 \begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
 
