@@ -7,14 +7,14 @@
 \newcommand{\blineinnerradius}{1pt}
 
 \newcommand{\bline}[1]{%
-    \draw[blue!80!black] (#1) circle (\blineouterradius);
+    \draw[semithick,blue!80!black] (#1) circle (\blineouterradius);
     \fill[blue!80!black] (#1) circle (\blineinnerradius);
 }
 
 
 \begin{document}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[>=stealth]
 
 % gyration center at (4, -4), radius 8
 
@@ -29,18 +29,22 @@
 
 
 % \draw[red] (4,-4) circle (8);
-\draw (0.93853,3.39104) arc (112.5:45:8);
-\draw[densely dashed] (e) -- (14, 4);
-\draw[dashed] (e) -- (13, 6.25);
-\draw[dashed] (e) -- (13, 1.75);
-\draw[thick,orange] (e) -- (10, 5.5);
-\draw[thick,orange] (e) -- (10, 2.5);
-% \draw[orange] (10, 5.5) to [out=14, in=-14] (10, 2.5);
-\draw[thick,orange] (10, 5.5) to [out=14, in=90] (13.5, 4) to [out=-90, in=-14] (10, 2.5);
-% \draw[orange] (10, 5.5) arc (14:-14:6);
+\draw[semithick,dashed,gray] (e) -- (13, 6.25);
+\draw[semithick,dashed,gray] (e) -- (13, 1.75);
+\draw[semithick,orange!80,fill=orange!30] (e) -- (10, 5.5) to
+    [out=14.03624, in=90] (13.5, 4) to [out=-90, in=-14.03624] (10, 2.5) -- (e);
+\draw [semithick,->] (0.93853,3.39104) arc (112.5:45:8);
+
+\draw[dashed,thick,gray,->] (e) -- (14, 4);
+
 \fill[blue] (e) circle (\eradius);
 \foreach \bcoord in {B1, B2, B3, B4}
     \bline{\bcoord};
+
+\draw [semithick,->|] (10.61863,6.27898) arc (19:13.97:7);
+\draw [semithick,->|] (10.61863,1.72102) arc (-19:-13.97:7);
+
+\draw [thick,red!80!black,|->] (10,3.985) -- (10,5.5);
 
 \end{tikzpicture}
 

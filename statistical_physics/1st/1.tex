@@ -61,13 +61,14 @@
     \textbf{\Large \course} \\\medskip
     \textbf{\Large Homework \hwnumber}
     \bigskip
-    % \vspace*{\baselineskip}
 }
 
 \rhead{%
     \today
     \vspace*{3\baselineskip}
 }
+
+\cfoot{}
 
 \headsep 1.5em
 
@@ -115,13 +116,13 @@ and drop the prefactor for now:
     \int\dd[3N]{\widetilde{p}}\dd[3N]{\widetilde{q}}
     \delta\Bigg(
     \underbrace{\sum_{i=1}^{N}\left(\widetilde{\vec{p}}_i^2+\widetilde{\vec{q}}_i^2\right)}_{\equiv R^2}
-    -E\Bigg)
+    -E\Bigg) =
 \end{equation*}
 
 Switch to spherical coordinates and apply the relation
 $\delta(x^2-a^2)=\frac{1}{2\abs{a}}\left(\delta(x-a)+\delta(x+a)\right)$:
 \begin{equation*}
-    \int R^{6N-1}\dd{R}\dd{\Omega_{6N-1}}\frac{1}{2\sqrt{E}}\Big(\delta\left(R-\sqrt{E}\right)
+    = \int R^{6N-1}\dd{R}\dd{\Omega_{6N-1}}\frac{1}{2\sqrt{E}}\Big(\delta\left(R-\sqrt{E}\right)
     +\cancelto{0,\ R\geq 0}{\delta\left(R+\sqrt{E}\right)}\Big)
     = \frac{1}{2}\int\dd{\Omega_{6N-1}}E^{3N-1}
 \end{equation*}
