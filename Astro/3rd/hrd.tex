@@ -1,6 +1,6 @@
 \documentclass[
     % draft
-]{scrartcl}
+]{standalone}
 \usepackage{pgfplots}
 \pgfplotsset{%
     table/search path={data},
@@ -14,23 +14,32 @@
 
 \begin{axis}[%
     width=15cm,
-    height=25cm,
-    ymin=10e-7,
-    ymax=10e8,
-    xmin=2700,
-    xmax=16000,
-    x dir=reverse,
-    xmode=log,
-    ymode=log,
-    xtick={3000,4000,5000,6000,7001,10000,12000,15001},
-    xticklabel style={%
-        /pgf/number format/.cd,
-        fixed,precision=0,
-        1000 sep={\,},
-        /tikz/.cd,
-    },
+    height=23cm,
+    title=Hertzsprung-Russel Diagram,
+    title style={yshift=1.5cm},
+    xlabel=Colour Index (B-V),
+    ylabel=Absolute Magnitude,
+    % ymin=10e-7,
+    % ymax=10e8,
+    ymin=-18,
+    ymax=20,
+    xmin=-0.5,
+    xmax=2.5,
+    % x dir=reverse,
+    y dir=reverse,
+    % xmode=log,
+    % ymode=log,
+    xtick distance=0.5,
+    % xtick={3000,4000,5000,6000,7500,10000,12000,30000},
+    % xticklabel style={%
+    %     /pgf/number format/.cd,
+    %     fixed,precision=0,
+    %     1000 sep={\,},
+    %     /tikz/.cd,
+    % },
     % scaled x ticks=false,
-    xticklabel=\pgfmathparse{exp(\tick)}\pgfmathprintnumber{\pgfmathresult},
+    % xticklabel=\pgfmathparse{exp(\tick)}\pgfmathprintnumber{\pgfmathresult},
+    grid=major,
     scatter/classes={%
         d={mark=*,lightgray,draw=gray!60!black},
         o={mark=*,blue!60!white,draw=blue!80!black},
@@ -60,7 +69,8 @@
         xticklabel pos=upper,
         xticklabel interval boundaries,
         xticklabels={,O,B,A,F,G,K,M,D},
-        x tick label style={below,font=\bfseries}
+        x tick label style={below,font=\bfseries},
+        samples=8
     }
 ]
     \addplot+ [%
@@ -69,8 +79,10 @@
         scatter,
         point meta=explicit symbolic,
     ] table [%
-        x expr={4600*(1/(0.92*\thisrow{ci}+1.7)+1/(0.92*\thisrow{ci}+0.62))},
-        y=lum,
+        % x expr={4600*(1/(0.92*\thisrow{ci}+1.7)+1/(0.92*\thisrow{ci}+0.62))},
+        x=ci,
+        % y=lum,
+        y=absmag,
         meta=spect,
         col sep=comma
     ] {hygdata_v3_filtered.csv};
