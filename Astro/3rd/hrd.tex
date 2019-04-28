@@ -1,0 +1,81 @@
+\documentclass[
+    % draft
+]{scrartcl}
+\usepackage{pgfplots}
+\pgfplotsset{%
+    table/search path={data},
+}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{axis}[%
+    width=15cm,
+    height=25cm,
+    ymin=10e-7,
+    ymax=10e8,
+    xmin=2700,
+    xmax=16000,
+    x dir=reverse,
+    xmode=log,
+    ymode=log,
+    xtick={3000,4000,5000,6000,7001,10000,12000,15001},
+    xticklabel style={%
+        /pgf/number format/.cd,
+        fixed,precision=0,
+        1000 sep={\,},
+        /tikz/.cd,
+    },
+    % scaled x ticks=false,
+    xticklabel=\pgfmathparse{exp(\tick)}\pgfmathprintnumber{\pgfmathresult},
+    scatter/classes={%
+        d={mark=*,lightgray,draw=gray!60!black},
+        o={mark=*,blue!60!white,draw=blue!80!black},
+        b={mark=*,cyan!80!white,draw=cyan!60!black},
+        a={mark=*,white,draw=gray},
+        f={mark=*,lime!80!white,draw=lime!60!black},
+        g={mark=*,yellow!80!white,draw=yellow!60!black},
+        k={mark=*,orange!80!white,draw=orange!60!black},
+        m={mark=*,red!60!white,draw=red!60!black}
+    },
+    colormap={mycm}{%
+        color=(blue!60!white),
+        color=(cyan),
+        color=(white),
+        color=(lime),
+        color=(yellow),
+        color=(orange),
+        color=(red),
+        color=(lightgray)
+    },
+    colorbar horizontal,
+    colorbar as palette,
+    colorbar style={%
+        title=Spectral Class,
+        at={(0.5,1.03)},
+        anchor=south,
+        xticklabel pos=upper,
+        xticklabel interval boundaries,
+        xticklabels={,O,B,A,F,G,K,M,D},
+        x tick label style={below,font=\bfseries}
+    }
+]
+    \addplot+ [%
+        % domain=2500:15000,
+        only marks,
+        scatter,
+        point meta=explicit symbolic,
+    ] table [%
+        x expr={4600*(1/(0.92*\thisrow{ci}+1.7)+1/(0.92*\thisrow{ci}+0.62))},
+        y=lum,
+        meta=spect,
+        col sep=comma
+    ] {hygdata_v3_filtered.csv};
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
