@@ -1,23 +1,36 @@
+% \RequirePackage{luatex85,shellesc}
 \documentclass[
     % draft
 ]{standalone}
+% ]{scrartcl}
 \usepackage{pgfplots}
+% \usepgfplotslibrary{external}
+% \tikzexternalize
 \pgfplotsset{%
+    compat=1.16,
     table/search path={data},
+    % label style={font\tiny},
+    % tick label style={font=\tiny},
 }
+
 
 \pagestyle{empty}
 
 \begin{document}
 
-\begin{tikzpicture}
+\begin{tikzpicture}[>=stealth,pin distance=3cm,every pin edge/.style={<-}]
 
 \begin{axis}[%
+    set layers,
     width=15cm,
     height=23cm,
     title=Hertzsprung-Russel Diagram,
     title style={yshift=1.5cm},
-    xlabel=Colour Index (B-V),
+    label style={font=\small},
+    x label style={yshift=.4em},
+    y label style={yshift=-.4em},
+    tick label style={font=\small},
+    xlabel=Colour Index $(B-V)$,
     ylabel=Absolute Magnitude,
     % ymin=10e-7,
     % ymax=10e8,
@@ -64,6 +77,7 @@
     colorbar as palette,
     colorbar style={%
         title=Spectral Class,
+        title style={yshift=-.2cm},
         at={(0.5,1.03)},
         anchor=south,
         xticklabel pos=upper,
@@ -86,6 +100,31 @@
         meta=spect,
         col sep=comma
     ] {hygdata_v3_filtered.csv};
+
+    \coordinate (sun) at (0.63, 4.83);
+
+    \addplot+ [%
+        % orange!80!black,
+        % orange!80!yellow,
+        yellow!60!black,
+        mark=*,
+        only marks,
+        mark size=3pt,
+        mark options={very thick,fill=yellow}
+    ] coordinates {%
+        (0.63, 4.83)
+    };
+
+    % \node [coordinate,pin=right:{Sun}]
+    %     at (axis cs:0.63,4.83) {};
+    \pgfonlayer{axis foreground}
+        \draw [->,shorten >=2.5pt] (axis cs:2.0,4.0) -- (axis cs:0.63,4.83);
+        \node at (axis cs:2.0,4.0) [%
+                rectangle,rounded corners,
+                draw,fill=white,
+                align=left,font=\scriptsize]
+            {Sun \\ $M=4.83$ \\ $B-V=0.63$};
+    \endpgfonlayer
 \end{axis}
 
 \end{tikzpicture}
