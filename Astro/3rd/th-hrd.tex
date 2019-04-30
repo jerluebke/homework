@@ -1,0 +1,81 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{%
+    table/search path={data},
+}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{axis}[%
+    width=15cm,
+    height=20cm,
+    x dir=reverse,
+    xmode=log,
+    ymode=log,
+    xmax=10e5,
+    xmin=10e1,
+    ymax=10e8,
+    ymin=10e-5,
+    grid=major,
+    view={0}{90},
+]
+    \addplot+ [%
+        blue!80!black,
+        only marks,
+        mark options={fill=blue!60!white,}
+    ] table [%
+        x=T,
+        y=L,
+        col sep=comma
+    ] {asu-piskunov1980-nolog.csv};
+
+    \addplot [%
+        contour prepared,
+        contour plot/.style={draw color=grey},
+    ] table {%
+        % 10e5    9e-3    1e-1
+        % 10e1    9e-19   1e-1
+
+        10e5    9e-1    1e0
+        10e1    9e-17   1e0
+
+        % 10e5    9e1     1e1
+        % 10e1    9e-15   1e1
+
+        10e5    9e3     1e2
+        10e1    9e-13   1e2
+
+        % 10e5    9e5     1e3
+        % 10e1    9e-11   1e3
+
+        10e5    9e7     1e4
+        10e1    9e-9    1e4
+
+        % 10e5    9e9     1e5
+        % 10e1    9e-7    1e5
+
+        10e5    9e11    1e6
+        10e1    9e-5    1e6
+
+        % 10e5    9e13    1e7
+        % 10e1    9e-3    1e7
+
+        10e5    9e15    1e8
+        10e1    9e-1    1e8
+
+        % 10e5    9e17    1e9
+        % 10e1    9e1     1e9
+
+        10e5    9e19    1e10
+        10e1    9e3     1e10
+    };
+
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
