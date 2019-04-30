@@ -24,8 +24,8 @@
     set layers,
     width=15cm,
     height=23cm,
-    title=Hertzsprung-Russel Diagram,
-    title style={yshift=1.5cm},
+    title=Hertzsprung-Russel Diagram: Harvard Revised{,} Gliese,
+    title style={yshift=1.5cm,font=\large},
     label style={font=\small},
     x label style={yshift=.4em},
     y label style={yshift=-.4em},
@@ -71,7 +71,7 @@
     colorbar as palette,
     colorbar style={%
         title=Spectral Class,
-        title style={yshift=-.2cm},
+        title style={yshift=-.2cm,font=\small},
         at={(0.5,1.03)},
         anchor=south,
         xticklabel pos=upper,
@@ -93,8 +93,6 @@
         col sep=comma
     ] {hygdata_v3_filtered.csv};
 
-    \coordinate (sun) at (0.63, 4.83);
-
     \addplot+ [%
         % orange!80!black,
         % orange!80!yellow,
@@ -108,12 +106,12 @@
     };
 
     \pgfonlayer{axis foreground}
-        \draw [->,shorten >=2.5pt] (axis cs:2.0,4.0) -- (axis cs:0.63,4.83);
+        \draw [->,shorten >=2.5pt,semithick] (axis cs:2.0,4.0) -- (axis cs:0.63,4.83);
         \node at (axis cs:2.0,4.0) [%
                 rectangle,rounded corners,
                 draw,fill=white,
                 align=left,font=\scriptsize]
-            {\small\textbf{Sun} \\ $M=4.83$ \\ $B-V=0.63$};
+            {\small\textbf{Sol} \\ $M=4.83$ \\ $B-V=0.63$};
     \endpgfonlayer
 \end{axis}
 
