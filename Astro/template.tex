@@ -12,21 +12,27 @@
 \usepackage{siunitx}
     \sisetup{range-units=brackets}
     \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
 \usepackage{physics}
 \usepackage{wasysym}
 \usepackage{booktabs}
 \usepackage[%
     labelformat=simple,
     labelsep=none,
-    textformat=none,
+    textformat=empty,
     font={small,sc}
 ]{caption}
 \usepackage{graphicx}
     \graphicspath{img}
 \usepackage{tikz}
-    \usetikzlibrary{calc}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
 \usepackage{pgfplots}
     \pgfplotsset{%
+        compat=1.16,
         table/search path={data},
         label style={font=\tiny},
         tick label style={font=\tiny}

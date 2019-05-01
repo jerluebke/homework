@@ -1,0 +1,130 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Statistical Mechanics}}
+\newcommand{\hwnumber}{2}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\matnumA}{108015230366}
+
+
+\pagestyle{fancyplain}
+
+\headheight 5\baselineskip
+\lhead{%
+    \nameA \\
+    \matnumA
+    \vspace*{2\baselineskip}
+}
+
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+    % \vspace*{\baselineskip}
+}
+
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
+\cfoot{}
+
+\headsep 1.5em
+
+
+\newcommand{\nbar}{\ensuremath{\bar{n}}}
+
+
+\begin{document}
+
+\section*{H1.1}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    \begin{equation*}
+        \Omega = \frac{(M+N-1)!}{M!(N-1)!}
+    \end{equation*}
+
+\item
+    Using Stirling's formula $N!\sim\left(\frac{N}{e}\right)^N$ and $N-1\approx N$:
+    \begin{align*}
+        \log(\Omega) &= \log(M+N-1)!-\log M!-\log(N-1)! \\
+        &\approx
+        (M+N-1)\log(M+N-1)-M\log(M)-(N-1)\log(N-1) \\
+        &= M\log(\frac{M+N}{M})+N\log(\frac{M+N}{N}) \\
+        &= N\nbar\log(\frac{\nbar+1}{\nbar})+N\log(\nbar+1)
+    \end{align*}
+    The entropy is then:
+    \begin{equation*}
+        S = k\log(\Omega)
+        = k\left(N\nbar\log(\frac{\nbar+1}{\nbar})+N\log(\nbar+1)\right)
+    \end{equation*}
+
+\item
+    Making use of the chain rule:
+    \begin{align*}
+        \frac{1}{kT} = \frac{1}{k}\pdv{S}{E}
+        &= \pdv{\nbar}{E}\pdv{\log(\Omega)}{\nbar} \\
+        &= \frac{1}{N\hbar\omega}\left(N\log(\frac{\nbar+1}{\nbar})
+        +N\nbar\left(-\frac{1}{\nbar^2}\right)\frac{\nbar}{\nbar+1}
+        +N\frac{1}{\nbar+1}\right)\\
+        &= \frac{1}{\hbar\omega}\log(\frac{\nbar+1}{\nbar})
+    \end{align*}
+    After inserting $\nbar=\frac{E}{N\hbar\omega}-\frac{1}{2}$, one can solve
+    for the energy:
+    \begin{align*}
+        \frac{\hbar\omega}{kT} &=
+        \log(1+\frac{1}{\frac{E}{N\hbar\omega}-\frac{1}{2}}) \\
+        \implies \Aboxed{%
+            E &=
+            N\hbar\omega\left(\frac{1}{e^{\frac{\hbar\omega}{kT}}-1}+\frac{1}{2}\right)
+        }
+    \end{align*}
+
+\end{enumerate}
+
+
+\end{document}
