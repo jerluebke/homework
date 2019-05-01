@@ -1,0 +1,111 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\jansky}{Jy}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=none,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{3}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{}
+\headsep 1.5em
+
+
+\newcommand{\Rsol}{\ensuremath{R_{\astrosun}}}
+\newcommand{\Msol}{\ensuremath{M_{\astrosun}}}
+
+
+\begin{document}
+
+\section*{Task 3}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    Consider
+    \begin{equation*}
+        \dv{P(r)}{r} = -\frac{G\,m\,\rho(r)}{r^2}
+    \end{equation*}
+    Using $\dd\tau=\alpha\dd r$, $g=-\frac{G\,m}{r^2}$,
+    $\alpha_g=\frac{\alpha}{\rho}$ one recives straightaway:
+    \begin{equation*}
+        \dv{P}{\tau} = \frac{g}{\alpha_g}
+    \end{equation*}
+
+\item
+    \begin{equation*}
+        \rho_{\textrm{mean}} = \frac{\int_V\dd[3]{r}\rho(r)}{\int_V\dd[3]{r}}
+        = \frac{4\pi\int_0^{\Rsol} r^2\,\rho(r)\dd{r}}{\frac{4\pi}{3}\Rsol^3}
+        = \frac{\Msol}{\frac{4\pi}{3}\Rsol^3}
+        = \SI{1409.8}{\kilo\gram\per\metre\cubed}
+    \end{equation*}
+
+\end{enumerate}
+
+
+\end{document}

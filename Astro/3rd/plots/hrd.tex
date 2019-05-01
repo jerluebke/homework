@@ -1,0 +1,104 @@
+\tikzexternalenable
+\tikzsetnextfilename{exhrd}
+
+\begin{tikzpicture}[>=stealth,pin distance=3cm,every pin edge/.style={<-}]
+
+\begin{axis}[%
+    set layers,
+    width=17cm,
+    height=22cm,
+    title=Hertzsprung-Russel Diagram: Harvard Revised{,} Gliese,
+    title style={yshift=1.5cm,font=\large},
+    label style={font=\small},
+    x label style={yshift=.4em},
+    y label style={yshift=-.4em},
+    tick label style={font=\small},
+    xlabel=Colour Index $(B-V)$,
+    ylabel=Absolute Magnitude,
+    ymin=-18,
+    ymax=20,
+    xmin=-0.5,
+    xmax=2.5,
+    y dir=reverse,
+    xtick distance=0.5,
+    % xtick={3000,4000,5000,6000,7500,10000,12000,30000},
+    % xticklabel style={%
+    %     /pgf/number format/.cd,
+    %     fixed,precision=0,
+    %     1000 sep={\,},
+    %     /tikz/.cd,
+    % },
+    % xticklabel=\pgfmathparse{exp(\tick)}\pgfmathprintnumber{\pgfmathresult},
+    grid=major,
+    scatter/classes={%
+        d={mark=*,lightgray,draw=gray!60!black},
+        o={mark=*,blue!60!white,draw=blue!80!black},
+        b={mark=*,cyan!80!white,draw=cyan!60!black},
+        a={mark=*,white,draw=gray},
+        f={mark=*,lime!80!white,draw=lime!60!black},
+        g={mark=*,yellow!80!white,draw=yellow!60!black},
+        k={mark=*,orange!80!white,draw=orange!60!black},
+        m={mark=*,red!60!white,draw=red!60!black}
+    },
+    colormap={mycm}{%
+        color=(blue!60!white),
+        color=(cyan),
+        color=(white),
+        color=(lime),
+        color=(yellow),
+        color=(orange),
+        color=(red),
+        color=(lightgray)
+    },
+    colorbar horizontal,
+    colorbar as palette,
+    colorbar style={%
+        title=Spectral Class,
+        title style={yshift=-.2cm,font=\small},
+        at={(0.5,1.03)},
+        anchor=south,
+        xticklabel pos=upper,
+        xticklabel interval boundaries,
+        xticklabels={,O,B,A,F,G,K,M,D},
+        x tick label style={below,font=\bfseries},
+        xtick distance=1,
+        samples=8
+    }
+]
+    \addplot+ [%
+        only marks,
+        scatter,
+        point meta=explicit symbolic,
+    ] table [%
+        x=ci,
+        % y=lum,
+        y=absmag,
+        meta=spect,
+        col sep=comma
+    ] {hygdata_v3_filtered.csv};
+
+    \addplot+ [%
+        % orange!80!black,
+        % orange!80!yellow,
+        yellow!60!black,
+        mark=*,
+        only marks,
+        mark size=3pt,
+        mark options={very thick,fill=yellow}
+    ] coordinates {%
+        (0.63, 4.83)
+    };
+
+    \pgfonlayer{axis foreground}
+        \draw [->,shorten >=2.5pt,semithick] (axis cs:2.0,4.0) -- (axis cs:0.63,4.83);
+        \node at (axis cs:2.0,4.0) [%
+                rectangle,rounded corners,
+                draw,fill=white,
+                align=left,font=\scriptsize]
+            {\small\textbf{Sol} \\ $M=4.83$ \\ $B-V=0.63$};
+    \endpgfonlayer
+\end{axis}
+
+\end{tikzpicture}
+
+\tikzexternaldisable

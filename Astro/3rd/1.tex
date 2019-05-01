@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternalize
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        % label style={font=\tiny},
+        % tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{3}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\DeclareSIUnit{\solarradii}{\ensuremath{R_{\astrosun}}}
+\DeclareSIUnit{\solarlum}{\ensuremath{L_{\astrosun}}}
+
+
+\newcommand{\La}{\ensuremath{L_{\textrm{A}}}}
+\newcommand{\Ta}{\ensuremath{T_{\textrm{A}}}}
+\newcommand{\Ra}{\ensuremath{R_{\textrm{A}}}}
+
+
+\begin{document}
+
+\section*{Task 1}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    In figure~\ref{app:fig1} Absolute Magnitude vs Color Index of \num{11890}
+    stars from the \emph{Yale Bright Star Catalogue} and the
+    \emph{Gliese Catalogue of Nearby Stars} is plotted. The stars are coloured
+    according to their spectral class, where in addition to the standard
+    classes O to M the class D for white dwarfs was included. \\
+    The data is available here: \url{http://www.astronexus.com/hyg}. \\
+
+    Since the above mentioned data set lacks temperature of the stars, the
+    \emph{Theoretical Hertzsprung-Russel Diagram} is illustrated in
+    figure~\ref{app:fig2}, where Luminosity in Solar Units vs Effective
+    Temperature of \num{9879} stars from the \emph{V/19} catalogue is plotted.
+    This data set also contains the \emph{Hyades} open star cluster. \\
+    The data can be obtained from the \emph{VizieR} database:
+    \url{http://vizier.u-strasbg.fr/viz-bin/VizieR}. \\
+    For comparison the red giant \emph{Aldebaran} was also plotted.
+
+\item
+    Aldebaran's distance from the sun:
+    \begin{equation*}
+        d=\frac{1}{p}=\SI{20.83}{\parsec}
+    \end{equation*}
+    where $p=0.48''$.
+    It is therefore not part of the Hyades, rather roughly halfway the
+    distance. \\
+
+    Wien's displacement law gives the temperature:
+    \begin{equation*}
+    \lambda_{\textrm{max}}\,T=\SI{0.0029}{\metre\kelvin}\implies
+    \Ta\approx\SI{3973}{\kelvin}
+    \end{equation*}
+
+    Therewith the luminosity is:
+    \begin{equation*}
+        \La = 4\,\pi\,\Ra^2\,\sigma\,\Ta^4 \approx \SI{167.17e27}{\watt} \approx
+        \SI{437}{\Lsol}
+    \end{equation*}
+    where $\Ra = \SI{44.13}{\Rsol}\approx\SI{30.70e9}{\metre}$. \\
+
+    Aldebaran is currently on the red giant branch, wich means that it evolved
+    off the mainsequence after burning the hydrogen in it's core, leaving it
+    with a helium core.  It will continue to move on this branch towards higher
+    luminosity and lower temperature until, through a helium-flash, the core is
+    able to burn the helium.  Once helium burning started Aldebaran will start
+    to move on the horizontal branch with near constant luminosity but
+    increasing temperature.
+
+\end{enumerate}
+
+\newpage
+
+\input{appendix/a1.tex}
+
+\end{document}

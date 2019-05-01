@@ -1,22 +1,12 @@
-\documentclass[border=5pt]{standalone}
-\usepackage{pgfplots}
-\pgfplotsset{%
-    table/search path={data},
-}
-\usepackage{wasysym}
-\usepackage{siunitx}
-\DeclareSIUnit{\solarradii}{\ensuremath{R_{\astrosun}}}
-\DeclareSIUnit{\solarlum}{\ensuremath{L_{\astrosun}}}
-
-
-\begin{document}
+\tikzexternalenable
+\tikzsetnextfilename{exthhrd}
 
 \begin{tikzpicture}
 
 \begin{axis}[%
     set layers,
-    width=15cm,
-    height=20cm,
+    width=17cm,
+    height=22cm,
     title=Theoretical HR Diagram: V/19,
     title style={font=\large},
     xlabel=$T/\si{\kelvin}$,
@@ -98,17 +88,20 @@
     };
 
     \pgfonlayer{axis foreground}
-        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-60]
+        \node [align=center,
+            % draw,
+            fill=white,
+            inner sep=1pt,font=\scriptsize,rotate=-59]
             at (axis cs: 324583, 1e-1) {\SI{1e-4}{\solarradii}};
-        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-60]
+        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-59]
             at (axis cs: 324583, 1e3) {\SI{1e-2}{\solarradii}};
-        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-60]
+        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-59]
             at (axis cs: 324583, 1e7) {\SI{1}{\solarradii}};
-        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-60]
+        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-59]
             at (axis cs: 57720, 1e8) {\SI{1e2}{\solarradii}};
-        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-60]
+        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-59]
             at (axis cs: 5772, 1e8) {\SI{1e4}{\solarradii}};
-        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-60]
+        \node [align=center, fill=white, inner sep=1pt,font=\scriptsize,rotate=-59]
             at (axis cs: 577, 1e8) {\SI{1e6}{\solarradii}};
     \endpgfonlayer
 
@@ -116,4 +109,4 @@
 
 \end{tikzpicture}
 
-\end{document}
+\tikzexternaldisable
