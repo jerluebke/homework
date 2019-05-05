@@ -3,6 +3,7 @@
 \usepackage{fontspec}
 \usepackage{polyglossia}
     \setdefaultlanguage{english}
+\usepackage{lmodern}
 \usepackage{fancyhdr}
 \usepackage{csquotes}
 \usepackage{enumitem}
@@ -79,28 +80,53 @@
 
 \begin{document}
 
-\section*{H1.1}
+\section*{H\hwnumber.1}
 
 \begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
 
 \item
+    The Hamiltonian of the system is given by
+    $
+    % \begin{equation*}
+        H=\sum_{i=1}^{N}\hbar\omega\left(\hat{a}_{i}^{\dagger}\hat{a}_{i}+\frac{1}{2}\right)
+    % \end{equation*}
+    $
+    where the \emph{number operator}
+    $\hat{n}_{i}=\hat{a}_{i}^{\dagger}\hat{a}_{i}$ can be understood as
+    yielding the number of excitations of the $i$-th oscillator (its energy
+    level) $n_i$. The total energy of the system
+    $E=\hbar\omega\left(M+\frac{N}{2}\right)$ imposes the additional condition
+    $\sum_{i=1}^{N}n_i=M$. \\
+    The above described setup could be visualized as $M$ \enquote{balls} (the
+    single excitations) being distributed on $N$ intervals (the single
+    oscillators), which are defined by $N-1$ seperators. Then finding the
+    number of possible microstates for a given energy (encoded by $M$) is
+    equivalent to finding the number of permutations of those $M$ balls and
+    their $N-1$ seperators
+    % : $(M+N-1)!$. Additionally,
+    and
+    taking into account their
+    indistinguishability:
+    % , one needs to divide by $M!(N-1)!$:
     \begin{equation*}
-        \Omega = \frac{(M+N-1)!}{M!(N-1)!}
+        % \implies
+        \Omega = \frac{(M+N-1)!}{M!\,(N-1)!}
     \end{equation*}
 
 \item
-    Using Stirling's formula $N!\sim\left(\frac{N}{e}\right)^N$ and $N-1\approx N$:
+    Using Stirling's formula $N!\sim\left(\frac{N}{e}\right)^N$, $N-1\approx N$
+    and $\nbar=\frac{M}{N}$:
     \begin{align*}
-        \log(\Omega) &= \log(M+N-1)!-\log M!-\log(N-1)! \\
-        &\approx
-        (M+N-1)\log(M+N-1)-M\log(M)-(N-1)\log(N-1) \\
-        &= M\log(\frac{M+N}{M})+N\log(\frac{M+N}{N}) \\
-        &= N\nbar\log(\frac{\nbar+1}{\nbar})+N\log(\nbar+1)
+        \log(\Omega) =& \log(M+N-1)!-\log M!-\log(N-1)! \\
+        \approx&
+        (M+N-1)\log(M+N-1)-M-N+1\\&-M\log(M)+M-(N-1)\log(N-1)+N-1 \\
+        \approx& M\log(\frac{M+N}{M})+N\log(\frac{M+N}{N}) \\
+        =& N\nbar\log(\frac{\nbar+1}{\nbar})+N\log(\nbar+1)
     \end{align*}
     The entropy is then:
     \begin{equation*}
         S = k\log(\Omega)
-        = k\left(N\nbar\log(\frac{\nbar+1}{\nbar})+N\log(\nbar+1)\right)
+        = k\,N\left(\nbar\log(\frac{\nbar+1}{\nbar})+\log(\nbar+1)\right)
     \end{equation*}
 
 \item
