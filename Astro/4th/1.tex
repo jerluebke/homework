@@ -1,0 +1,135 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{4}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\Rsol}{\ensuremath{R_{\astrosun}}}
+\newcommand{\Lsol}{\ensuremath{L_{\astrosun}}}
+\newcommand{\Msol}{\ensuremath{M_{\astrosun}}}
+\newcommand{\hmass}{\SI{1.008}{\atomicmassunit}}
+
+
+\begin{document}
+
+\section*{Task 1}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    Computing the mass defect with $m(\ce{^{1}H})=\hmass$
+    and $m(\ce{^{4}He})=\SI{4.003}{\atomicmassunit}$, where
+    $\si{\atomicmassunit}=\SI{931.494}{\mega\electronvolt}$:
+    \begin{equation*}
+        \Delta
+        E=4\times\hmass-\SI{4.003}{\atomicmassunit}=\SI{27.013}{\mega\electronvolt}
+    \end{equation*}
+    There are $\frac{1}{\hmass}$ \ce{^{1}H} isotopes per kilogram.
+    \begin{equation*}
+        \implies w=\frac{E}{\si{\kilogram}}=\frac{\Delta
+        E}{4\times\hmass}=\SI{6.70e14}{\joule\per\kilogram}
+    \end{equation*}
+
+\item
+    The portion of the energy received by the neutrinos:
+    \begin{equation*}
+        \frac{2 E_{\nu_{e}}}{\Delta E}=\frac{2\times 0.42}{28}=3\%
+    \end{equation*}
+
+\item
+    Estimate the life time of the sun using the nuclear time scale:
+    \begin{equation*}
+        \tau_{\mathrm{nuc}}=\frac{(1-0.03)\times0.1\,w\,\Msol}{\Lsol}\approx\SI{3.31e17}{\second}\sim\SI{1.05e10}{\year}
+    \end{equation*}
+
+\item
+    Estimate the life time of the sun using the Kelvin-Helmholtz time scale:
+    \begin{equation*}
+        \tau_{\mathrm{KH}}=\frac{E_{\mathrm{Grav}}}{\Lsol}\approx\frac{G\Msol^2}{\Rsol\Lsol}\approx\SI{9.91e14}{\second}\sim\pi\times 10^7\si{\year}
+    \end{equation*}
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+% \usepackage{mathabx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{4}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\Rsol}{\ensuremath{R_{\astrosun}}}
+\newcommand{\Lsol}{\ensuremath{L_{\astrosun}}}
+\newcommand{\Msol}{\ensuremath{M_{\astrosun}}}
+\newcommand{\Vsol}{\ensuremath{V_{\astrosun}}}
+
+\newcommand{\drms}{\ensuremath{d_{\mathrm{rms}}}}
+\newcommand{\xirms}{\ensuremath{x_{i,\,\mathrm{rms}}}}
+\newcommand{\ts}{\ensuremath{\tau_{\mathrm{s}}}}
+\newcommand{\td}{\ensuremath{\tau_{\mathrm{d}}}}
+\newcommand{\st}{\ensuremath{\sigma_{\mathrm{T}}}}
+\newcommand{\rmass}{\ensuremath{\rho_{\mathrm{mass}}}}
+\newcommand{\rE}{\ensuremath{\rho_{\mathrm{E}}}}
+\newcommand{\mprot}{\ensuremath{m_{{p}}}}
+\newcommand{\melec}{\ensuremath{m_{{e}}}}
+
+
+\begin{document}
+
+\section*{Task 3}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    The deviation from the origin in 3 dimensions:
+    \begin{equation*}
+        \drms=\sqrt{\sum_{i=1}^{3}\xirms^2}=\sqrt{3N}\,l
+    \end{equation*}
+    The time scale of a single scattering process:
+    \begin{equation*}
+        \ts\sim\frac{l}{c}
+    \end{equation*}
+    And the total time scale of the diffusion to reach a given deviation:
+    \begin{gather*}
+        \td=N\,\ts \\
+        \implies\td\sim\frac{3\,\drms^2\,\ts}{l^2}
+    \end{gather*}
+
+\item
+    A photon reaches the Sun's surface when $\drms=\Rsol$.
+
+    The photons scatter with electrons, while the protons provide the main
+    component of density ($\mprot\gg\melec$).
+    The mean free path $l=\frac{1}{\st\,n}$ with the Thomson cross section
+    \st~and the particle density $n=\frac{\rmass}{\mprot}$,
+    $\rmass=\SI{1408}{\kilogram\per\metre\cubed}$ is known.
+
+    \begin{equation*}
+        \implies\td\sim\frac{3\,\Rsol^2\,\st\,\rmass}{c\,\mprot}\approx\SI{271}{\giga\second}\sim\SI{8600}{\year}
+    \end{equation*}
+
+    The deviation from $\tau_{\mathrm{d,\,Lit}}=\SI{20000}{\year}$ might be
+    explained by the rather vague assumptions on which the above calculation is
+    based.
+
+\item
+    Estimate the Sun's Luminosity via:
+    \begin{equation*}
+        \Lsol\sim\frac{\rE\Vsol}{\td}=\frac{\frac{4\pi}{3}\Rsol^3\,a\,T^4}{\td}\sim\SI{1.06e27}{\watt}
+    \end{equation*}
+    where $\td=\SI{20000}{\year}\sim\SI{630}{\giga\second}$.
+
+\end{enumerate}
+
+\end{document}

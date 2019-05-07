@@ -1,0 +1,139 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+% \usepackage{mathabx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{4}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\Rsol}{\ensuremath{R_{\astrosun}}}
+\newcommand{\Lsol}{\ensuremath{L_{\astrosun}}}
+\newcommand{\Msol}{\ensuremath{M_{\astrosun}}}
+\newcommand{\Rearth}{\ensuremath{R_{\earth}}}
+\newcommand{\hmass}{\SI{1.008}{\atomicmassunit}}
+
+
+\begin{document}
+
+\section*{Task 2}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    The total number of fusion processes:
+    \begin{equation*}
+        N\sim\frac{0.1\Msol}{4\times\hmass}\sim\num{2.97e55}
+    \end{equation*}
+    And by comparison with the nuclear time scale
+    ($\tau_{\mathrm{nuc}}\sim\SI{3e17}{\second}$) the number of processes per
+    second - which is equivalent to the neutrino rate:
+    \begin{equation*}
+        n\equiv\phi\sim\frac{N}{\tau_{\mathrm{nuc}}}\sim\SI{9.90e37}{\per\second}
+    \end{equation*}
+
+\item
+    The solar neutrino rate on earth can be estimated via:
+    \begin{equation*}
+        \phi_{\mathrm{Earth}}=\frac{1}{4\pi r^2}\frac{2\Lsol}{\SI{28}{\mega\electronvolt}}
+        \approx\SI{6.07e14}{\per\metre\squared\per\second}
+    \end{equation*}
+    where $r=\SI{1}{\astronomicalunit}=\SI{149.598e9}{\metre}$:
+
+\item
+    Now estimate the distance as $r\sim\SI{163}{\kilo\lightyear}$, which
+    yields over a time of 12 seconds:
+    \begin{equation*}
+        \phi_{\mathrm{Earth},\,\SI{12}{\second}}\sim\SI{6.85e-5}{\per\metre\squared}
+    \end{equation*}
+    which is practically zero.
+
+    For reference:
+    \begin{equation*}
+        \frac{\phi_{\astrosun}}{\phi_{\mathrm{Supernova}}}\sim\frac{\num{1e38}}{\num{1e58}}=\num{1e-20}
+    \end{equation*}
+
+\end{enumerate}
+
+
+\end{document}
