@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage[makeroom]{cancel}
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Statistical Mechanics}}
+\newcommand{\hwnumber}{3}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\matnumA}{108015230366}
+
+
+\pagestyle{fancyplain}
+
+\headheight 5\baselineskip
+\lhead{%
+    \nameA \\
+    \matnumA
+    \vspace*{2\baselineskip}
+}
+
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+}
+
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
+\cfoot{\small\thepage}
+
+\headsep 1.5em
+
+\renewcommand{\thesection}{H\hwnumber.\arabic{section}}
+
+% \setlength\parindent{0pt}
+
+
+\newcommand{\sumN}{\ensuremath{\sum_{n=1}^{N}}}
+\newcommand{\EA}{\ensuremath{\langle A \rangle}}
+
+
+\begin{document}
+
+% \section*{H\hwnumber.1}
+\section{}
+
+Maximize the entropy $S=-k\sumN p_n \log p_n$ under the constrains
+$\sumN p_n A_n=\EA$ and $\sumN p_n=1$ using the method of Lagrange
+multipliers.
+
+Write down and maximize $\Lambda$:
+\begin{align*}
+    \Lambda(p_1,\cdots,p_N;\lambda,\mu)
+    =& -k\sumN p_n \log p_n -\lambda\left(\sumN p_n A_n -\EA\right)
+    -\mu\left(\sumN p_n -1\right) \\
+    \pdv{\Lambda}{p_n}=&-k\left(\log p_n + 1\right) -\lambda A_n -\mu
+    \overset{!}{=}0 \\
+    \iff p_n=& \exp(-\frac{\lambda A_n}{k}-\frac{\mu}{k}-1)
+\end{align*}
+
+And apply the constrains to find the mutlipliers $\lambda$ and $\mu$:
+\begin{align*}
+    \sumN p_n =& \exp(-\frac{\mu}{k}-1)
+    \underbrace{%
+        \sumN\exp(-\frac{\lambda A_n}{k})
+    }_{\equiv Z} = 1 \tag{i}\\
+    \iff\frac{1}{Z}=&\exp(-\frac{\mu}{k}-1) \\
+    \implies\Aboxed{p_n=&\frac{1}{Z}\exp(-\frac{\lambda A_n}{k})}
+\end{align*}
+
+\begin{equation*}
+    \EA = \sumN p_n A_n = \frac{1}{Z}\sumN A_n \exp(-\frac{\lambda A_n}{k})
+    = -\frac{k}{Z}\pdv{Z}{\lambda}=-k\pdv{\log Z}{\lambda} \tag{ii}
+\end{equation*}
+
+\newpage
+
+\section{}
+    Consider the pressure in terms of the entropy:
+    \begin{align*}
+        \dd{S}=&\left(\pdv{S}{V}\right)_{E}\dd{V}+\left(\pdv{S}{E}\right)_{V}\dd{E}=0 \\
+        \implies p\equiv&-\left(\dv{E}{V}\right)_{S}=
+        \left(\pdv{S}{V}\right)_{E}\bigg/\left(\pdv{S}{E}\right)_{V} \\
+        \implies p=&\,T\left(\pdv{S}{V}\right)_E
+    \end{align*}
+
+    In order to compute this expression, derive first the entropy of the ideal
+    gas confined in a box with $V=L^d$ described by the Hamiltonian $H(p,q)=\sum_{i=1}^{N}\frac{\vec{p}_i}{2m}$:
+    \begin{align*}
+        S=&\,k\log\Omega \\
+        \Omega=&\pdv{E}\int_{H\le E}\dd\Gamma
+        \qc\dd\Gamma=\frac{1}{N!}\prod_{i=1}^{N}\frac{\dd[d]{p}\dd[d]{q}}{(2\pi\hbar)^d} \\
+        =&\,\frac{V^N}{N!(2\pi\hbar)^{dN}}\mathrm{S}_{dN}\left(\sqrt{2mE}\right) \\
+        \implies S=&\,k\left(N\log V +
+        \log\left(\frac{\mathrm{S}_{dN}\left(\sqrt{2mE}\right)}{N!(2\pi\hbar)^{dN}}\right)\right)
+    \end{align*}
+
+    Then:
+    \begin{align*}
+        p=&\,k\,T\left(\pdv{\left(N\log V + \cdots\right)}{V}\right)_E
+        =\frac{NkT}{V} \\
+        &\implies \boxed{p\,V=N\,k\,T}
+    \end{align*}
+
+\end{document}

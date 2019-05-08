@@ -18,17 +18,19 @@
 \usepackage[%
     labelformat=simple,
     labelsep=none,
-    textformat=none,
+    textformat=empty,
     font={small,sc}
 ]{caption}
 \usepackage{graphicx}
     \graphicspath{img}
 \usepackage{pgfplots}
     \pgfplotsset{%
+        compat=1.16,
         table/search path={data},
         label style={font=\tiny},
         tick label style={font=\tiny}
     }
+\usepackage[makeroom]{cancel}
 \usepackage{todonotes}
 \usepackage[%
     % colorlinks=true, linkcolor=blue,
@@ -61,7 +63,6 @@
     \textbf{\Large \course} \\\medskip
     \textbf{\Large Homework \hwnumber}
     \bigskip
-    % \vspace*{\baselineskip}
 }
 
 \rhead{%
@@ -69,14 +70,16 @@
     \vspace*{3\baselineskip}
 }
 
-\cfoot{}
+\cfoot{\small\thepage}
 
 \headsep 1.5em
+
+\renewcommand{\thesection}{H\hwnumber.\arabic{section}}
 
 
 \begin{document}
 
-\section*{H\hwnumber.1}
+\section{}
 
 \begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
 
