@@ -1,0 +1,86 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{%
+    table/search path={data},
+}
+\usepackage{wasysym}
+\usepackage{siunitx}
+\DeclareSIUnit{\solarradii}{\ensuremath{R_{\astrosun}}}
+\DeclareSIUnit{\solarlum}{\ensuremath{L_{\astrosun}}}
+
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\begin{axis}[%
+    set layers,
+    width=15cm,
+    height=20cm,
+    title=Theoretical HR Diagram: h and $\chi$ Persei,
+    title style={font=\large},
+    xlabel=$\log T$,
+    ylabel=$L/\si{\solarlum}$,
+    label style={font=\small},
+    x label style={yshift=.2em},
+    y label style={yshift=-.8em},
+    ticklabel style={font=\small},
+    x tick label style={%
+        /pgf/number format/.cd,
+            fixed,
+            fixed zerofill,
+            precision=1,
+        /tikz/.cd
+    },
+    x dir=reverse,
+    ymode=log,
+    xmax=4.7,
+    xmin=3.4,
+    ymax=5e5,
+    ymin=1e2,
+    grid=major,
+    view={0}{90},
+    colormap={mycm}{color=(gray),color=(gray)},
+]
+    \addplot+ [%
+        blue!80!black,
+        only marks,
+        mark options={fill=blue!60!white,}
+    ] table [%
+        x=logT,
+        % y=Mbol,
+        y expr=10^(0.4*(4.74-\thisrow{Mbol})),
+        col sep=comma
+    ] {asu-h-chi-per.tsv};
+
+    \addplot [%
+        contour prepared={labels=false},
+        contour plot/.style={draw color=grey},
+    ] table {%
+        4.7     5685    1
+        4.26133 1e2     1
+
+        4.7     568.5e3 10
+        3.76122 1e2     10
+
+        4.7     56.85e6 100
+        3.26133 1e2     100
+    };
+
+    \pgfonlayer{axis foreground}
+        \node [align=center, fill=white, inner
+            sep=1pt,font=\scriptsize,rotate=-62.5]
+            at (axis cs: 4.35, 226) {\SI{1}{\solarradii}};
+        \node [align=center, fill=white, inner
+            sep=1pt,font=\scriptsize,rotate=-62.5]
+            at (axis cs: 3.85, 226) {\SI{10}{\solarradii}};
+        \node [align=center, fill=white, inner
+            sep=1pt,font=\scriptsize,rotate=-62.5]
+            at (axis cs: 3.55, 1428) {\SI{100}{\solarradii}};
+    \endpgfonlayer
+
+\end{axis}
+
+\end{tikzpicture}
+
+\end{document}
