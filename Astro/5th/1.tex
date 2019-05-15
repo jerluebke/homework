@@ -1,0 +1,172 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{5}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\tlabel}[1]{\ensuremath{\tau_{\mathrm{#1}}}}
+
+
+\begin{document}
+
+\section*{Task 1}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=\baselineskip]
+
+\item
+    h and chi Persei being young clusters, one would expect them - according to
+    the old modell - to start on the giant branch and travel left in the
+    diagramm towards higher temperatures.
+    The CMD of h and chi Persei only displays few stars on the giant branch
+    with the majority being located on the main sequence. This suggests instead
+    a rather old cluster.
+
+    While the giant branch of M3 is more strongly populated, the bulk is
+    located at the lower main sequence.
+    Again according to the old modell, one would expect them to travel
+    leftwards and show a more significant change in color.
+    The CMD of M3 however shows movement to the right, indicating lower
+    temperatures.
+
+    According to the old modell, stars at the end of their life should evolve
+    downwards along the main sequence, while decreasing in luminosity and
+    temperature. Taking into account the mass-luminosity-relation, they should
+    lose large amounts of their mass during this process.
+    The old modell does not seem to refer to the mass at all. However nowadays
+    loss of mass is mainly observed on the giant branch.
+
+
+\item
+    The radius of a star is put into relation with its luminosity and
+    temperature by the Stefan-Boltzmann-Law:
+    \begin{equation*}
+        L = A\,\sigma\,T^4 = 4\pi\,r^2\,\sigma\,T^4
+    \end{equation*}
+    Thus the larger luminosity or temperature the larger the radius.
+    In a loglog plot one can draw straight parallel lines indicating constant
+    radii \figref{app:fig1}.
+
+
+\item
+    The life time of a star can be estimated via the Kelvin-Helmholtz time
+    scale:
+    \begin{equation*}
+        \tlabel{HK} \propto \frac{M^2}{L} \propto M^{-1.5}
+    \end{equation*}
+    where the mass-luminosity-relation $L \propto M^{3.5}$ was used.
+
+    Estimating the lower border of star masses with \SI{0.07}{\Msol} and
+    the upper bound with \SI{120}{\Msol}:
+    \begin{equation*}
+        \implies \frac{\tlabel{light}}{\tlabel{heavy}} \propto
+        \left(\frac{0.07}{120}\right)^{-1.5} = \num{70978}
+    \end{equation*}
+
+    This means, the lightest star has approximately \num{71000} times the life
+    time of the heaviest.
+
+
+\item
+    Star clusters usually consist of only one generation of stars.
+    Galaxies such as the milkyway - on the other hand - can have multiple
+    generations of star formation, causing a wider scattering of the magnitude
+    in the main seqence.
+
+
+\item
+    The Hertzsprung gap coincides with the point in stellar development, where
+    core hydrogen burning finished and shell hydrogen burning has yet to start.
+    Since this is a rather short time compared to their overall life time,
+    stars move through this section quite quickly. Thus it is much more loosely
+    populated compared to other areas of the diagram.
+
+\end{enumerate}
+
+\newpage
+
+\input{appendix/a1.tex}
+
+\end{document}

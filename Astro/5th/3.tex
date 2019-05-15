@@ -1,0 +1,180 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{5}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\begin{document}
+
+\section*{Task 3}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=\baselineskip]
+
+\item
+    \textbf{MACHOs:} MAssive Compact Halo Objects, \eg~brown dwarfs, black
+    holes
+
+    \textbf{WIMPs:} Weakly Interacting Massive Particles, hypothetical heavy
+    particles only being subject to the weak interaction and gravity
+
+
+\item
+    \textbf{Problems with MACHOs as explanation for dark matter:}
+    \begin{itemize}
+        \item too few objects to explain the required mass
+        \item usually located in the periphery of galaxies, but dark matter
+            effects were detected within massive galaxy clusters far from
+            visible matter
+    \end{itemize}
+
+
+\item
+    \textbf{Experiments to detect WIMPs:} (\eg~\emph{LUX}, \emph{XENON})
+    \begin{itemize}
+        \item Idea: WIMPs - even though interacting rarely - should interact
+            sometimes
+        \item Use a large cylindric underground tank filled with liquid Xenon
+            as a detector, with photodetectors at the top and bottom of the
+            tank
+        \item Xenon: noble gas (no background due to unwanted chemical
+            reactions), high density (in liquid form), high atomic number
+            $Z=54$ (large nucleus)
+        \item (Rare) scattering of WIMPs on Xenon nuclei should cause
+            scintillations
+    \end{itemize}
+    $\to$ the effort remains inconclusive as of today.
+
+
+\item
+    \textbf{Possible Evidence for Dark Matter:}
+        \begin{itemize}
+            \item Galaxies are observed to have higher radial velocities than the
+                visible matter could gravitationaly hold together
+            \item In 2006 the Chandra Telescope observed the collision of two
+                galaxy clusters. The resulting distribution of gases and
+                gravitational lensing effects suggests a spatial seperation of
+                visible and dark matter. This is seen as direct evidence of dark
+                matter by some scientists.
+        \end{itemize}
+
+        \textbf{MOND:} Modified Newtonian Dynamics, modified theories of
+        gravitational interaction to explain the high radial velocities of
+        galacies without the notion of dark matter.
+
+        \textbf{MOND vs Dark Matter:}
+        \begin{itemize}
+            \item New technology yields more precise data of the CMB and
+                therewith of the Universe's early days
+            \item Accoring to the current theory, the Universe went through a
+                phase of inflation during that time
+            \item In order for this theory to fit the new data, the Universe
+                would have needed much more matter than what is visible.
+                Without this additional matter some large structures seen today
+                would have had not enough time to evolve
+        \end{itemize}
+
+\newpage
+\item
+        \textbf{Alternatives:}
+        \begin{itemize}
+            \item Axions, hypothetical particles with small masses. The idea
+                emerged when trying to explain broken CP symmetry in QCD
+            \item Neutrinos
+            \item Black Holes (\ie~MACHOs), suggested by a study based on LIGO
+                data
+            \item topological defects in quantum fields, \ie~unremovable
+                discontinuities in the form of stable high energy
+                configurations which remain from the early days of the
+                Universe. Such defects could manifest themselves as Monopoles,
+                Cosmic Strings or Domain Walls
+            \item Certain ideas related to the quest for a theory of quantum
+                gravity
+        \end{itemize}
+
+\end{enumerate}
+
+
+\end{document}

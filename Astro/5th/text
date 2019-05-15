@@ -1,0 +1,66 @@
+\newcommand{\tlight}{\tau_{\mathrm{light}}}
+
+Astro Homework 5
+
+Task 1
+(a)
+    h and chi Persei being young clusters, one would expect them - according to
+    the old modell - to start on the giant branch and travel left in the
+    diagramm towards higher temperatures.
+    The CMD of h and chi Persei only displays few stars on the giant branch
+    with the majority being located on the main sequence. This suggests instead
+    a rather old cluster.
+
+    While the giant branch of M3 is more strongly populated, the bulk is
+    located at the lower main sequence.
+    Again according to the old modell, one would expect them to travel
+    leftwards and show a more significant change in color.
+    The CMD of M3 however shows movement to the right, indicating lower
+    temperatures.
+
+    According to the old modell, stars at the end of their life should evolve
+    downwards along the main sequence, while decreasing in luminosity and
+    temperature. Taking into account the mass-luminosity relation, they should
+    lose large amounts of their mass during this process.
+    The old modell does not seem to refer to the mass at all. However nowadays
+    loss of mass is mainly observed on the giant branch.
+
+
+(b)
+    The radius of a star is put into relation with its luminosity and
+    temperature by the Stefan-Boltzmann-Law: ...
+    Thus the larger luminosity or temperature the larger the radius.
+    In a loglog plot one can draw straight parallel lines indicating constant
+    radii, see fig. ...
+
+
+(c)
+    The life time of a star can be estimated via the Kelvin-Helmholtz time
+    scale:
+
+    \thk \propto \frac{M^2}{L} \propto M^{-1.5}
+
+    where L \propto M^{3.5}.
+
+    Estimating the lower border of star masses with \SI{0.5}{\solarmass} and
+    the upper bound with \SI{120}{\solarmass}.
+
+    \implies \frac{\tlight}{theavy} \propto \left(\frac{0.5}{120}\right)^{-1.5} = 3718
+
+    This means, the lightest star has 3718 times the life time of the heaviest.
+
+
+(d)
+    Star clusters usually consist of only one generation of stars.
+    Galaxies such as the milkyway - on the other hand - can have multiple
+    generations of star formation, causing a wider scattering of the magnitude
+    in the main seqence.
+
+
+(e)
+    TODO after presentation online
+
+
+Task 2
+    TODO: Andreas
+

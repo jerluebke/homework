@@ -1,0 +1,167 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{%
+        % range-units=brackets,
+        range-units=repeat,
+        range-phrase={;\,}
+    }
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{5}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\taums}{\ensuremath{\tau_{\mathrm{MS}}}}
+\newcommand{\mbold}[1]{\mathrm{\textbf{#1}}}
+
+
+\begin{document}
+
+\section*{Task 2}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=\baselineskip]
+
+\item
+    In order from youngest to oldest:
+    \begin{description}
+        \item [Pleiades]
+        \item [Hyades]
+        \item [M3]
+    \end{description}
+    The Pleiades have stars only on the main sequence (MS), relatively high up.
+    This makes these the youngest of the three.
+
+    The Hyades are mainly located on the MS, predominantly in the lower
+    portion, but do have a small cluster on the Red Giant Branch (RGB), making
+    them older than the Pleiades.
+
+    Lastly the HRD of M3 shows a significant number of stars on the Asymptotic
+    Giant Branch (AGB), the RGB and the Horizontal Branch (HB), indicating a
+    much greater age, compared to the other two star clusters.
+
+
+\item
+    The time a star spends on the MS can be estimated with (using the
+    mass-luminosity-relation $L \propto M^{3.5}$):
+    \begin{equation*}
+        \taums \propto
+        10^{10}\frac{M}{\si{\Msol}}\left(\frac{L}{\si{\Lsol}}\right)^{-1}
+        \propto 10^{10}\left(\frac{L}{\si{\Lsol}}\right)^{-\frac{5}{7}}
+    \end{equation*}
+    Therewith one can write down an approximate range of how long the stars of
+    each cluster will remain on the MS based solely on $y =
+    \log{\frac{L}{\si{\Lsol}}}$:
+    \begin{align*}
+        \mbold{Pleiades}\qquad &y\in\left[\numrange{0}{3}\right] \implies
+            \taums\in\left[\SIrange{72e6}{10e10}{\year}\right] \\
+        \mbold{Hyades}\qquad &y\in\left[\numrange{-1}{2}\right] \implies
+            \taums\in\left[\SIrange{372e6}{50e10}{\year}\right] \\
+        \mbold{M3}\qquad &y\in\left[\numrange{-1}{1}\right] \implies
+            \taums\in\left[\SIrange{2e9}{50e10}{\year}\right]
+    \end{align*}
+    Generally speaking, for clusters with stars mainly on the MS, the top of
+    the range is an upper bound of the age, whereas for clusters that more
+    spread along the evolutionary track, the bottom of the range is a lower
+    bound of the age.
+
+
+\item
+    \emph{Actual ages:}
+
+    \begin{tabular}{l r}
+        \textbf{Pleiades}   & \SI{100e6}{\year} \\
+        \textbf{Hyades}     & \SI{625e6}{\year} \\
+        \textbf{M3}         & \SI{11e9}{\year} \\
+    \end{tabular}
+
+    We expected this method to be quite uncertain, mainly because the ranges can be
+    quite large (depending on how much the cluster is spread along the MS), and
+    also because there is no information on how much time the stars spend in
+    other areas of the HRD outside the MS. Yet the actual ages of the Pleiades,
+    Hyades and M3 fit nicely in these ranges. This can perhaps be explained by
+    the fact that stars generally spend most of their life on the MS.
+
+
+\end{enumerate}
+
+
+\end{document}
