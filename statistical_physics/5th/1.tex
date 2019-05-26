@@ -133,13 +133,14 @@ function:
     \int\limits_{0}^{\infty}\dd{p}p^2e^{-\beta c^2 m\sqrt{\frac{p^2}{m^2
     c^2}+1}}\right)^N
 \end{align*}
+
 Using:
 \begin{equation*}
     \int\limits_{0}^{\infty}\dd{p}p^2e^{-a\sqrt{p^2+1}}
     =\int\limits_{1}^{\infty}\dd{u}u\sqrt{u^2-1}e^{-au}
     =\frac{K_2(a)}{a}
 \end{equation*}
-where $K_{\alpha}$ is the modified Bessel function
+where $K_{\alpha}$ is the modified Bessel function.
 
 \begin{equation*}
     \implies Z_N=\frac{1}{N!}\left(\frac{4\pi Vm^2c}{(2\pi\hbar)^3
@@ -152,11 +153,36 @@ Using the asymptotical expansion:
 \end{equation*}
 which yields:
 \begin{gather*}
-    \implies\boxed{Z_N^{\mathrm{rel}}=Z_N^{\mathrm{cl}}e^{-N\frac{mc^2}{kT}}\left(1+\frac{15kT}{8mc^2}\right)^N}
+    \implies
+    Z_N^{\mathrm{rel}}=Z_N^{\mathrm{cl}}e^{-N\frac{mc^2}{kT}}\left(1+\frac{15kT}{8mc^2}\right)^N
     \qas \frac{1}{c}\to0 \\
     \qq*{with}Z_N^{\mathrm{cl}}=\frac{1}{N!}\left[V\left(\frac{2\pi
     mkT}{(2\pi\hbar)^2}\right)^{3/2}\right]^N
 \end{gather*}
+
+Onwards to the heat capacity:
+\begin{equation*}
+    C=T\pdv{S}{T}\qc S=-\pdv{F}{T}\quad
+    \implies C=-T\pdv[2]{F}{T}
+\end{equation*}
+Compute the Free Energy:
+\begin{equation*}
+    F=-kT\log Z_N
+    =-kT\left\{\log\left[\frac{1}{N!}\left(\frac{V}{(2\pi\hbar)^3}\right)^N\right]
+    +\frac{3N}{2}\log(2\pi
+    mkT)-N\frac{mc^2}{kT}+N\log(1+\frac{15kT}{8mc^2})\right\}
+\end{equation*}
+and its second derivative (with $a=2\pi mkT$ and $b=\frac{15k}{8mc^2}$):
+\begin{equation*}
+    \pdv[2]{F}{T}=-Nk\pdv[2]{T}\left\{\frac{3}{2}T\log(aT)+T\log(1+bT)\right\}
+    =-Nk\left\{\frac{3}{2T}+\frac{2b}{1+bT}-\frac{b^2T}{\left(1+bT\right)^2}
+    \right\}
+\end{equation*}
+Finally:
+\begin{equation*}
+    \implies\boxed{%
+    C=Nk\left(\frac{3}{2}+\frac{2bT}{1+bT}-\frac{b^2T^2}{(1+bT)^2}\right)}
+\end{equation*}
 
 \newpage
 
@@ -237,24 +263,32 @@ $:
     \frac{40\pi^4\hbar V}{(\beta c)^5}
 \end{gather*}
 
-Since there are $\binom{N}{2}$ such permutations, one reveives (with
-$N!\sim\left(\frac{N}{e}\right)^N$ and $\rho=\frac{N}{V}$):
+Since there are $\binom{N}{2}=\frac{N(N-1)}{2}\approx\frac{N^2}{2}$ such
+permutations, one reveives (with $\rho=\frac{N}{V}$):
 \begin{align*}
     \binom{N}{2}\prod_{i=1}^{N}\int_{V}\dd[3]{r_j}f(\vec{r}_{i}-\vec{r}_{\hat{P}i})
-    &=\binom{N}{2}\left(\frac{8\pi V}{(\beta
+    &=\frac{N^2}{2}\left(\frac{8\pi V}{(\beta
     c)^3}\right)^{N-2}\frac{40\pi^4\hbar V}{(\beta c)^5} \\
-    &\approx\left(\frac{8\pi V}{(\beta c)^3}\right)^{N}\frac{5\pi\hbar\beta c
-    N\rho}{16 e^2}
+    &=\left(\frac{8\pi V}{(\beta c)^3}\right)^{N}\frac{5\pi^2\hbar\beta c
+    N\rho}{16}
 \end{align*}
 
 Finally, one can write down the partition function with first order quantum
 corrections:
 \begin{gather*}
     \boxed{%
-        Z_{N}^{\mathrm{qm}} = Z_{N}^{\mathrm{cl}}\left(1\pm\frac{5\pi\hbar c N\rho}{16e^2kT}\right)
+        Z_{N}^{\mathrm{qm}} = Z_{N}^{\mathrm{cl}}\left(1\pm\frac{5\pi^2\hbar c N\rho}{16kT}\right)
     }\\
     \qq*{with} Z_{N}^{\mathrm{cl}}=\frac{1}{N!}\left(8\pi V\left(\frac{kT}{2\pi\hbar
     c}\right)^3\right)^N
 \end{gather*}
+
+Furthermore, the gas can be treated classically for small densities, \ie:
+\begin{equation*}
+    \frac{\hbar c N\rho}{kT}\ll1
+    \iff \rho\ll\frac{kT}{\hbar c N}
+    \sim\SI{1e-18}{\per\cubic\metre}
+    \qq{with}T=\SI{300}{\kelvin}\qc N=\num{1e23}
+\end{equation*}
 
 \end{document}
