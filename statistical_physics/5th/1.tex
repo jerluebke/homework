@@ -45,6 +45,7 @@
 \newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
 \newcommand*{\figref}[1]{(fig.~\ref{#1})}
 \newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
 
 \newcommand{\course}{\textbf{Statistical Mechanics}}
 \newcommand{\hwnumber}{5}
@@ -85,9 +86,79 @@
 
 \section{Systems of identical particles}
 
+The entropy is an extensive quantity,
+\ie~$S(\mathrm{System}_1+\mathrm{System}_2)=S(\mathrm{System}_1)+S(\mathrm{System}_2)$.
+
+Verify this property, first using the na\"ive partition function $Z_N'=(\alpha
+kT)^\frac{3N}{2}V^N$ and then taking into account particles being indistinguishable
+$Z_N=\frac{1}{N!}(\alpha kT)^\frac{3N}{2}V^N$, where $\alpha\equiv 2\pi m$ and for
+simplicity $V_1=V_2=V$ and $N_1=N_2=N$.
+
+The entropy can be obtained from both partition functions via:
+\begin{align*}
+    S&=-\pdv{F}{T}=\pdv{T}kT\log Z_N(T) \\
+    &=k\log Z_N(T)+\frac{3}{2}kN
+\end{align*}
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \item Using $Z_N'$:
+        \begin{align*}
+            &S(V_1, N_1)+S(V_2, N_2)=2S(V, N)
+            =2Nk\log V+3Nk\log\alpha kT+3Nk \\
+            &S(V_1+V_2, N_1+N_2)=S(2V, 2N)
+            =2Nk\log 2V +3Nk\log\alpha kT+3Nk \\&\\
+            &\implies 2S(V, N)\neq S(2V, 2N)
+        \end{align*}
+
+    \item On the other hand with $Z_N$ (using Sterling's formula):
+        \begin{align*}
+            &S=Nk\log V +\frac{3N}{2}k\log\alpha kT-Nk\log N +\frac{5N}{2}k
+            \\&\\
+            &2S(V, N)=2Nk\log\frac{V}{N}+3Nk\log\alpha kT+5Nk \\
+            &S(2V, 2N)=2Nk\log\frac{2V}{2N}+3Nk\log\alpha kT+5Nk \\&\\
+            &\implies \boxed{2S(V, N)=S(2V, 2N)}
+        \end{align*}
+\end{enumerate}
+
+\newpage
 
 \section{Relativistic particles}
 
+Consider the Hamiltonian $H=\sqrt{p^2c^2+m^2c^4}$ and compute the partition
+function:
+\begin{align*}
+    Z_N&=\frac{1}{N!}\int\prod_{j=1}^{N}\frac{\dd[3]{p_j}\dd[3]{q_j}}{(2\pi\hbar)^3}
+    e^{-\beta c\sqrt{p^2+m^2c^2}}\\
+    &=\frac{1}{N!}\left(\frac{4\pi V}{(2\pi\hbar)^3}
+    \int\limits_{0}^{\infty}\dd{p}p^2e^{-\beta c^2 m\sqrt{\frac{p^2}{m^2
+    c^2}+1}}\right)^N
+\end{align*}
+Using:
+\begin{equation*}
+    \int\limits_{0}^{\infty}\dd{p}p^2e^{-a\sqrt{p^2+1}}
+    =\int\limits_{1}^{\infty}\dd{u}u\sqrt{u^2-1}e^{-au}
+    =\frac{K_2(a)}{a}
+\end{equation*}
+where $K_{\alpha}$ is the modified Bessel function
+
+\begin{equation*}
+    \implies Z_N=\frac{1}{N!}\left(\frac{4\pi Vm^2c}{(2\pi\hbar)^3
+    \beta}K_2(\beta m c^2)\right)^N
+\end{equation*}
+Using the asymptotical expansion:
+\begin{equation*}
+    K_2(x)\sim\sqrt{\frac{\pi}{2x}}e^{-x}\left(1+\frac{15}{8x}+\cdots\right)
+    \qas x\to\infty
+\end{equation*}
+which yields:
+\begin{gather*}
+    \implies\boxed{Z_N^{\mathrm{rel}}=Z_N^{\mathrm{cl}}e^{-N\frac{mc^2}{kT}}\left(1+\frac{15kT}{8mc^2}\right)^N}
+    \qas \frac{1}{c}\to0 \\
+    \qq*{with}Z_N^{\mathrm{cl}}=\frac{1}{N!}\left[V\left(\frac{2\pi
+    mkT}{(2\pi\hbar)^2}\right)^{3/2}\right]^N
+\end{gather*}
+
+\newpage
 
 \section{Quantum corrections}
 
