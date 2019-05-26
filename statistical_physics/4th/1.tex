@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.15,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage[makeroom]{cancel}
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Statistical Mechanics}}
+\newcommand{\hwnumber}{4}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\matnumA}{108015230366}
+
+
+\pagestyle{fancyplain}
+
+\headheight 5\baselineskip
+\lhead{%
+    \nameA \\
+    \matnumA
+    \vspace*{2\baselineskip}
+}
+
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+}
+
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
+\cfoot{\small\thepage}
+
+\headsep 1.5em
+
+\renewcommand{\thesection}{H\hwnumber.\arabic{section}}
+
+
+\newcommand{\blip}[1]{\mathrm{\bold{(#1)}}}
+\newcommand{\thermpart}[3]{\left(\pdv{#1}{#2}\right)_{#3}}
+\newcommand{\jactwo}[4]{\pdv{\left(#1,#2\right)}{\left(#3,#4\right)}}
+\newcommand{\jacthree}[6]{\pdv{\left(#1,#2,#3\right)}{\left(#4,#5,#6\right)}}
+\newcommand{\cV}{\ensuremath{c_V}}
+\newcommand{\cP}{\ensuremath{c_P}}
+
+
+\begin{document}
+
+\section{}
+
+Show the equalities:
+\begin{equation*}
+    \thermpart{T}{V}{S}\overset{\blip{i}}{=}\frac{T}{\cP}\thermpart{P}{T}{S}\overset{\blip{ii}}{=}-\frac{T}{\cV}\thermpart{P}{T}{V}
+\end{equation*}
+
+\begin{enumerate}[label=\textbf{(\roman*)}]
+    \item Using $\cP=T\thermpart{S}{T}{P}$:
+        \begin{equation*}
+            \thermpart{T}{V}{S}=\thermpart{T}{S}{P}\thermpart{P}{T}{S}
+            =\jactwo{T}{P}{S}{P}\,\jactwo{P}{S}{T}{S}=-\jactwo{P}{T}{S}{T}
+            =-\thermpart{P}{S}{T}
+        \end{equation*}
+        Choosing the Internal Energy $\dd U=T\dd S-P\dd V$ as potential, which yields:
+        \begin{gather*}
+            T=\thermpart{U}{S}{V}\qc P=-\thermpart{U}{V}{S} \\
+            \implies\thermpart{T}{V}{S}=\pdv{V}\pdv{U}{S}=\pdv{S}\pdv{U}{V}=-\thermpart{P}{S}{T}
+        \end{gather*}
+
+    \item Using $\cV=T\thermpart{S}{T}{V}$:
+        \begin{align*}
+            \thermpart{T}{V}{S}&=-\thermpart{T}{S}{V}\thermpart{P}{T}{S} \\
+            \implies\jactwo{T}{S}{V}{S}&=-\jactwo{T}{V}{S}{V}\jactwo{P}{S}{T}{S} \\
+            \iff-\jactwo{S}{V}{T}{V}\jactwo{T}{S}{V}{S}&=\jactwo{P}{S}{T}{S} \\
+            \iff\jactwo{S}{T}{V}{T}&=\jactwo{P}{S}{T}{S} \\
+            \implies\thermpart{S}{V}{T}&=\thermpart{P}{T}{S}
+        \end{align*}
+        Choosing the Helmholtz Free Energy $\dd F=-S\dd T-P\dd V$ as potential, one finds:
+        \begin{gather*}
+            S=-\thermpart{F}{T}{V}\qc P=-\thermpart{F}{V}{T}\\
+            \implies \thermpart{S}{V}{T}=-\pdv{V}\pdv{F}{T}=-\pdv{T}\pdv{F}{V}=\thermpart{P}{T}{S}
+        \end{gather*}
+\end{enumerate}
+
+\newpage
+
+\section{}
+
+Find an expression \cV in dependence of $T, \mu, V$.\\
+
+Consider:
+\begin{equation*}
+    \cV=\thermpart{U}{T}{V,N}=\jacthree{U}{V}{N}{T}{V}{N}
+    =\jacthree{U}{V}{N}{T}{V}{\mu}\bigg/\jacthree{T}{V}{N}{T}{V}{\mu}
+    =\left.\jactwo{U}{N}{T}{\mu}\bigg/\jactwo{N}{T}{\mu}{T}\right|_V
+\end{equation*}
+
+Evaluate the jacobian in the numerator of above fraction:
+\begin{equation*}
+    \jactwo{U}{N}{T}{\mu}=T\,\jactwo{S}{N}{T}{\mu}
+    =T\left[\thermpart{S}{T}{\mu}\thermpart{N}{\mu}{T}-\thermpart{S}{\mu}{T}\thermpart{N}{T}{\mu}\right]
+\end{equation*}
+
+Finally:
+\begin{equation*}
+    \cV=T\left[\thermpart{S}{T}{\mu}-\frac{\thermpart{S}{\mu}{T}\thermpart{N}{T}{\mu}}{\thermpart{N}{\mu}{T}}\right]_V
+\end{equation*}
+
+\end{document}
