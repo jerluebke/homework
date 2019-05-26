@@ -1,0 +1,189 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage[makeroom]{cancel}
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+
+\newcommand{\course}{\textbf{Statistical Mechanics}}
+\newcommand{\hwnumber}{5}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\matnumA}{108015230366}
+
+
+\pagestyle{fancyplain}
+
+\headheight 5\baselineskip
+\lhead{%
+    \nameA \\
+    \matnumA
+    \vspace*{2\baselineskip}
+}
+
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+}
+
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
+\cfoot{\small\thepage}
+
+\headsep 1.5em
+
+\renewcommand{\thesection}{H\hwnumber.\arabic{section}}
+
+
+\begin{document}
+
+\section{Systems of identical particles}
+
+
+\section{Relativistic particles}
+
+
+\section{Quantum corrections}
+
+Compute the canonical partition function for the Hamiltonian
+$\hat{H}=c\,\abs*{\hat{\vec{p}}}$ using properly symmetrized basis states:
+\begin{align*}
+    Z_N &= \tr e^{-\beta\hat{H}} \\
+    &=
+    \int_{V}\dd[3N]{r}\ev{e^{-\beta\hat{H}}}{\vec{r}_{1}\cdots\vec{r}_{N}} \\
+    &= \int_{V}\dd[3N]{r}\int_{\mathbb{R}}\dd[3N]{p}\int_{\mathbb{R}}\dd[3N]{p'}
+    \braket{\vec{r}_{1}\cdots\vec{r}_{N}}{\vec{p}_{1}\cdots\vec{p}_{N}}
+    \mel{\vec{p}_{1}\cdots\vec{p}_{N}}{e^{-\beta\hat{H}}}{\vec{p'}_{1}\cdots\vec{p'}_{N}}
+    \braket{\vec{p'}_{1}\cdots\vec{p'}_{N}}{\vec{r}_{1}\cdots\vec{r}_{N}} \\
+    &= \frac{1}{N!}\sum_{\hat{P}\in\mathrm{Perms}}(\pm1)^{\eta_{\hat{P}}}
+    \int_{V}\dd[3N]{r}\int_{\mathbb{R}}\dd[3N]{p}e^{-\beta
+        E(\vec{p}_{1},\cdots,\vec{p}_{N})}
+    \braket{\vec{r}_{1}\cdots\vec{r}_{N}}{\vec{p}_{1}\cdots\vec{p}_{N}}
+    \braket{\vec{p}_{1}\cdots\vec{p}_{N}}{\vec{r}_{\hat{P}1}\cdots\vec{r}_{\hat{P}N}}
+    \\
+    &=
+    \frac{1}{N!\,(2\pi\hbar)^{3N}}\sum_{\hat{P}\in\mathrm{Perms}}(\pm1)^{\eta_{\hat{P}}}
+    \prod_{j=1}^{N}\int_{V}\dd[3]{r_j}\int_{\mathbb{R}}\dd[3]{p_j}
+    \exp{-\beta\,c\,\abs{\vec{p}_j}
+    +\frac{i}{\hbar}\,\vec{p}_{j}\cdot\left(\vec{r}_{j}-\vec{r}_{\hat{P}j}\right)}
+\end{align*}
+
+Evaluate the $p$-integral, using $\vec{p}\cdot\vec{r}=p\,r\,\cos\measuredangle(\vec{p},
+\vec{r})$, letting $a=\beta\,c$ and
+$b=\frac{\abs*{\vec{r}_{j}-\vec{r}_{\hat{P}j}}}{\hbar}$ and rotating the
+coordinate system in such a way that $\theta=\measuredangle(\vec{p},
+\vec{r}_{j}-\vec{r}_{\hat{P}j})$ holds:
+\begin{align*}
+    &\int_{\mathbb{R}}\dd[3]{p}\exp{-\beta\,c\,\abs{\vec{p}}+\frac{i}{\hbar}\,\vec{p}\cdot\left(\vec{r}_{j}-\vec{r}_{\hat{P}j}\right)}
+    =\\&=
+    \int\limits_{0}^{\infty}\int\limits_{-1}^{1}\int\limits_{0}^{2\pi}\dd{p}\dd{\cos\theta}\dd{\varphi}
+    p^2\exp{-p\left(a-i\,b\cos\theta\right)} \\
+    &= \frac{4\pi}{b}\int\limits_{0}^{\infty}\dd{p}p\,e^{-ap}\,\sin b\,p \\
+    &= \frac{8\pi a}{\left(a^2+b^2\right)^2}
+\end{align*}
+
+Now one has the expression:
+\begin{equation*}
+    \sum_{\hat{P}\in\mathrm{Perms}}(\pm1)^{\eta_{\hat{P}}}\prod_{j=1}^{N}\int_V\dd[3]{r_j}
+    f(\vec{r}_{j}-\vec{r}_{\hat{P}j})\qc
+    f(\vec{r})=\frac{8\pi\hbar^4\beta c}{\left((\hbar\beta c)^2+\vec{r}^2\right)^2}
+\end{equation*}
+
+When expanding this device, the 0th order term is given by the identity
+permutation $\hat{P}\equiv\mathrm{Id}$, which yields:
+\begin{equation*}
+    \prod_{j=1}^{N}\int_{V}\dd[3]{r_j}f(0)=\left(\frac{8\pi V}{(\beta
+    c)^3}\right)^N
+\end{equation*}
+
+For the 1st order term consider the permutation, which only switches one pair
+$\hat{P}i=
+\begin{cases}
+    a\qif i=b\\
+    b\qif i=a\\
+    i\qotherwise
+\end{cases}
+$:
+\begin{gather*}
+    \prod_{i=1}^{N}\int_{V}\dd[3]{r_j}f(\vec{r}_{i}-\vec{r}_{\hat{P}i})
+    =\left(\frac{8\pi V}{(\beta
+    c)^3}\right)^{N-2}\int_{V}\dd[3]{r_a}\int_{V}\dd[3]{r_b}f^2(\vec{r}_a-\vec{r}_b)
+    \\
+    \int_{V}\dd[3]{r_a}\int_{V}\dd[3]{r_b}f^2(\vec{r}_a-\vec{r}_b)\approx
+    4\pi V\int\limits_{0}^{\infty}\dd{u}
+    \frac{\left(8\pi\hbar^4\beta c\right)^2}{\left((\hbar\beta
+    c)^2+u^2\right)^4} \\
+    \qq*{with}
+    \int\limits_{0}^{\infty}\frac{\dd{x}}{\left(1+x^2\right)^4}=\frac{5\pi}{32}\\
+    \implies
+    \int_{V}\dd[3]{r_a}\int_{V}\dd[3]{r_b}f^2(\vec{r}_a-\vec{r}_b)\approx
+    \frac{40\pi^4\hbar V}{(\beta c)^5}
+\end{gather*}
+
+Since there are $\binom{N}{2}$ such permutations, one reveives (with
+$N!\sim\left(\frac{N}{e}\right)^N$ and $\rho=\frac{N}{V}$):
+\begin{align*}
+    \binom{N}{2}\prod_{i=1}^{N}\int_{V}\dd[3]{r_j}f(\vec{r}_{i}-\vec{r}_{\hat{P}i})
+    &=\binom{N}{2}\left(\frac{8\pi V}{(\beta
+    c)^3}\right)^{N-2}\frac{40\pi^4\hbar V}{(\beta c)^5} \\
+    &\approx\left(\frac{8\pi V}{(\beta c)^3}\right)^{N}\frac{5\pi\hbar\beta c
+    N\rho}{16 e^2}
+\end{align*}
+
+Finally, one can write down the partition function with first order quantum
+corrections:
+\begin{gather*}
+    \boxed{%
+        Z_{N}^{\mathrm{qm}} = Z_{N}^{\mathrm{cl}}\left(1\pm\frac{5\pi\hbar c N\rho}{16e^2kT}\right)
+    }\\
+    \qq*{with} Z_{N}^{\mathrm{cl}}=\frac{1}{N!}\left(8\pi V\left(\frac{kT}{2\pi\hbar
+    c}\right)^3\right)^N
+\end{gather*}
+
+\end{document}
