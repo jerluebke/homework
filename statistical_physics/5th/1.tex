@@ -220,10 +220,21 @@ coordinate system in such a way that $\theta=\measuredangle(\vec{p},
     &\int_{\mathbb{R}}\dd[3]{p}\exp{-\beta\,c\,\abs{\vec{p}}+\frac{i}{\hbar}\,\vec{p}\cdot\left(\vec{r}_{j}-\vec{r}_{\hat{P}j}\right)}
     =\\&=
     \int\limits_{0}^{\infty}\int\limits_{-1}^{1}\int\limits_{0}^{2\pi}\dd{p}\dd{\cos\theta}\dd{\varphi}
-    p^2\exp{-p\left(a-i\,b\cos\theta\right)} \\
-    &= \frac{4\pi}{b}\int\limits_{0}^{\infty}\dd{p}p\,e^{-ap}\,\sin b\,p \\
-    &= \frac{8\pi a}{\left(a^2+b^2\right)^2}
+    p^2\,e^{-p\left(a-i\,b\cos\theta\right)} \\
+    &= \frac{4\pi}{b}\int\limits_{0}^{\infty}\dd{p}p\,e^{-ap}\,\sin b\,p %\\
+    % &= \frac{8\pi a}{\left(a^2+b^2\right)^2}
 \end{align*}
+Integrating partially two times, one finds:
+\begin{equation*}
+    \int\limits_{0}^{\infty}\dd{p}e^{-ap}\,\sin b\,p
+    =-\frac{e^{-ap}\left(a\,\sin b\,p+b\,\cos b\,p\right)}{a^2+b^2}
+\end{equation*}
+And integrating partially another time yields:
+\begin{equation*}
+    \frac{4\pi}{b}\int\limits_{0}^{\infty}\dd{p}p\,e^{-ap}\,\sin b\,p
+    =\frac{4\pi}{b}\frac{2ab}{\left(a^2+b^2\right)^2}
+    =\frac{8\pi a}{\left(a^2+b^2\right)^2}
+\end{equation*}
 
 Now one has the expression:
 \begin{equation*}
@@ -256,7 +267,8 @@ $:
     4\pi V\int\limits_{0}^{\infty}\dd{u}
     \frac{\left(8\pi\hbar^4\beta c\right)^2}{\left((\hbar\beta
     c)^2+u^2\right)^4} \\
-    \qq*{with}
+    \qq*{using partial fraction decomposition and
+        $\int\frac{\dd{x}}{1+x^2}=\atan x$:}
     \int\limits_{0}^{\infty}\frac{\dd{x}}{\left(1+x^2\right)^4}=\frac{5\pi}{32}\\
     \implies
     \int_{V}\dd[3]{r_a}\int_{V}\dd[3]{r_b}f^2(\vec{r}_a-\vec{r}_b)\approx
@@ -264,19 +276,19 @@ $:
 \end{gather*}
 
 Since there are $\binom{N}{2}=\frac{N(N-1)}{2}\approx\frac{N^2}{2}$ such
-permutations, one reveives (with $\rho=\frac{N}{V}$):
-\begin{align*}
+permutations (with $\rho=\frac{N}{V}$):
+\begin{equation*}
     \binom{N}{2}\prod_{i=1}^{N}\int_{V}\dd[3]{r_j}f(\vec{r}_{i}-\vec{r}_{\hat{P}i})
-    &=\frac{N^2}{2}\left(\frac{8\pi V}{(\beta
-    c)^3}\right)^{N-2}\frac{40\pi^4\hbar V}{(\beta c)^5} \\
-    &=\left(\frac{8\pi V}{(\beta c)^3}\right)^{N}\frac{5\pi^2\hbar\beta c
+    =\frac{N^2}{2}\left(\frac{8\pi V}{(\beta
+    c)^3}\right)^{N-2}\frac{40\pi^4\hbar V}{(\beta c)^5}
+    =\left(\frac{8\pi V}{(\beta c)^3}\right)^{N}\frac{5\pi^2\hbar\beta c
     N\rho}{16}
-\end{align*}
+\end{equation*}
 
 Finally, one can write down the partition function with first order quantum
 corrections:
 \begin{gather*}
-    \boxed{%
+    \implies\boxed{%
         Z_{N}^{\mathrm{qm}} = Z_{N}^{\mathrm{cl}}\left(1\pm\frac{5\pi^2\hbar c N\rho}{16kT}\right)
     }\\
     \qq*{with} Z_{N}^{\mathrm{cl}}=\frac{1}{N!}\left(8\pi V\left(\frac{kT}{2\pi\hbar
