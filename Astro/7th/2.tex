@@ -1,0 +1,189 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{7}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\begin{document}
+
+\section*{Task 2}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=\baselineskip]
+
+\item
+    \begin{description}
+        \item[Type I] No H lines in their spectra (rather peculiar since
+            Hydrogen is the most common element in the universe) \\
+            \emph{Subtypes:}
+            \begin{description}
+                \item[Ia] Strong Si II lines; very uniform properties,
+                    therewith very useful for calibration when determing
+                    distances. \\
+                    Actually involving fundamentally different physics compared
+                    to the other types (being \emph{thermo-nuclear} SNe, while
+                    the others are \emph{core-collapse} SNe).
+                \item[Ib] Notable He lines. \\
+                    The outer hull containing the remaining hydrogen of the
+                    star has been ejected prior to the explosion.
+                \item[Ic] No He lines, weak Si II line. \\
+                    In Addition to the hydrogen, the helium has also been
+                    ejected prior to the explosion.
+            \end{description}
+
+            While Ia SN are generally found in all types of galaxies, Ib/c are
+            (so far) only found in spiral galaxies in areas where star
+            formation has recently taken place, indicating a connection to
+            short-lived massive stars.
+
+        \item[Type II] Strong H lines. \\
+            Also core collapse SNe; there have been observed cases, where
+            initially Type II SNe evolved into Type Ib. \\
+            The two subtypes and their differences are explained below.
+    \end{description}
+
+
+\item
+    \begin{description}
+        \item[II-P] The light curve exhibits a plateau in the descending
+            magnitude $\sim$30 to 80 days after its maximum. \\
+            This can be explained by the very high amounts of ejected mass and
+            velocities of this type. The decrease in magnitude due to cooling
+            is compensated by a quick expansion of the ejected hull and the
+            thereby enlarged surface area.
+        \item[II-L] After reaching its maximum, the magnitude decreases
+            linearly. \\
+            Since the amount of ejected mass and its velocity are comparable
+            low, the magnitude decreases rather uncompensated.
+    \end{description}
+
+
+\item
+    Consider the gravitational potential:
+    \begin{gather*}
+        V=-\frac{GMm}{r}\qc\dd{V}=-\frac{GM\dd{m}}{r} \\
+        \qq*{with}\dd{m}=4\pi\,r^2\rho(r)\dd{r} \\
+        \implies V=-4\pi\,G\int\limits_{0}^{R}\dd{r}\,r\,M(r)\,\rho(r)
+    \end{gather*}
+    Approximating $\rho(r)$ via the mean density
+    $\rho\approx\bar{\rho}=\frac{M}{\frac{4}{3}\pi{R}^{3}}$ and
+    $M(r)\approx\frac{4}{3}\pi\,r^3\,\bar{\rho}$:
+    \begin{equation*}
+        \implies V\approx-\frac{16\pi^2G}{3}\bar{\rho}^2\int\limits_{0}^{R}\dd{r}r^4
+        =-\frac{16\pi^2G}{15}\bar{\rho}^2R^5
+        =-\frac{3}{5}\frac{GM^2}{R}
+    \end{equation*}
+    And with the Virial Theorem $2\,T=-V$:
+    \begin{equation*}
+        E=T+V=\frac{1}{2}V\approx-\frac{3}{10}\frac{GM^2}{R}.
+    \end{equation*}
+
+    Which yields for the given values (writing the absolute value of the
+    energy):
+    \begin{equation*}
+        \implies E\sim\SI{5e45}{\joule}
+    \end{equation*}
+
+    For comparision, the estimated energy of SN1987A:
+    \begin{equation*}
+        E_{\mathrm{SN1987A}}\sim\SI{1e46}{\joule}
+    \end{equation*}
+
+
+\item
+    The given light curve indicates a Type II SN, coming from the linear
+    descent after the maximum which becomes more shallow after a kink at
+    $\sim$900 days.  In contrast with a Type I curve, one would expect a steeper
+    maximum and an undisturbed linear descent afterwards.
+
+\end{enumerate}
+
+
+\end{document}

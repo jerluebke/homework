@@ -59,7 +59,7 @@
 \newcommand{\ie}{i.\,e.}
 
 \newcommand{\course}{\textbf{Introduction to Astrophysics}}
-\newcommand{\hwnumber}{1}
+\newcommand{\hwnumber}{7}
 \newcommand{\nameA}{Jeremiah Lübke}
 \newcommand{\nameB}{Andreas Menzel}
 \newcommand{\matnumA}{108015230366}
@@ -94,12 +94,48 @@
 
 \begin{document}
 
-\section*{Task 1}
+\section*{Task 3}
 
-\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=\baselineskip]
 
 \item
-Einige Messwerte von Quasar 3C138
+    Consider:
+    \begin{gather*}
+        \frac{M_1}{M_2}=\frac{v_2}{v_1}\qc
+        M_1+M_2=\frac{P}{2\pi{G}}\left(\frac{v_1+v_2}{\sin{i}}\right)^3 \\
+        \implies
+        M_1+M_2=\frac{P}{2\pi{G}}\left(\frac{v_1}{M_2}\frac{M_1+M_2}{\sin{i}}\right)^3
+        \\
+        \iff\frac{P\,v_1^3}{2\pi{G}}=\frac{M_2^3}{(M_1+M_2)^2}\sin^3{i}
+    \end{gather*}
+    For the given values, one has:
+    \begin{equation*}
+        \frac{P\,v_1^3}{2\pi{G}}\approx\SI{4.42e30}{\kilogram}=\SI{2.22}{\Msol}
+    \end{equation*}
+
+    Since this number is quite large, it follows: $M_2^{3/2}\gg M_1+M_2$, which
+    indicates that the mass of the compact object is large compared to the mass
+    of the star.
+
+\item
+    One finds straightaway from above calculations:
+    \begin{equation*}
+        M_2=\frac{P\,v_1\,(v_1+v_2)^2}{2\pi{G}\sin^3{i}}
+    \end{equation*}
+
+    Therewith:
+    $\eval{M_2}_{i=\ang{90}}\approx\SI{5.41e30}{\kilogram}=\SI{2.72}{\Msol}$,
+    which would fit for a small stellar black hole.
+
+\item
+    Now: $\eval{M_2}_{i=\ang{85}}\approx\SI{5.47e30}{\kilogram}=\SI{2.75}{\Msol}$,
+    which still corresponds to a small stellar black hole.
+
+\item
+    Problems with this approach of determing the mass is the strong dependence
+    on the inclination, which can -- at best -- be roughly estimated, and on the
+    radial velocity of the compact object which cannot be measured directly if
+    it is not visible (\eg~black holes).
 
 \end{enumerate}
 
