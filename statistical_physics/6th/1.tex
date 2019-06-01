@@ -1,0 +1,261 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage[makeroom]{cancel}
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Statistical Mechanics}}
+\newcommand{\hwnumber}{6}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\matnumA}{108015230366}
+
+
+\pagestyle{fancyplain}
+
+\headheight 5\baselineskip
+\lhead{%
+    \nameA \\
+    \matnumA
+    \vspace*{2\baselineskip}
+}
+
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+}
+
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
+\cfoot{\small\thepage}
+
+\headsep 1.5em
+
+\renewcommand{\thesection}{H\hwnumber.\arabic{section}}
+
+
+\newcommand{\thermpart}[3]{\left(\pdv{#1}{#2}\right)_{#3}}
+
+
+\begin{document}
+
+\section{}
+
+Consider the Hamiltonian:
+\begin{equation*}
+    H(r,p)=\sum_{i=1}^{N}\frac{\vec{p}_{i}^{2}}{2m}+\sum_{j=1}^{N}\sum_{i=1}^{j-1}U(\vec{r}_{i}-\vec{r}_{j})
+\end{equation*}
+with an interaction potential $U(\vec{r})=\frac{\alpha}{r^n}$
+and compute the partition function:
+\begin{align*}
+    Z&=\frac{1}{N!}\int\prod_{i=1}^{N}\frac{\dd[3]{r_i}\dd[3]{p_i}}{(2\pi\hbar)^3}e^{-\beta H}
+    \\
+    &=\frac{1}{N!\lambda^{3N}}\int\prod_{i=1}^{N}\dd[3]{r_i}e^{-\beta\sum_{j<k}U(\vec{r}_{j}-\vec{r}_{k})}
+    \qq{with}\lambda=\sqrt{\frac{\beta(2\pi\hbar)^2}{2\pi{m}}}
+\end{align*} \\
+
+The product $\displaystyle\prod_{j<k}e^{-\beta U_{jk}}$ is not easily expanded,
+since its factors are close to 1 for large $r$. Instead consider
+$f_{jk}=e^{-\beta U_{jk}}-1$:
+\begin{equation*}
+    \prod_{j<k}(1+f_{jk})=1+
+    \underbrace{\sum_{j<k}f_{jk}}_{\binom{N}{2}\text{ summands}}
+    +\sum_{\substack{j<k\\l<m}}f_{jk}f_{lm}+\dotsb
+\end{equation*}
+with
+\begin{align*}
+    \int\prod_{i=1}^{N}\dd[3]{r_i}\sum_{j<k}f_{jk}
+    &=\sum_{j<k}\prod_{\substack{i\ne{j}\\i\ne{k}}}
+    \int\dd[3]{r_i}\int\dd[3]{r_j}\int\dd[3]{r_k}f(\vec{r}_{j}-\vec{r}_{k}) \\
+    &=\frac{N(N-1)}{2}V^{N-2}\iint\dd[3]{r_j}\dd[3]{r_k}f(\vec{r}_{j}-\vec{r}_{k})
+    \\
+    &\approx\frac{N(N-1)}{2}V^{N-2}\,V\int\dd[3]{r}f(r) \\
+    &\approx-N^2\,V^{N-1}\,B(T)
+\end{align*}
+where $\displaystyle B(T)=-\frac{1}{2}\int\dd[3]{r}f(r)=
+\frac{1}{2}\int\dd[3]{r}\left(1-e^{-\beta U(r)}\right)$ is the first
+\emph{virial coefficient}. \\
+Further:
+\begin{equation*}
+    \implies\int\prod_{i=1}^{N}\dd[3]{r_i}\prod_{j<k}(1+f_{jk})
+    =V^N-N^2\,V^{N-1}\,B(T)+\dotsb
+\end{equation*} \\
+
+Finally, the complete partition function:
+\begin{equation}
+    \boxed{%
+    Z=\frac{1}{N!}\left(\frac{V}{\lambda^3}\right)\left(1-\frac{N^2}{V}B(T)\right)}
+    \label{eq:Z}
+\end{equation}
+and from $p=-\thermpart{F}{V}{T}$, $F=-kT\log{Z}$ the equation of state:
+\begin{equation}
+    \boxed{p\,V=N\,k\,T\left(1+\frac{N}{V}B(T)\right)}
+    \label{eq:EOS}
+\end{equation}
+
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    Computing the first virial coefficient:
+    \begin{equation*}
+        B(T)=2\pi\int\limits_{0}^{\infty}\dd{r}r^2\left(1-e^{-\beta{U}(r)}\right)
+    \end{equation*}
+
+    Approximate the potential for suitable $r_0$:
+    \begin{equation}
+        U(r)=\frac{\alpha}{r^n}\approx
+        \begin{cases}
+            \infty\qc r<r_0 \\
+            \frac{\alpha}{r^n}\qc r\geq r_0
+        \end{cases}
+        \label{eq:U}
+    \end{equation}
+    and expand the integrand around $r_0$ (where $\gamma\equiv\alpha\beta$):
+    \begin{equation*}
+        1-e^{-\frac{\gamma}{r^n}}=1-1+\frac{\gamma}{r^n}-\order{\frac{\gamma^2}{2r^{2n}}}
+    \end{equation*}
+
+    Then:
+    \begin{equation}
+        B(T)\approx
+        2\pi\int\limits_{0}^{r_0}\dd{r}r^2+2\pi\gamma\int\limits_{r_0}^{\infty}\frac{\dd{r}}{r^{n-2}}
+        \label{eq:Bint}
+    \end{equation}
+
+    From \eqref{eq:U} it is clear, that
+    $r_0^2=\frac{\gamma}{r_{0}^{n-2}}\implies r_0=\gamma^{1/n}$. \\
+    It is then straightforward to integrate \eqref{eq:Bint}, which yields:
+    \begin{equation}
+        \boxed{%
+        B(T)=\frac{2\pi}{3}\frac{n}{n-3}\left(\frac{\alpha}{kT}\right)^{3/n}}
+        \label{eq:B}
+    \end{equation}
+    And for the derivative of \eqref{eq:B}, one finds:
+    \begin{equation*}
+        \pdv{B}{T}=-\frac{3B}{nT}
+    \end{equation*}
+
+
+\item
+    Computing the heat capacity for constant volume (with
+    $S=-\thermpart{F}{T}{V}$, $F=-kT\log{Z}$):
+    \begin{equation*}
+        c_{V}=T\thermpart{S}{T}{V}=kT\pdv[2]{(T\log{Z})}{T}
+        =kT\left(2\pdv{\log{Z}}{T}+T\pdv[2]{\log{T}}{T}\right)
+    \end{equation*}
+    One finds for \eqref{eq:Z}:
+    \begin{align*}
+        \pdv{\log{Z}}{T}&=\frac{3}{nT}\frac{N^2}{V-N^2B} \\
+        \pdv[2]{\log{Z}}{T}&=-\frac{3}{nT^2}\frac{N^2B}{V-N^2B}\left(1+\frac{3}{n}\frac{N^2B}{V-N^2B}\right)
+    \end{align*}
+    Which gives:
+    \begin{equation}
+        \boxed{%
+        c_{V}=\frac{3k}{n}\frac{N^2B}{V-N^2B}\left(1+\frac{3}{n}\frac{N^2B}{V-N^2B}\right)}
+        \label{eq:cv}
+    \end{equation} \\
+
+    The heat capacity for constant pressure can be obtained from the relation:
+    \begin{equation*}
+        c_{P}-c_{V}=-T\frac{\thermpart{P}{T}{V}^2}{\thermpart{P}{V}{T}}
+    \end{equation*}
+    Working out the derivatives of \eqref{eq:EOS}:
+    \begin{align*}
+        \thermpart{P}{T}{V}&=\frac{Nk}{V}\left(1+\frac{n-3}{n}\frac{NB}{V}\right)
+        \\
+        \thermpart{P}{V}{T}&=-\frac{NkT}{V^3}\left(V+2NB\right)
+    \end{align*}
+    Leading to:
+    \begin{equation}
+        c_{P}=\frac{3k}{n}\frac{N^2B}{V-N^2B}\left(1+\frac{3}{n}\frac{N^2B}{V-N^2B}\right)+N\frac{\left(V+\frac{n-3}{n}NB\right)^2}{V^2+2NVB}
+        \label{eq:cp}
+    \end{equation}
+
+
+\item
+    In order to compute the isothermic compressibility
+    \begin{equation*}
+        \beta_{T}=-\frac{1}{V}\thermpart{V}{P}{T}
+    \end{equation*}
+    one can (ab-)use the fact that in thermodynamics all variables are
+    considered as functions of each other, which allows to use the chainrule in
+    this way:
+    \begin{equation*}
+        \pdv{V}{V}=\pdv{V}{P}\pdv{P}{V}=1\implies\pdv{V}{P}=\frac{1}{\pdv{P}{V}}
+    \end{equation*}
+
+    Therefor one can use \eqref{eq:EOS} directly and with
+    $\thermpart{P}{V}{T}=-\frac{NkT}{V^3}(V+2NB)$ write:
+    \begin{equation}
+        \beta_{T}=-\frac{1}{V\thermpart{P}{V}{T}}=\frac{V^2}{NkT(V+2NB)}
+        \label{eq:bt}
+    \end{equation} \\
+
+    For the adiabatic compressibility, one can utilize the relation:
+    \begin{equation*}
+        \gamma=\frac{\beta_{T}}{\beta_{S}}=\frac{c_{P}}{c_{V}}\iff\beta_{S}=\frac{\beta_{T}\,c_{V}}{c_{P}}
+    \end{equation*}
+    And after inserting \eqref{eq:cv}, \eqref{eq:cp} and \eqref{eq:bt}, one
+    receives:
+    \begin{equation}
+        \boxed{%
+        \beta_{S}=\frac{\frac{3k}{n}\frac{N^2B}{V-N^2B}\left(1+\frac{3}{n}\frac{N^2B}{V-N^2B}\right)\frac{V^2}{NkT(V+2NB)}}
+        {\frac{3k}{n}\frac{N^2B}{V-N^2B}\left(1+\frac{3}{n}\frac{N^2B}{V-N^2B}\right)+Nk\frac{\left(V+\frac{n-3}{n}NB\right)^2}{V^2+2NVB}}
+        }
+        \label{eq:bs}
+    \end{equation}
+
+    Now one could try to further work out \eqref{eq:bs} in order to find a more
+    concise expression, if one had nothing else to do.
+
+\end{enumerate}
+
+\end{document}
