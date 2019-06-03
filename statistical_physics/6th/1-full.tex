@@ -88,33 +88,70 @@
 
 \section{}
 
-Applying cluster expansion when computing the partition function of a system
-with an interaction potential $U(\vec{r})=\frac{\alpha}{r^n}$ with $\alpha>0$,
-$n>3$ leads in first order approximation to:
+Consider the Hamiltonian:
+\begin{equation*}
+    H(r,p)=\sum_{i=1}^{N}\frac{\vec{p}_{i}^{2}}{2m}+\sum_{j=1}^{N}\sum_{i=1}^{j-1}U(\vec{r}_{i}-\vec{r}_{j})
+\end{equation*}
+with an interaction potential $U(\vec{r})=\frac{\alpha}{r^n}$
+and compute the partition function:
+\begin{align*}
+    Z&=\frac{1}{N!}\int\prod_{i=1}^{N}\frac{\dd[3]{r_i}\dd[3]{p_i}}{(2\pi\hbar)^3}e^{-\beta H}
+    \\
+    &=\frac{1}{N!\lambda^{3N}}\int\prod_{i=1}^{N}\dd[3]{r_i}e^{-\beta\sum_{j<k}U(\vec{r}_{j}-\vec{r}_{k})}
+    \qq{with}\lambda=\sqrt{\frac{\beta(2\pi\hbar)^2}{2\pi{m}}}
+\end{align*} \\
+
+The product $\displaystyle\prod_{j<k}e^{-\beta U_{jk}}$ is not easily expanded,
+since its factors are close to 1 for large $r$. Instead consider
+$f_{jk}=e^{-\beta U_{jk}}-1$:
+\begin{equation*}
+    \prod_{j<k}(1+f_{jk})=1+
+    \underbrace{\sum_{j<k}f_{jk}}_{\binom{N}{2}\text{ summands}}
+    +\sum_{\substack{j<k\\l<m}}f_{jk}f_{lm}+\dotsb
+\end{equation*}
+with
+\begin{align*}
+    \int\prod_{i=1}^{N}\dd[3]{r_i}\sum_{j<k}f_{jk}
+    &=\sum_{j<k}\prod_{\substack{i\ne{j}\\i\ne{k}}}
+    \int\dd[3]{r_i}\int\dd[3]{r_j}\int\dd[3]{r_k}f(\vec{r}_{j}-\vec{r}_{k}) \\
+    &=\frac{N(N-1)}{2}V^{N-2}\iint\dd[3]{r_j}\dd[3]{r_k}f(\vec{r}_{j}-\vec{r}_{k})
+    \\
+    &\approx\frac{N(N-1)}{2}V^{N-2}\,V\int\dd[3]{r}f(r) \\
+    &\approx-N^2\,V^{N-1}\,B(T)
+\end{align*}
+where $\displaystyle B(T)=-\frac{1}{2}\int\dd[3]{r}f(r)=
+\frac{1}{2}\int\dd[3]{r}\left(1-e^{-\beta U(r)}\right)$ is the first
+\emph{virial coefficient}. \\
+Further:
+\begin{equation*}
+    \implies\int\prod_{i=1}^{N}\dd[3]{r_i}\prod_{j<k}(1+f_{jk})
+    =V^N-N^2\,V^{N-1}\,B(T)+\dotsb
+\end{equation*} \\
+
+Finally, the complete partition function:
 \begin{equation}
-    Z=\frac{1}{N!}\left(\frac{V}{\lambda^3}\right)\left(1-\frac{N^2}{V}B(T)\right)
+    \boxed{%
+    Z=\frac{1}{N!}\left(\frac{V}{\lambda^3}\right)\left(1-\frac{N^2}{V}B(T)\right)}
     \label{eq:Z}
 \end{equation}
-with $\lambda=\sqrt{\frac{\beta(2\pi\hbar)^2}{2\pi{m}}}$
-and via $p=-\thermpart{F}{V}{T}$, $F=-kT\log{Z}$ to the equation of state:
+and from $p=-\thermpart{F}{V}{T}$, $F=-kT\log{Z}$ the equation of state:
 \begin{equation}
-    p\,V=N\,k\,T\left(1+\frac{N}{V}B(T)\right)
+    \boxed{p\,V=N\,k\,T\left(1+\frac{N}{V}B(T)\right)}
     \label{eq:EOS}
 \end{equation}
-where $\displaystyle B(T)= \frac{1}{2}\int\dd[3]{r}\left(1-e^{-\beta
-U(r)}\right)$ is the first \emph{virial coefficient}.
+
 
 \begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
 
 \item
-    Computing $B(T)$:
+    Computing the first virial coefficient:
     \begin{equation*}
         B(T)=2\pi\int\limits_{0}^{\infty}\dd{r}r^2\left(1-e^{-\beta{U}(r)}\right)
     \end{equation*}
 
     Approximate the potential for suitable $r_0$:
     \begin{equation}
-        U(r)\approx
+        U(r)=\frac{\alpha}{r^n}\approx
         \begin{cases}
             \infty\qc r<r_0 \\
             \frac{\alpha}{r^n}\qc r\geq r_0
@@ -178,9 +215,7 @@ U(r)}\right)$ is the first \emph{virial coefficient}.
     \end{align*}
     Leading to:
     \begin{equation}
-        \boxed{%
         C_{P}=\frac{3k}{n}\frac{N^2B}{V-N^2B}\left(1+\frac{3}{n}\frac{N^2B}{V-N^2B}\right)+N\frac{\left(V+\frac{n-3}{n}NB\right)^2}{V^2+2NVB}
-        }
         \label{eq:cp}
     \end{equation}
 
@@ -200,8 +235,7 @@ U(r)}\right)$ is the first \emph{virial coefficient}.
     Therefor one can use \eqref{eq:EOS} directly and with
     $\thermpart{P}{V}{T}=-\frac{NkT}{V^3}(V+2NB)$ write:
     \begin{equation}
-        \boxed{%
-        \beta_{T}=-\frac{1}{V\thermpart{P}{V}{T}}=\frac{V^2}{NkT(V+2NB)}}
+        \beta_{T}=-\frac{1}{V\thermpart{P}{V}{T}}=\frac{V^2}{NkT(V+2NB)}
         \label{eq:bt}
     \end{equation} \\
 
@@ -220,7 +254,7 @@ U(r)}\right)$ is the first \emph{virial coefficient}.
     \end{equation}
 
     Now one could try to further work out \eqref{eq:bs} in order to find a more
-    concise expression, if one had the patience to do so.
+    concise expression, if one had nothing else to do.
 
 \end{enumerate}
 
