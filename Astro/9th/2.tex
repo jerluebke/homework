@@ -1,0 +1,144 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{9}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\mH}{\ensuremath{m_{\mathrm{H}}}}
+\newcommand{\mP}{\ensuremath{m_{\mathrm{P}}}}
+\newcommand{\nop}{\text{Number of particles}}
+
+
+\begin{document}
+
+\section*{Task 2}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    In order to find the cloud's diameter consider the column density:
+    \begin{gather*}
+        N=\int{n}\dd{z}\overset{\text{here}}{=}n\int\limits_{0}^{d}\dd{z}=nD \\
+        \iff{d}=\frac{N}{n}=\SI{1.5e16}{\metre}=\SI{.49}{\parsec}
+    \end{gather*}
+
+\item
+    To find the total number of particles:
+    \begin{gather*}
+        \nop=nV\qc{V}=\frac{\pi{d^3}}{6} \\
+        \implies\nop=\frac{\pi{d^3}n}{6}=\num{1.77e56}
+    \end{gather*}
+
+\item
+    Therewith one can estimate the cloud's total mass:
+    \begin{equation*}
+        M=\nop\times\mH\overset{\mH\approx\mP}{=}\SI{2.96e29}{\kilogram}=\SI{.15}{\Msol}
+    \end{equation*}
+
+\item
+    The Luminosity of 21cm photons with given rate of photons $Q$:
+    \begin{gather*}
+        L=Q\times{h}\nu=\SI{1.47e18}{\watt}=\SI{3.8e-9}{\Lsol}
+    \end{gather*}
+    where $\nu=\frac{c}{\lambda}=\SI{1.4e9}{\hertz}$.
+
+\item
+    And finally the flux of 21cm photons as seen on earth:
+    \begin{gather*}
+        F_{\nu}=\frac{L}{A\nu}=\frac{L}{\pi{D^2}\nu}=\SI{3.48e-29}{\watt\per\metre\squared\per\hertz}
+        =\SI{3.48e-3}{\jansky}
+    \end{gather*}
+    where $D=\SI{100}{\parsec}\approx\SI{3.1e18}{\metre}$.
+
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{9}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\trec}{\ensuremath{\tau_{\mathrm{rec}}}}
+\newcommand{\rs}{\ensuremath{r_{\mathrm{S}}}}
+\newcommand{\Rsol}{\ensuremath{R_{\astrosun}}}
+\newcommand{\Lsol}{\ensuremath{L_{\astrosun}}}
+
+
+\begin{document}
+
+\section*{Task 1}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    The volume of the Strömgren sphere - \ie~the area of ionized gas around a
+    star - can be estimated via the product of the star's photon rate $Q$ times
+    the recombination time $\trec=1/n\alpha$ divided by the particle density
+    $n$.
+    In case of the Sun, with the given (estimated) values:
+    \begin{gather*}
+        V=\frac{4\pi}{3}\rs^3=\frac{Q}{n^2\alpha} \\
+        \iff\rs=\sqrt[3]{\frac{3Q}{4\pi{n^2}\alpha}}=\SI{568.4e6}{\metre}
+    \end{gather*}
+
+\item
+    For comparison, the Sun's radius is $\Rsol=\SI{695.7e6}{\metre}$. \\
+    Of course, it doesn't make a lot of sense for \rs~to be smaller then the
+    star's radius. In this case the Sun's photon rate was estimated
+    incorrectly. Consider instead:
+    \begin{gather*}
+        Q=\frac{\Lsol}{h\nu}=\frac{\SI{3.828e26}{\watt}}{\SI{13.6}{\electronvolt}}\sim\SI{1.76e44}{\per\second}
+        \\
+        \implies\rs\approx\SI{3.97e15}{\metre}=\SI{5.70e6}{\Rsol}
+    \end{gather*}
+
+\item
+    In case of a O6 star in a HII region with the provided values:
+    \begin{equation*}
+        \rs=\SI{8.5e15}{\metre}=\SI{.23}{\parsec}
+    \end{equation*}
+
+\item
+    The recombination time is given as $\trec=1/n\alpha$. \\
+    Firstly, for $n=\SI{5e9}{\per\metre\cubed}$:
+    \begin{equation*}
+        \trec=\SI{7.69e8}{\second}\approx\SI{24.39}{\year}
+    \end{equation*}
+    And for $n=\SI{1e8}{\per\metre\cubed}$:
+    \begin{equation*}
+        \trec=\SI{3.85e10}{\second}\approx\SI{1219.61}{\year}
+    \end{equation*}
+
+\item
+    The values obtained above indicate that mainly young and hot stars are
+    responsible for the development of HII clouds.
+
+\end{enumerate}
+
+
+\end{document}
