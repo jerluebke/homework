@@ -1,0 +1,180 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2.5cm,bottom=5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage[makeroom]{cancel}
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Statistical Mechanics}}
+\newcommand{\hwnumber}{8}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\matnumA}{108015230366}
+
+
+\pagestyle{fancyplain}
+
+\headheight 5\baselineskip
+\lhead{%
+    \nameA \\
+    \matnumA
+    \vspace*{2\baselineskip}
+}
+
+\chead{%
+    \headrule
+    \vspace*{\baselineskip}
+    \textbf{\Large \course} \\\medskip
+    \textbf{\Large Homework \hwnumber}
+    \bigskip
+}
+
+\rhead{%
+    \today
+    \vspace*{3\baselineskip}
+}
+
+\cfoot{\small\thepage}
+
+\headsep 1.5em
+
+\renewcommand{\thesection}{H\hwnumber.\arabic{section}}
+
+
+\newcommand{\gs}{g_{s}}
+
+
+\begin{document}
+
+\section{}
+
+Consider the hyperrelativistic fermi gas with $\epsilon_{p}=p\,c$.
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=2\baselineskip]
+
+\item
+    In order to compute the grand potential $\Omega=-k\,T\log{Z}$ consider at
+    first the partition function for fermions:
+    \begin{equation*}
+        Z=\prod_{\nu}\delta_{\nu\nu}\left(1+e^{\beta(\mu-\epsilon_{\nu})}\right)
+    \end{equation*}
+    \begin{align*}
+        \log{Z}&=-k\,T\sum_{nu}\delta{\nu\nu}\log(1+e^{\beta(\mu-\epsilon_{\nu})})
+        \\
+        &=\underbrace{\sum_{s}}_{=\gs}\int\dd[3]{p}\frac{V}{(2\pi\hbar)^3}
+        \log(1+e^{\beta(\mu-pc)}) \\
+        &=\frac{\gs\,V}{2\pi^2\hbar^3}\int\limits_{0}^{\infty}\dd{p}
+        \underbrace{p^2}_{u'}
+        \underbrace{\log(1+e^{\beta(\mu-pc)})}_{v} \\
+        &=\frac{\gs\,V}{2\pi^2\hbar^3}\frac{\beta\,c}{3}\int\limits_{0}^{\infty}\frac{p^3\dd{p}}{e^{\beta(pc-\mu)}+1}
+    \end{align*}
+    Continue with the integral
+    $\displaystyle
+        I=\int\limits_{0}^{\infty}\frac{p^3\dd{p}}{e^{\beta(pc-\mu)}+1}
+    $.
+    Substituting $z=\beta(p\,c-\mu)$ yields:
+    \begin{align*}
+        (c\beta)^4\,I&=\int\limits_{-\beta\mu}^{\infty}\frac{(z+\beta\mu)^3}{e^z+1}\dd{z}
+        \\
+        &=\int\limits_{0}^{\infty}\frac{(\beta\mu+z)^3}{e^z+1}\dd{z}+\int\limits_{0}^{\beta\mu}\frac{(\beta\mu-z)^3}{e^{-z}+1}\dd{z}
+        \qq{with}\frac{1}{e^{-z}+1}=1-\frac{1}{e^z+1}\qq{and}\beta\mu\gg{1} \\
+        &=\int\limits_{0}^{\beta\mu}(\beta\mu-z)^3\dd{z}+\int\limits_{0}^{\infty}\frac{(\beta\mu+z)^3-(\beta\mu-z)^3}{e^z+1}\dd{z}
+    \end{align*}
+    The first integral is easily evaluated:
+    \begin{equation*}
+        \int\limits_{0}^{\beta\mu}(\beta\mu-z)^3\dd{z}=\int\limits_{0}^{\beta\mu}w^3\dd{w}=\frac{(\beta\mu)^4}{4}
+    \end{equation*}
+    And for the second one work out the numerator of the fraction
+    \begin{equation*}
+        (\beta\mu+z)^3-(\beta\mu-z)^3=6\,(\beta\mu)^2\,z+2\,z^3
+    \end{equation*}
+    and use
+    \begin{gather*}
+        \int\limits_{0}^{\infty}\frac{z^{a-1}}{e^z+1}\dd{z}=(1-2^{1-a})\,\Gamma(a)\,\zeta(a)
+        \\
+        \implies\int\limits_{0}^{\infty}\frac{z\dd{z}}{e^z+1}=\frac{\pi^2}{12}
+        \qq*{,}
+        \int\limits_{0}^{\infty}\frac{z^3\dd{z}}{e^z+1}=\frac{7\pi^4}{120}
+    \end{gather*}
+    Therewith:
+    \begin{gather*}
+        (c\beta)^4\,I=\frac{(\beta\mu)^4}{4}+\frac{(\beta\mu\pi)^2}{2}+\frac{7\pi^4}{60}
+        \\
+        \implies\log{Z}=\frac{\gs{V}\beta\mu^4}{24\pi^2\hbar^3c^3}\left(1+\frac{2\pi^2}{(\beta\mu)^2}+\frac{7}{15}\left(\frac{\pi}{\beta\mu}\right)^4\right)
+        \\
+        \implies\boxed{%
+            \Omega=-k\,T\log{Z}=-\frac{\gs{V}\mu^4}{24\pi^2\hbar^3c^3}\left(1+\frac{2(\pi{k}T)^2}{\mu^2}+\order{T^4}\right)
+        }
+    \end{gather*}
+
+
+\item
+    For the thermal equation of state, integrate the energy per state with
+    respect to the state number:
+    \begin{gather*}
+        E=\int\limits_{pc<\mu}\epsilon\dd{N}
+        =\frac{\gs{V}c}{(2\pi\hbar)^3}4\pi
+        \underbrace{%
+            \int\limits_{0}^{\mu/c}\dd{p}p^3
+        }_{=\frac{\mu^4}{4c^3}}
+        =\frac{\gs{V}\mu^4}{8\pi^2\hbar^3c^3} \\
+        \implies\Omega=-p\,V=-\frac{\gs{V}\mu^4}{24\pi^2\hbar^3c^3}=-\frac{1}{3}E
+        \\
+        \implies\boxed{3\,p\,V=E}
+    \end{gather*}
+
+
+\item
+    In order to find the heat capacity, one needs to take the first correction
+    into account (in the following: $C=C_V\approx C_p$, since
+    $C_V-C_p\sim\order{T^3}$):
+    \begin{gather*}
+        S=-\pdv{\Omega}{T}=\frac{\gs{V}\mu^2k^2}{6\hbar^3c^3}T \\
+        \boxed{C=T\pdv{S}{T}=\frac{\gs{V}\mu^2k^2}{6\hbar^3c^3}T}
+    \end{gather*}
+
+\end{enumerate}
+
+
+\end{document}
