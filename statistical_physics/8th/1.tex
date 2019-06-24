@@ -100,7 +100,7 @@ Consider the hyperrelativistic fermi gas with $\epsilon_{p}=p\,c$.
         Z=\prod_{\nu}\delta_{\nu\nu}\left(1+e^{\beta(\mu-\epsilon_{\nu})}\right)
     \end{equation*}
     \begin{align*}
-        \log{Z}&=-k\,T\sum_{nu}\delta{\nu\nu}\log(1+e^{\beta(\mu-\epsilon_{\nu})})
+        \log{Z}&=\sum_{\nu}\delta_{\nu\nu}\log(1+e^{\beta(\mu-\epsilon_{\nu})})
         \\
         &=\underbrace{\sum_{s}}_{=\gs}\int\dd[3]{p}\frac{V}{(2\pi\hbar)^3}
         \log(1+e^{\beta(\mu-pc)}) \\
@@ -125,11 +125,11 @@ Consider the hyperrelativistic fermi gas with $\epsilon_{p}=p\,c$.
     \begin{equation*}
         \int\limits_{0}^{\beta\mu}(\beta\mu-z)^3\dd{z}=\int\limits_{0}^{\beta\mu}w^3\dd{w}=\frac{(\beta\mu)^4}{4}
     \end{equation*}
-    And for the second one work out the numerator of the fraction
+    And for the second, one works out the numerator of the fraction
     \begin{equation*}
         (\beta\mu+z)^3-(\beta\mu-z)^3=6\,(\beta\mu)^2\,z+2\,z^3
     \end{equation*}
-    and use
+    and uses
     \begin{gather*}
         \int\limits_{0}^{\infty}\frac{z^{a-1}}{e^z+1}\dd{z}=(1-2^{1-a})\,\Gamma(a)\,\zeta(a)
         \\
