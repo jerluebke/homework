@@ -1,0 +1,168 @@
+\documentclass[mathserif]{beamer}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{bbold}
+\usepackage{physics}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tcolorbox}
+
+
+\newcommand{\partt}{\partial_{t}}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\Grad}{\nabla}
+\newcommand{\Curl}{\nabla\times}
+\newcommand{\Lap}{\nabla^{2}}
+
+\newcommand{\uvec}{\underline{u}}
+\newcommand{\jvec}{\underline{j}}
+\newcommand{\Bvec}{\underline{B}}
+\newcommand{\Evec}{\underline{E}}
+\newcommand{\alphatensor}{\underline{\underline{\alpha}}}
+
+\newcommand{\avg}[1]{\langle#1\rangle}
+\newcommand{\Ren}[1]{\mathcal{R}_{#1}}
+
+
+\title{Large-Scale Galactic Magnetic Fields}
+\subject{Introduction to Astrophysics - Minitalk}
+\author{Jeremiah Lübke}
+\date{Ruhr-Universität Bochum, July 2019}
+
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+
+
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents
+\end{frame}
+
+
+\section{MHD}
+\begin{frame}
+    \frametitle{Magnetohydrodynamics (MHD)}
+    \begin{columns}[T]
+        \begin{column}[T]{.5\textwidth}
+            \begin{tcolorbox}
+            \begin{center}
+                \textbf{Plasma}
+            \end{center}
+            continuity: \[\partt\rho+\Div(\rho\uvec)=0\]
+            momentum:
+            \begin{align*}
+                \partt(\rho\uvec)+\Div(\rho\uvec\uvec) \\
+                =\jvec\times\Bvec-\Grad{p}
+            \end{align*}
+            adiabatic closure: \[p=2nkT\]
+            \end{tcolorbox}
+        \end{column}
+
+        \begin{column}[T]{.5\textwidth}
+            \begin{tcolorbox}
+            \begin{center}
+                \textbf{Magnetic Field}
+            \end{center}
+            Ohm's Law: \[\Evec+\uvec\times\Bvec=\eta\jvec\]
+            Faraday's Law:
+            \begin{align*}
+                \partt\Bvec&=-\Curl\Evec \\
+                &=\Curl(\uvec\times\Bvec)+\eta\Lap\Bvec
+            \end{align*}
+            \end{tcolorbox}
+        \end{column}
+    \end{columns}
+    \medskip
+    \begin{itemize}
+        \item Plasma \emph{induces} Magnetic Field
+        \item Magnetic Field \emph{accelerates} Plasma
+    \end{itemize}
+\end{frame}
+
+
+\section{Dynamos}
+\begin{frame}
+    \frametitle{Dynamos}
+    \begin{itemize}
+        \item
+            Consider the equation governing the magnetic field:
+            \begin{equation}
+                \partt\Bvec=\Curl(\uvec\times\Bvec)+\eta\Lap\Bvec
+                \label{eq:b}
+            \end{equation}
+    \end{itemize}
+
+    \noindent\rule{\textwidth}{.4pt}
+
+    \begin{itemize}
+        \only<1-4>{%
+        \item<2-4>
+            Splitting up the involved quantities into regular average and random
+            fluctuations:
+            \begin{equation*}
+                % \Bvec=\avg{\Bvec}+\Bvec',\quad\uvec=\avg{\uvec}+\uvec'
+                X=\avg{X}+X',\quad\avg{\avg{X}}=\avg{X},\quad\avg{X'}=0
+            \end{equation*}
+
+        \item<3-4>
+            And working out \eqref{eq:b}:
+            \begin{equation*}
+                \implies \partt\avg{\Bvec}=\Curl(\avg{\uvec}\times\avg{\Bvec})
+                +\eta\Lap\avg{\Bvec}+\Curl\avg{\uvec'\times\Bvec'}
+            \end{equation*}
+
+        \item<4-4>
+            Investigating the last term more closely:
+            \begin{equation*}
+                \avg{\uvec'\times\Bvec'}\approx\alphatensor\avg{\Bvec}
+            \end{equation*}
+            with the \emph{helicity tensor} $\alphatensor=\alpha\mathbb{1}$
+            (for the isotropic case)
+        }
+
+        \only<5>{%
+        \item
+            Working out \eqref{eq:b} in spherical coordinates and with a lot of
+            galaxy-related assumptions, one finally arrives at:
+            \begin{subequations}
+            \begin{align}
+                \partt{B_r}&=-\Ren{\alpha}\,\partial_{z}(\alpha{B_{\phi}})
+                +\partial_{zz}B_r \\
+                \partt{B_{\phi}}&=\Ren{\Omega}\,B_{r}\,r\,\partial_{r}\Omega
+                +\partial_{zz}B_{\phi}
+            \end{align}
+            \end{subequations}
+        }
+    \end{itemize}
+\end{frame}
+
+
+\section{Spatial Structures}
+\begin{frame}
+    \frametitle{Spatial Structures}
+
+\end{frame}
+
+
+\section{Observing Magnetic Fields}
+\begin{frame}
+    \frametitle{Observing Magnetic Fields}
+
+\end{frame}
+
+
+\section{References}
+\begin{frame}
+    \frametitle<presentation>{References}
+
+\end{frame}
+
+
+\end{document}
+
+% vim: set ff=unix tw=79 sw=4 ts=4 et ic ai :
