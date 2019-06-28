@@ -1,5 +1,6 @@
 \documentclass[mathserif]{beamer}
 \usepackage{fontspec}
+\usepackage{textcomp}
 \usepackage{amsmath}
 \usepackage{bbold}
 \usepackage{physics}
@@ -100,8 +101,8 @@
     \noindent\rule{\textwidth}{.4pt}
 
     \begin{itemize}
-        \only<1-4>{%
-        \item<2-4>
+        \only<1-3>{%
+        \item<2-3>
             Splitting up the involved quantities into regular average and random
             fluctuations:
             \begin{equation*}
@@ -109,34 +110,65 @@
                 X=\avg{X}+X',\quad\avg{\avg{X}}=\avg{X},\quad\avg{X'}=0
             \end{equation*}
 
-        \item<3-4>
+        \item<3-3>
             And working out \eqref{eq:b}:
             \begin{equation*}
                 \implies \partt\avg{\Bvec}=\Curl(\avg{\uvec}\times\avg{\Bvec})
                 +\eta\Lap\avg{\Bvec}+\Curl\avg{\uvec'\times\Bvec'}
             \end{equation*}
-
-        \item<4-4>
-            Investigating the last term more closely:
-            \begin{equation*}
-                \avg{\uvec'\times\Bvec'}\approx\alphatensor\avg{\Bvec}
-            \end{equation*}
-            with the \emph{helicity tensor} $\alphatensor=\alpha\mathbb{1}$
-            (for the isotropic case)
+            \begin{itemize}
+                \item
+                    The large-scale average is influenced by the small-scale
+                    fluctuations!
+            \end{itemize}
         }
 
-        \only<5>{%
+        \only<4-6>{%
         \item
-            Working out \eqref{eq:b} in spherical coordinates and with a lot of
+            Working out \eqref{eq:b} in spherical coordinates, with
+            $\uvec=r\,\Omega\,\underline{e}_{\phi}$ and a lot of
             galaxy-related assumptions, one finally arrives at:
-            \begin{subequations}
-            \begin{align}
-                \partt{B_r}&=-\Ren{\alpha}\,\partial_{z}(\alpha{B_{\phi}})
-                +\partial_{zz}B_r \\
-                \partt{B_{\phi}}&=\Ren{\Omega}\,B_{r}\,r\,\partial_{r}\Omega
-                +\partial_{zz}B_{\phi}
-            \end{align}
-            \end{subequations}
+
+            \only<4>{%
+            \begin{equation}
+                \Curl\avg{\uvec'\times\Bvec'}=0\implies
+                \left\{\begin{aligned}
+                    \partt{B_r}&=\partial_{zz}B_r \\
+                    \partt{B_{\phi}}&=\Ren{\Omega}\,B_{r}\,r\,\partial_{r}\Omega
+                    +\partial_{zz}B_{\phi}
+                \end{aligned}\right.
+            \end{equation}
+
+            \begin{itemize}
+                \item
+                    The magnetic field dilutes and the dynamo dies
+                    (\textrightarrow~Antidynamo theorem)
+            \end{itemize}
+
+            \vspace{1.4\baselineskip}
+            }
+
+            \only<5-6>{%
+            \setcounter{equation}{2}
+            \begin{equation}
+                \Curl\avg{\uvec'\times\Bvec'}\approx\alpha\avg{\Bvec}\implies
+                \left\{\begin{aligned}
+                    \partt{B_r}&=-\Ren{\alpha}\,\partial_{z}(\alpha{B_{\phi}})
+                    +\partial_{zz}B_r \\
+                    \partt{B_{\phi}}&=\Ren{\Omega}\,B_{r}\,r\,\partial_{r}\Omega
+                    +\partial_{zz}B_{\phi}
+                \end{aligned}\right.
+            \end{equation}
+
+            \begin{itemize}
+                \item
+                    small-scale turbulence ($\alpha\ne0$) sustains the magnetic
+                    field (\textrightarrow~$\alpha$- and $\Omega$-effect)
+            \end{itemize}
+
+        \item<6->
+            Order out of Chaos
+            }
         }
     \end{itemize}
 \end{frame}
