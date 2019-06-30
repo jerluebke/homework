@@ -66,7 +66,7 @@
             continuity: \[\partt\rho+\Div(\rho\uvec)=0\]
             momentum:
             \begin{align*}
-                \partt(\rho\uvec)+\Div(\rho\uvec\uvec) \\
+                \partt(\rho\uvec)+\Div(\rho\uvec\,\uvec) \\
                 =\jvec\times\Bvec-\Grad{p}
             \end{align*}
             adiabatic closure: \[p=2nkT\]
@@ -110,16 +110,17 @@
     \noindent\rule{\textwidth}{.4pt}
 
     \begin{itemize}
-        \only<1-3>{%
-        \item<2-3>
+        \only<1-4>{%
+        \pause
+        \item
             Splitting up the involved quantities into regular average and random
             fluctuations:
             \begin{equation*}
-                % \Bvec=\avg{\Bvec}+\Bvec',\quad\uvec=\avg{\uvec}+\uvec'
                 X=\avg{X}+X'\qq{with}\avg{\avg{X}}=\avg{X},\quad\avg{X'}=0
             \end{equation*}
 
-        \item<3-3>
+        \pause
+        \item
             And working out \eqref{eq:b}:
             \begin{equation*}
                 \implies \partt\avg{\Bvec}=\Curl(\avg{\uvec}\times\avg{\Bvec})
@@ -128,6 +129,7 @@
                     \Curl\avg{\uvec'\times\Bvec'}
                 }_{=\mathcal{E}}
             \end{equation*}
+            \pause
             \begin{itemize}
             \begin{tcolorbox}
                 \item
@@ -137,13 +139,14 @@
             \end{itemize}
         }
 
-        \only<4-6>{%
+        \only<5->{%
         \item
-            Working out \eqref{eq:b} in spherical coordinates, with
-            $\uvec=r\,\Omega\,\underline{e}_{\phi}$ and a lot of
+            Working out \eqref{eq:b} in cylindrical coordinates, with
+            $\uvec=r\,\Omega\,\underline{e}_{\phi}$ and some
             galaxy-related assumptions, one finally arrives at:
 
-            \only<4>{%
+            \only<5>{\vspace{9.4\baselineskip}}
+            \only<6-7>{%
             \begin{equation}
                 \mathcal{E}=0\implies
                 \left\{\begin{aligned}
@@ -154,7 +157,7 @@
             \end{equation}
 
             \begin{itemize}
-                \item
+                \item<7-7>
                     The magnetic field dilutes and the dynamo dies \\
                     (\textrightarrow~Antidynamo theorem)
             \end{itemize}
@@ -162,7 +165,7 @@
             \vspace{3.6\baselineskip}
             }
 
-            \only<5-6>{%
+            \only<8->{%
             \setcounter{equation}{2}
             \begin{equation}
                 \mathcal{E}\approx\alpha\avg{\Bvec}\implies
@@ -175,20 +178,19 @@
             \end{equation}
 
             \begin{itemize}
-                \item
+                \item<9->
                     small-scale turbulence ($\alpha\ne0$) sustains the magnetic
                     field \\ (\textrightarrow~$\alpha$- and $\Omega$-effect)
             \end{itemize}
 
-            \only<5>{\vspace{3.6\baselineskip}}
-        \only<6>{%
+            \only<8-9>{\vspace{3.6\baselineskip}}
+            \only<10->{%
             \vspace{\baselineskip}
             \begin{tcolorbox}
             \item
                 Order out of Chaos
             \end{tcolorbox}
-        }
-            }
+            }}
         }
     \end{itemize}
 \end{frame}
@@ -254,22 +256,22 @@
     \beamertemplatearticlebibitems
     \bibitem{Dorch2007}
         S.~B.~F.~Dorch.
-        \newblock {\em Magnetohydrodynamics}.
-        \newblock {\em Scholarpedia}, revision \#186287.
+        \newblock Magnetohydrodynamics.
+        \newblock in: {\em Scholarpedia}, revision \#186287.
     \beamertemplatearticlebibitems
     \bibitem{Beck2007}
         R.~Beck.
-        \newblock {\em Galactic Magnetic Fields}.
-        \newblock {\em Scholarpedia}, revision \#185129.
+        \newblock Galactic Magnetic Fields.
+        \newblock in: {\em Scholarpedia}, revision \#185129.
     \beamertemplatebookbibitems
     \bibitem{GalMagFields}
         U.~Klein, A.~Fletcher.
-        \newblock {\em Galactic and Intergalactic Magnetic Fields}
+        \newblock {\em Galactic and Intergalactic Magnetic Fields}.
         \newblock Springer Praxis Books, 2015.
     \beamertemplateonlinebibitems
     \bibitem{Beck2014}
         R.~Beck.
-        \newblock {\em Magnetic Fields in Spiral Galaxies, Part I: Disks}.
+        \newblock Magnetic Fields in Spiral Galaxies, Part I: Disks.
         \newblock \url{https://www.mpifr-bonn.mpg.de/1281929/Beck_Galaxies.pdf}
     \end{thebibliography}
 
