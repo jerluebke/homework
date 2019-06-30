@@ -5,8 +5,13 @@
 \usepackage{bbold}
 \usepackage{physics}
 \usepackage{graphicx}
-    \graphicspath{img}
+    \graphicspath{{./img/}}
+\usepackage{subcaption}
 \usepackage{tcolorbox}
+
+
+\usetheme{Madrid}
+\usecolortheme{beaver}
 
 
 \newcommand{\partt}{\partial_{t}}
@@ -43,6 +48,10 @@
     \frametitle{Table of Contents}
     \tableofcontents
 \end{frame}
+
+
+% \setcounter{framenumber}{1}
+\addtocounter{framenumber}{-2}
 
 
 \section{MHD}
@@ -107,19 +116,24 @@
             fluctuations:
             \begin{equation*}
                 % \Bvec=\avg{\Bvec}+\Bvec',\quad\uvec=\avg{\uvec}+\uvec'
-                X=\avg{X}+X',\quad\avg{\avg{X}}=\avg{X},\quad\avg{X'}=0
+                X=\avg{X}+X'\qq{with}\avg{\avg{X}}=\avg{X},\quad\avg{X'}=0
             \end{equation*}
 
         \item<3-3>
             And working out \eqref{eq:b}:
             \begin{equation*}
                 \implies \partt\avg{\Bvec}=\Curl(\avg{\uvec}\times\avg{\Bvec})
-                +\eta\Lap\avg{\Bvec}+\Curl\avg{\uvec'\times\Bvec'}
+                +\eta\Lap\avg{\Bvec}+
+                \underbrace{%
+                    \Curl\avg{\uvec'\times\Bvec'}
+                }_{=\mathcal{E}}
             \end{equation*}
             \begin{itemize}
+            \begin{tcolorbox}
                 \item
-                    The large-scale average is influenced by the small-scale
-                    fluctuations!
+                    The large-scale average is influenced by the
+                    small-scale fluctuations!
+            \end{tcolorbox}
             \end{itemize}
         }
 
@@ -131,7 +145,7 @@
 
             \only<4>{%
             \begin{equation}
-                \Curl\avg{\uvec'\times\Bvec'}=0\implies
+                \mathcal{E}=0\implies
                 \left\{\begin{aligned}
                     \partt{B_r}&=\partial_{zz}B_r \\
                     \partt{B_{\phi}}&=\Ren{\Omega}\,B_{r}\,r\,\partial_{r}\Omega
@@ -141,17 +155,17 @@
 
             \begin{itemize}
                 \item
-                    The magnetic field dilutes and the dynamo dies
+                    The magnetic field dilutes and the dynamo dies \\
                     (\textrightarrow~Antidynamo theorem)
             \end{itemize}
 
-            \vspace{1.4\baselineskip}
+            \vspace{3.6\baselineskip}
             }
 
             \only<5-6>{%
             \setcounter{equation}{2}
             \begin{equation}
-                \Curl\avg{\uvec'\times\Bvec'}\approx\alpha\avg{\Bvec}\implies
+                \mathcal{E}\approx\alpha\avg{\Bvec}\implies
                 \left\{\begin{aligned}
                     \partt{B_r}&=-\Ren{\alpha}\,\partial_{z}(\alpha{B_{\phi}})
                     +\partial_{zz}B_r \\
@@ -163,20 +177,39 @@
             \begin{itemize}
                 \item
                     small-scale turbulence ($\alpha\ne0$) sustains the magnetic
-                    field (\textrightarrow~$\alpha$- and $\Omega$-effect)
+                    field \\ (\textrightarrow~$\alpha$- and $\Omega$-effect)
             \end{itemize}
 
-        \item<6->
-            Order out of Chaos
+            \only<5>{\vspace{3.6\baselineskip}}
+        \only<6>{%
+            \vspace{\baselineskip}
+            \begin{tcolorbox}
+            \item
+                Order out of Chaos
+            \end{tcolorbox}
+        }
             }
         }
     \end{itemize}
 \end{frame}
 
 
-\section{Spatial Structures}
+\section{Spatial Structures of Dynamo Solutions}
 \begin{frame}
-    \frametitle{Spatial Structures}
+    \frametitle{Spatial Structures of Dynamo Solutions}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{.35\textwidth}
+            \includegraphics[width=\textwidth]{mode-0}
+        \end{subfigure}
+        \begin{subfigure}[b]{.35\textwidth}
+            \includegraphics[width=\textwidth]{mode-1}
+        \end{subfigure}
+        \begin{subfigure}[b]{.35\textwidth}
+            \includegraphics[width=\textwidth]{mode-2}
+        \end{subfigure}
+    \end{figure}
 
 \end{frame}
 
@@ -185,14 +218,65 @@
 \begin{frame}
     \frametitle{Observing Magnetic Fields}
 
+    \begin{columns}[T]
+        \begin{column}[T]{.5\textwidth}
+            \begin{itemize}
+                \item
+                    Synchrotron radiation: polarization $\perp$ field
+                    orientation
+                \item
+                    Polarization is changed when passing through magnetized
+                    plasma (\emph{Faraday Rotation}):
+                    \[\beta=\mathrm{RM}(n_e, B_{\parallel})\,\lambda^2\]
+            \end{itemize}
+            \includegraphics[width=\textwidth]{faraday-rotation}
+        \end{column}
+
+        \begin{column}[T]{.5\textwidth}
+            \pause
+            \includegraphics[width=\textwidth]{m51}
+        \end{column}
+    \end{columns}
+
 \end{frame}
+
+
+\appendix
+\newcounter{finalframe}
+\setcounter{finalframe}{\value{framenumber}}
 
 
 \section{References}
 \begin{frame}
     \frametitle<presentation>{References}
 
+    \begin{thebibliography}{10}
+    \beamertemplatearticlebibitems
+    \bibitem{Dorch2007}
+        S.~B.~F.~Dorch.
+        \newblock {\em Magnetohydrodynamics}.
+        \newblock {\em Scholarpedia}, revision \#186287.
+    \beamertemplatearticlebibitems
+    \bibitem{Beck2007}
+        R.~Beck.
+        \newblock {\em Galactic Magnetic Fields}.
+        \newblock {\em Scholarpedia}, revision \#185129.
+    \beamertemplatebookbibitems
+    \bibitem{GalMagFields}
+        U.~Klein, A.~Fletcher.
+        \newblock {\em Galactic and Intergalactic Magnetic Fields}
+        \newblock Springer Praxis Books, 2015.
+    \beamertemplateonlinebibitems
+    \bibitem{Beck2014}
+        R.~Beck.
+        \newblock {\em Magnetic Fields in Spiral Galaxies, Part I: Disks}.
+        \newblock \url{https://www.mpifr-bonn.mpg.de/1281929/Beck_Galaxies.pdf}
+    \end{thebibliography}
+
 \end{frame}
+
+
+\setcounter{framenumber}{\value{finalframe}}
 
 
 \end{document}
