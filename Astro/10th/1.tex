@@ -1,0 +1,170 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[top=2cm,bottom=5.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+    \setdefaultlanguage{english}
+\usepackage{lmodern}
+\usepackage{fixcmex}
+\usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{siunitx}
+    \sisetup{range-units=brackets}
+    \DeclareSIUnit{\year}{a}
+    \DeclareSIUnit{\jansky}{Jy}
+    \DeclareSIUnit{\parsec}{pc}
+    \DeclareSIUnit{\lightyear}{ly}
+    \DeclareSIUnit{\Rsol}{\ensuremath{R_{\astrosun}}}
+    \DeclareSIUnit{\Lsol}{\ensuremath{L_{\astrosun}}}
+    \DeclareSIUnit{\Msol}{\ensuremath{M_{\astrosun}}}
+\usepackage{physics}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{wasysym}
+\usepackage[version=4]{mhchem}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[%
+    labelformat=simple,
+    labelsep=none,
+    textformat=empty,
+    font={small,sc}
+]{caption}
+\usepackage{graphicx}
+    \graphicspath{img}
+\usepackage{tikz}
+    \usetikzlibrary{calc,external}
+    \tikzexternalize[prefix=extern/]
+    \tikzexternaldisable
+\usepackage{pgfplots}
+    \pgfplotsset{%
+        compat=1.16,
+        table/search path={data},
+        label style={font=\tiny},
+        tick label style={font=\tiny}
+    }
+\usepackage{todonotes}
+\usepackage[%
+    % colorlinks=true, linkcolor=blue,
+    hidelinks
+]{hyperref}
+
+
+\newcommand{\tablehead}[1]{\multicolumn{1}{c}{#1}}
+\newcommand*{\figref}[1]{(see fig.~\ref{#1})}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\ie}{i.\,e.}
+
+\newcommand{\course}{\textbf{Introduction to Astrophysics}}
+\newcommand{\hwnumber}{10}
+\newcommand{\nameA}{Jeremiah Lübke}
+\newcommand{\nameB}{Andreas Menzel}
+\newcommand{\matnumA}{108015230366}
+\newcommand{\matnumB}{108015226385}
+\newcommand{\groupnum}{Exercise Group 3}
+
+
+\pagestyle{fancyplain}
+
+\headheight 7\baselineskip
+\lhead{%
+    \course \\
+    \vspace*{3\baselineskip}
+    \nameA, \matnumA \\
+    \nameB, \matnumB
+}
+
+\chead{%
+    \textbf{\Large Homework \hwnumber} \\
+    \vspace*{2\baselineskip}
+}
+
+\rhead{%
+    \today \\
+    \vspace*{4\baselineskip}
+    \groupnum
+}
+
+\cfoot{\small\thepage}
+\headsep 1.5em
+
+
+\newcommand{\SFR}{\ensuremath{\Sigma_{\mathrm{SFR}}}}
+\newcommand{\ISM}{\ensuremath{\Sigma_{\mathrm{gas}}}}
+\newcommand{\ISMtotal}{\ensuremath{\Sigma_{\mathrm{total}}}}
+\newcommand{\ISMHI}{\ensuremath{\Sigma_{\mathrm{H}_1}}}
+\newcommand{\ISMHII}{\ensuremath{\Sigma_{\mathrm{H}_2}}}
+\newcommand{\HI}{\ensuremath{\mathrm{H}_1}}
+\newcommand{\HII}{\ensuremath{\mathrm{H}_2}}
+
+
+\begin{document}
+
+\section*{Task 1}
+
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=\baselineskip]
+
+\item
+    The Schmidt Law attempts to describe the relationship between large-scale
+    star formation rate and ISM (more specifically: the SFR per unit area and
+    the surface density of the ISM)
+
+\item
+    Measurements of H$\alpha$ luminosities suffer from errors due to extinction
+    variations and extrapolated initial mass functions. Errors in measurements
+    of the gas density are largely due to variations in the CO/H conversion
+    factor, combined with sometimes limited CO measurements. These influences
+    are difficult to reduce, since many times one has to rely on estimates
+    instead of accurate data.
+
+\item
+    Figure 3 depicts density profiles of 21 galaxies, which were
+    obtained by azimuthally averaging \SFR~and \ISM~at different distances from
+    the galactic centre. For high densities a Schmidt Law is fulfilled, while
+    below a certain threshold the profiles steeply decrease. This is to
+    illustrate deviations due to averaging over the whole galaxy, as it is
+    done in that paper.
+
+\item
+    The \SFR-\ISMHI~relation is similar to the \SFR-\ISMtotal~relation, which
+    is not surprising as \HI~makes up roughly half of the total gas
+    density. Further, one could read from the correlation that the SFR
+    regulates the \HI~density through photodissociation of molecular gas by
+    (young) hot stars.
+
+\item
+    The \SFR-\ISMHII~correlation is much weaker, possibly as it is based on a
+    CO/\HII~conversion factor which is valid for regions with near-solar
+    metalicity, but thereby underestimating \HII-mass in metal-poor regions.
+
+\item
+    In figure 6, filled circles represent global H$\alpha$ measurements of normal
+    spiral galaxies, which are found in regions of low densities, and filled
+    squares represent FIR measurements of the central regions of starburst
+    galaxies, which fill regions of higher densities. \\
+    While both types remarkably agree in their slope, they are separated by an
+    empty gap. In order to show that a physical continuity exists between both
+    domains, from 25 normal spiral galaxies \SFR~and \ISM~were derived by
+    averaging only their central regions. When this data is plotted (as open
+    circles), it fills aforementioned gap.
+
+\item
+    The Schmidt Law is rather a statistical description averaged over many
+    galaxies, since some of them deviated substantially from the mean
+    relation. \\
+    For concrete models, the size of star-forming regions is required on linear
+    scales, which is straightforward for normal galaxies, but might be more
+    challenging for starburst galaxies, since in some cases the relevant
+    regions are only a few percent of the parent galaxy's radius.
+
+\item
+
+
+
+\end{enumerate}
+
+
+\end{document}
