@@ -99,13 +99,18 @@
 \newcommand{\ISMHII}{\ensuremath{\Sigma_{\mathrm{H}_2}}}
 \newcommand{\HI}{\ensuremath{\mathrm{H}_1}}
 \newcommand{\HII}{\ensuremath{\mathrm{H}_2}}
+\newcommand{\rhoSFR}{\ensuremath{\rho_{\mathrm{SFR}}}}
+\newcommand{\rhoISM}{\ensuremath{\rho_{\mathrm{gas}}}}
+\newcommand{\OmegaISM}{\ensuremath{\Omega_{\mathrm{gas}}}}
+\newcommand{\tauDyn}{\ensuremath{\tau_{\mathrm{dyn}}}}
+\newcommand{\tauGrowth}{\ensuremath{\tau_{\mathrm{growth}}}}
 
 
 \begin{document}
 
 \section*{Task 1}
 
-\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=\baselineskip]
+\begin{enumerate}[label=\textbf{\large(\alph*)}, itemsep=.5\baselineskip]
 
 \item
     The Schmidt Law attempts to describe the relationship between large-scale
@@ -161,6 +166,21 @@
     regions are only a few percent of the parent galaxy's radius.
 
 \item
+    Although the Schmidt Law is an empirical law, it can be interpreted with
+    simple models, which reproduce the prior discussed behaviour and in which star
+    formation is due to self-gravitation of the ISM. \\
+    One way is relating \rhoSFR~with the ratio of \rhoISM~and the growth
+    timescale of density
+    perturbations $\tauGrowth=(G\rhoISM)^{-.5}$:
+    $\rhoSFR\propto\frac{\rhoISM}{\tauGrowth}\propto\rhoISM^{1.5}$. \\
+    Alternatively, one can find a kinematic description by looking at the
+    ratio of \SFR~and the local dynamical timescale:
+    $\SFR\propto\frac{\ISM}{\tauDyn}\propto\ISM\OmegaISM$, were
+    \OmegaISM~is the angular velocity of the ISM. \\
+    The high SFR in starburst galaxies is in the first interpretation simply
+    due to higher gas densities in those regions, while in the second one
+    smaller physical scales and shorter timescales compared to normal galaxies
+    are responsible.
 
 
 
